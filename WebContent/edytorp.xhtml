@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" >
+<ui:composition template="templatkaSystemu.xhtml">
+	<ui:define name="title">Dentus</ui:define>
+	<ui:define name="content">
+	<h:form id="form">
+		<div style="margin-top:50px; margin-left:50px; margin-bottom:30px">
+	  		<h:outputText styleClass="h1" value="#{edytorPBB.tytul}" />
+	  		<p:button style="margin-left:55px" value="Wyczyść"/>
+	  		<p:commandButton style="margin-left:15px" value="Zatwierdź" actionListener="#{edytorPBB.confirm}"/>
+	  	</div>
+	  	
+	  		<h:panelGrid columns="2" style="border: 1px solid #769bad; margin-left:50px;padding:10px 13px 10px 13px">
+	  			<h:outputText styleClass="normFont" value="Dane podstawowe" />
+	  			<h:outputText styleClass="normFont" value="" />
+	  			
+	  			<h:outputText styleClass="normFont" value="Imię" />
+	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.imie}"/>
+	  			<h:outputText styleClass="normFont" value="Nazwisko" />
+	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.nazwisko}"/>
+	  			<h:outputText styleClass="normFont" value="Wiek" />
+	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.wiek}"/>
+	  			<h:outputText styleClass="normFont" value="Adres" />
+	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.adres1}" />
+	  			<h:outputText styleClass="normFont" value="" />
+	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.adres2}"/>
+	  			<h:outputText styleClass="normFont" value="" />
+	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.adres3}"/>
+	  			<h:outputText styleClass="normFont" value="Telefon" />
+	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.telefon}"/>
+	  			<h:outputText styleClass="normFont" value="Email" />
+	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.email}"/>
+	  			
+	  			<h:outputText styleClass="normFont" value="Dane medyczne" />
+	  			<h:outputText styleClass="normFont" value="" />
+	  			<h:outputText styleClass="normFont" value="Alergie" />
+	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.alergie}"/>
+	  			<h:outputText styleClass="normFont" value="Inne choroby" />
+	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.choroby}"/>
+	  		</h:panelGrid>
+		  
+	 </h:form>  
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="templatka.xhtml">
+	<ui:define name="title">Dentus</ui:define>
+	<ui:define name="content">
+	     <div class="h3">
+	   	<h:outputText value="Logowanie do systemu Dentus"/>
+	  </div>
+	 
+
+	  <h:form  id="forma" action="confirm">
+	  	<h:panelGrid columns="3">
+	  	
+	  
+	  	<h:outputText value="Nick:" class="normFont"/>
+	  	<h:inputText id="nick" value="#{autoryzacja.nick}" onblur="singleEmptyTestLogowanie(this,getElement(this.form,'nickMessage'))"/>
+	  	<h:outputText id="nickMessage" class="normFontItalic"/>
+	  	<h:outputText value="Hasło:" class="normFont"/>
+	  	<h:inputText id="haslo" value="#{autoryzacja.haslo}" onblur="singleEmptyTestLogowanie(this,getElement(this.form,'hasloMessage'))"/>	
+	  	<h:outputText id="hasloMessage" class="normFontItalic"/>
+	  	<h:commandButton id="potwierdz" value="Potwierdź" action="#{autoryzacja.verifyUser}"  type="submit" />
+	  	</h:panelGrid>
+	  	
+		
+		
+	  </h:form>
+	</ui:define>
+</ui:composition>
+</html>

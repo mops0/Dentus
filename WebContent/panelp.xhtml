@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" >
+<ui:composition template="templatkaSystemu.xhtml">
+	<ui:define name="title">Dentus</ui:define>
+	<ui:define name="content">
+	<h:form>
+		<div style="margin-top:100px; margin-left:50px;">
+	  	<h:outputText styleClass="h1" value="Profil pacjenta" />
+	  	<p:commandButton value="Edytuj" style="margin-left:450px;  width:100px" actionListener="#{panelPBB.onEdytuj}"/>
+	  	<p:button value="Usuń" style="margin-left:20px;width:100px"/>
+	  	</div>
+		<p:tabView  styleClass="tablica" >
+			<p:tab  title="Dane podstawowe" titleStyleClass="tabStyle">
+				<h:panelGrid columns="2">
+					<h:outputText value="nazwisko:" />
+					<h:outputText value="#{panelPBB.selectedPatient.nazwisko}" />
+					<h:outputText value="imię:" />
+					<h:outputText value="#{panelPBB.selectedPatient.imie}" />
+					<h:outputText value="wiek:" />
+					<h:outputText value="#{panelPBB.selectedPatient.wiek}" />
+					<h:outputText value="adres" />
+					<h:outputText value="#{panelPBB.selectedPatient.adres1}" />
+					<h:outputText value="" />
+					<h:outputText value="#{panelPBB.selectedPatient.adres2}" />
+					<h:outputText value="" />
+					<h:outputText value="#{panelPBB.selectedPatient.adres3}" />
+					<h:outputText value="telefon:" />
+					<h:outputText value="#{panelPBB.selectedPatient.telefon}" />
+					<h:outputText value="email:" />
+					<h:outputText value="#{panelPBB.selectedPatient.email}" />
+				</h:panelGrid>
+					
+			</p:tab>
+			<p:tab  title="Dane medyczne" titleStyleClass="tabStyle">
+				<h:panelGrid columns="2">
+				<h:outputText value="alergie:" />
+					<h:outputText value="#{panelPBB.selectedPatient.alergie}" />
+					<h:outputText value="inne choroby:" />
+					<h:outputText value="#{panelPBB.selectedPatient.choroby}" />
+				</h:panelGrid>	
+			</p:tab>
+			<p:tab  title="Historia leczenia" titleStyleClass="tabStyle">
+				<h:outputText value="#{panelPBB.selectedPatient.historia}" />
+			</p:tab>
+		</p:tabView>
+	</h:form>
+	  	
+	 
+	 
+
+	 
+	  
+	  
+	  
+	</ui:define>
+</ui:composition>
+</html>

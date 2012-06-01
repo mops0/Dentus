@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" >
+
+	<h:head>
+		<meta charset="iso-8859-2"/>	
+		<title>Person</title>
+		
+		<h:outputStylesheet library="css" name="indexS.css"/>
+		<h:outputScript name="dynamikaS.js" library="javascript" target="head" />
+		
+		
+
+
+	</h:head>	
+<body>
+ 
+  
+   
+  <h:form id="form">
+    <p:dataTable id="people" var="person" value="#{tableBean.personModel}" 
+                 selection="#{tableBean.selectedPerson}" selectionMode="single">  
+  
+        <p:ajax event="rowSelect"  
+                    update=":form:display" oncomplete="Dialog.show()" />  
+       
+  
+        
+  
+        <p:column headerText="First Name">  
+           <h:outputText value="#{person.name}"/>  
+        </p:column>  
+  
+        <p:column headerText="Second Name">  
+           <h:outputText value="#{person.surname}"/>  
+        </p:column>    
+    </p:dataTable>  
+
+    <p:dialog id="dialog" header="Details" widgetVar="Dialog" resizable="false">  
+  
+        <h:panelGrid id="display" columns="2" cellpadding="4">  
+            <h:outputText value="Name:" />  
+            <h:outputText value="#{tableBean.selectedPerson.name}" />  
+  
+            <h:outputText value="Surname:" />  
+            <h:outputText value="#{tableBean.selectedPerson.surname}" />  
+        </h:panelGrid>  
+    </p:dialog>  
+ </h:form>
+</body>
+</html>

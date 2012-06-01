@@ -1,0 +1,112 @@
+body{
+	background-image:url("#{resource['images:tlo2.jpg']}"); 
+	backgroundRepeat: no;
+	backgroundPosition: top center;
+}
+
+#allcontents{
+
+	width:1000px;
+	height:800px;
+	border: 1px solid #c6e3f1;
+	background-image:url("#{resource['images:strona2.jpg']}"); 
+	font-family:Helvetica, sans-serif;
+	margin-left:auto;
+	margin-right:auto;
+}
+#header{
+	color: #2b2b36;
+	width:1000px;
+	height:43px;
+}
+#menu{
+	
+	width:1000px;
+	height:70px;
+	
+	
+}
+
+}
+#contenti{
+	width:1000px;
+	height:600px;
+	
+	
+	
+}
+li{  
+    width:120px;  
+    height:64px;  
+   	float:left;
+    
+    text-align:center; 
+    
+    overflow: hidden;
+	border-right-style:solid;
+	
+    border-color:#769bad;
+    border-width:1px;
+    padding:3px 3px 3px 3px;
+    cursor:pointer;
+    
+}
+
+
+#Pacjenci{
+	border-left-style:solid;
+	border-color:#769bad;
+    border-width:1px;
+}
+.passive{
+	background-color:#ffbe73;
+}
+.activeIn{
+	background-color:#c4e0ed;
+}
+.activeOut{
+	background-color:transparent;
+}
+a{
+	font-family: Ubuntu, Verdana, Geneva, Arial, sans-serif;
+	font-size:15px;
+	color:#769bad;
+	
+	
+}
+
+
+.normFont{
+	color: #777777;
+	float:right;
+	
+	font-family: Ubuntu, Verdana, Geneva, Arial, sans-serif;
+	font-size:15px;
+	margin:5px 30px 5px 30px;
+	
+}	
+.normFontItalic{
+	color: black;
+	font-style: italic;
+	height:60px;
+	font-family: Ubuntu, Verdana, Geneva, Arial, sans-serif;
+	font-size:15px;
+	margin:30px 30px 30px 30px;
+}
+.tablica{
+	
+	margin-top: 50px;
+	margin-left: 100px;
+	margin-right: 100px;
+	width:800px;
+}
+.tabStyle{
+	height:30px;
+	width:150px;
+}
+.h1 {
+	color: #4b4b4b;
+	font-family: Ubuntu, Verdana, Geneva, Arial, sans-serif;
+	font-size:30px;
+	
+}

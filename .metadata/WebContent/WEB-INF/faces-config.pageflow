@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13344925135190" configfile="/Dentis/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="rejestracja.xhtml" x="169" y="120" id="pf13359081384210" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13359081384221" path="/rejestracja.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="confirm.xhtml" x="468" y="120" id="pf13359081384222" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13359081384221" path="/confirm.xhtml"/>
+  <links id="pf13359081384221" target="pf13359081384222" source="pf13359081384210" outcome="confirm"/>
+</pageflow:Pageflow>
