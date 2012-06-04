@@ -23,9 +23,21 @@
 	  			<h:outputText styleClass="normFont" value="Imię" />
 	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.imie}"/>
 	  			<h:outputText styleClass="normFont" value="Nazwisko" />
-	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.nazwisko}"/>
-	  			<h:outputText styleClass="normFont" value="Wiek" />
-	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.wiek}"/>
+	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.nazwisko}"/> 
+        		<h:selectOneMenu value="">  
+           			 
+           			<f:selectItems value="#{selectItemsBean.dayOptions}"/>
+        		</h:selectOneMenu>  
+        		<h:selectOneMenu value="">  
+           			 
+           			<f:selectItems value="#{selectItemsBean.monthOptions}"/>
+        		</h:selectOneMenu>
+        		<h:selectOneMenu value="">  
+           			 
+           			<f:selectItems value="#{selectItemsBean.yearOptions}"/>
+        		</h:selectOneMenu>
+	  			<!--  <h:outputText styleClass="normFont" value="Wiek" />-->
+	  			<!-- <h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.wiek}"/>-->
 	  			<h:outputText styleClass="normFont" value="Adres" />
 	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.adres1}" />
 	  			<h:outputText styleClass="normFont" value="" />
