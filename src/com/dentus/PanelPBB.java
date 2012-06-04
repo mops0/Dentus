@@ -1,5 +1,7 @@
 package com.dentus;
 
+import java.io.IOException;
+
 import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -30,9 +32,14 @@ public class PanelPBB
 		 NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
 		 navigationHandler.handleNavigation(context, null, "edytorp"+"?faces-redirect=true");
 	}
-	public void onUsun()
+	public void onUsun() throws IOException
 	{
 		 FacesContext context = FacesContext.getCurrentInstance();
+		 new RecordService().usunRekord(getSelectedPatient());
+		 Tablica tablica = (Tablica) context.getApplication().evaluateExpressionGet(context, "#{tablica}", Tablica.class);
+		 tablica.updateList();
+		 NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
+		 navigationHandler.handleNavigation(context, null, "pacjenci"+"?faces-redirect=true");
 	}
 	/*
 	public void update()
