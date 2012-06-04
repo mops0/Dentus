@@ -14,7 +14,7 @@ public class RecordService
 {
 	public void dodajRekord(Pacjent pacjent) throws IOException
 	{
-		 File file = new File ("/home/tomasz/work/Dentus/pacjenci.txt");
+		 File file = new File ("/home/tomasz/git/Dentus/pacjenci.txt");
 		 List<String> pacjenci=new ArrayList<String>();
 		 
 		 BufferedReader br = new BufferedReader(new FileReader(file));
@@ -35,7 +35,7 @@ public class RecordService
 	}
 	public List<Pacjent> odczytajRekordy() throws IOException
 	 {
-		 File file = new File ("/home/tomasz/work/Dentus/pacjenci.txt");
+		 File file = new File ("/home/tomasz/git/Dentus/pacjenci.txt");
 		 List<Pacjent> listaP= new ArrayList<Pacjent>();
 		 BufferedReader br = new BufferedReader(new FileReader(file));
 		 String rekord=br.readLine();
@@ -73,7 +73,7 @@ public class RecordService
 		
 		List<Pacjent> lista= odczytajRekordy();
 		
-		File file = new File ("/home/tomasz/work/Dentus/pacjenci.txt");
+		File file = new File ("/home/tomasz/git/Dentus/pacjenci.txt");
 		resetujPlik(file);
 		for (int i=0;i<lista.size();i++)
 		{

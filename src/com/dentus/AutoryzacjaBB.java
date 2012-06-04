@@ -17,7 +17,7 @@ public class AutoryzacjaBB implements Serializable
 	private String nazwisko;
 	private String nick;
 	private String haslo;
-	private UserService us = new UserService(new File("/home/tomasz/workspace/Dentis/lista.dat"));
+	private UserService us = new UserService(new File("/home/tomasz/git/Dentus/lista.dat"));
 	
 	public String getImie()
 	{
