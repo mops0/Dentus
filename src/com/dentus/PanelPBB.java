@@ -23,13 +23,16 @@ public class PanelPBB
 	public void onEdytuj()
 	{
 		 FacesContext context = FacesContext.getCurrentInstance();
-		 
 		 EdytorPBB edytor= (EdytorPBB) context.getApplication().evaluateExpressionGet(context, "#{edytorPBB}", EdytorPBB.class);
 		 edytor.ustawPacjenta(getSelectedPatient());
 		 edytor.setTytul("Edycja danych pacjenta");
 		 edytor.setNew(false);
 		 NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
 		 navigationHandler.handleNavigation(context, null, "edytorp"+"?faces-redirect=true");
+	}
+	public void onUsun()
+	{
+		 FacesContext context = FacesContext.getCurrentInstance();
 	}
 	/*
 	public void update()

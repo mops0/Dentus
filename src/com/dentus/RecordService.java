@@ -12,9 +12,10 @@ import java.util.StringTokenizer;
 
 public class RecordService
 {
+	File file = new File ("/home/tomasz/git/Dentus/pacjenci.txt");
 	public void dodajRekord(Pacjent pacjent) throws IOException
 	{
-		 File file = new File ("/home/tomasz/git/Dentus/pacjenci.txt");
+		// File file = new File ("/home/tomasz/git/Dentus/pacjenci.txt");
 		 List<String> pacjenci=new ArrayList<String>();
 		 
 		 BufferedReader br = new BufferedReader(new FileReader(file));
@@ -35,7 +36,7 @@ public class RecordService
 	}
 	public List<Pacjent> odczytajRekordy() throws IOException
 	 {
-		 File file = new File ("/home/tomasz/git/Dentus/pacjenci.txt");
+		 //File file = new File ("/home/tomasz/git/Dentus/pacjenci.txt");
 		 List<Pacjent> listaP= new ArrayList<Pacjent>();
 		 BufferedReader br = new BufferedReader(new FileReader(file));
 		 String rekord=br.readLine();
@@ -73,7 +74,7 @@ public class RecordService
 		
 		List<Pacjent> lista= odczytajRekordy();
 		
-		File file = new File ("/home/tomasz/git/Dentus/pacjenci.txt");
+		//File file = new File ("/home/tomasz/git/Dentus/pacjenci.txt");
 		resetujPlik(file);
 		for (int i=0;i<lista.size();i++)
 		{
@@ -90,4 +91,27 @@ public class RecordService
 		
 				
 	}
+	public void usunRekord(Pacjent pacjentDel) throws IOException
+	{
+		
+		List<Pacjent> lista= odczytajRekordy();
+		
+		//File file = new File ("/home/tomasz/git/Dentus/pacjenci.txt");
+		resetujPlik(file);
+		for (int i=0;i<lista.size();i++)
+		{
+			Pacjent pacjent =lista.get(i); 
+			if(pacjent.getNazwisko().equals(pacjentDel.getNazwisko()))
+			{
+				//dodajRekord(nowyP);
+				
+				
+			}
+			else
+			dodajRekord(pacjent);
+		}
+		
+				
+	}
+	 
 }
