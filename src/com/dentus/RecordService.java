@@ -31,7 +31,7 @@ public class RecordService
 		 {
 			 out.println(pacjenci.get(licznik));
 		 }
-		 out.println(pacjent.getNazwisko()+"***"+pacjent.getImie()+"***"+pacjent.getWiek()+"***"+pacjent.getAdres1()+"***"+pacjent.getAdres2()+"***"+pacjent.getAdres3()+"***"+pacjent.getEmail()+"***"+pacjent.getTelefon()+"***"+pacjent.getAlergie()+"***"+pacjent.getChoroby()+"***"+pacjent.getHistoria());
+		 out.println(pacjent.getNazwisko()+"***"+pacjent.getImie()+"***"+pacjent.getDataUrodzenia().getTime()+"***"+pacjent.getAdres1()+"***"+pacjent.getAdres2()+"***"+pacjent.getAdres3()+"***"+pacjent.getEmail()+"***"+pacjent.getTelefon()+"***"+pacjent.getAlergie()+"***"+pacjent.getChoroby()+"***"+pacjent.getHistoria());
 		 out.close();
 	}
 	public List<Pacjent> odczytajRekordy() throws IOException
@@ -49,7 +49,7 @@ public class RecordService
 			 Pacjent pacjent= new Pacjent();
 			 pacjent.setNazwisko(token.nextToken());
 			 pacjent.setImie(token.nextToken());
-			 pacjent.setWiek(Integer.valueOf(token.nextToken()));
+			// pacjent.setWiek(Integer.valueOf(token.nextToken()));
 			 pacjent.setAdres1(token.nextToken());
 			 pacjent.setAdres2(token.nextToken());
 			 pacjent.setAdres3(token.nextToken());

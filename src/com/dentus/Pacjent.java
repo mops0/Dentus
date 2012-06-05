@@ -1,6 +1,7 @@
 package com.dentus;
  
 import java.io.Serializable;
+import java.util.Date;
 
 
 public class Pacjent implements Serializable
@@ -15,11 +16,15 @@ public class Pacjent implements Serializable
 	
 	private String imie;
 	private String nazwisko;
-	private int wiek;
+	private Date dataUrodzenia;
 	private String adres1;
 	private String adres2;
 	private String adres3;
 	
+	
+
+
+
 	private String email;
 	private String telefon;
 	private String alergie;
@@ -32,16 +37,24 @@ public class Pacjent implements Serializable
 	{
 		
 	}
-	Pacjent(String imie, String nazwisko,int wiek, String telefon, String email)
+	Pacjent(String imie, String nazwisko,String telefon, String email)
 	{
 		this.imie=imie;
 		this.nazwisko=nazwisko;
-		this.wiek=wiek;
+		
 		this.telefon=telefon;
 		this.email=email;
 		
 	}
-	
+	public Date getDataUrodzenia()
+	{
+		return dataUrodzenia;
+	}
+	public void setDataUrodzenia(Date dataUrodzenia)
+	{
+		this.dataUrodzenia = dataUrodzenia;
+	}
+
 	public String getHistoria()
 	{
 		return historia;
@@ -111,22 +124,10 @@ public class Pacjent implements Serializable
 		this.nazwisko = nazwisko;
 	}
 	
-	public int getWiek()
-	{
-		return wiek;
-	}
-	public void setWiek(int wiek)
-	{
-		this.wiek = wiek;
-	}
 	public String getAdres1()
 	{
 		return adres1;
 	}
-
-
-
-
 	public void setAdres1(String adres1)
 	{
 		this.adres1 = adres1;

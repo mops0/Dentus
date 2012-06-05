@@ -17,27 +17,26 @@
 	  	</div>
 	  	
 	  		<h:panelGrid columns="2" style="border: 1px solid #769bad; margin-left:50px;padding:10px 13px 10px 13px">
-	  			<h:outputText styleClass="normFont" value="Dane podstawowe" />
-	  			<h:outputText styleClass="normFont" value="" />
+	  			
+	  				<h:outputText styleClass="normFont" value="Dane podstawowe" />
+	  				<h:outputText styleClass="normFont" value="" />
 	  			
 	  			<h:outputText styleClass="normFont" value="Imię" />
 	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.imie}"/>
 	  			<h:outputText styleClass="normFont" value="Nazwisko" />
 	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.nazwisko}"/> 
-        		<h:selectOneMenu value="">  
-           			 
-           			<f:selectItems value="#{selectItemsBean.dayOptions}"/>
-        		</h:selectOneMenu>  
-        		<h:selectOneMenu value="">  
-           			 
-           			<f:selectItems value="#{selectItemsBean.monthOptions}"/>
-        		</h:selectOneMenu>
-        		<h:selectOneMenu value="">  
-           			 
-           			<f:selectItems value="#{selectItemsBean.yearOptions}"/>
-        		</h:selectOneMenu>
-	  			<!--  <h:outputText styleClass="normFont" value="Wiek" />-->
-	  			<!-- <h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.wiek}"/>-->
+        		<h:outputText styleClass="normFont" value="Data urodzenia" />
+        			<p:row >
+        			<h:selectOneMenu value="#{edytorPBB.birthDate.day}" style="margin-left:20px">   
+           				<f:selectItems  value="#{selectItemsBean.dayOptions}"/>
+        			</h:selectOneMenu>  
+        			<h:selectOneMenu  value="#{edytorPBB.birthDate.month}">   
+           				<f:selectItems value="#{selectItemsBean.monthOptions}"/>
+        			</h:selectOneMenu>
+        			<h:selectOneMenu  value="#{edytorPBB.birthDate.year}">   
+           				<f:selectItems value="#{selectItemsBean.yearOptions}"/>
+        			</h:selectOneMenu>
+        			</p:row>
 	  			<h:outputText styleClass="normFont" value="Adres" />
 	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.adres1}" />
 	  			<h:outputText styleClass="normFont" value="" />

@@ -5,6 +5,7 @@ package com.dentus;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Calendar;
 
 
 import javax.faces.application.NavigationHandler;
@@ -22,131 +23,19 @@ public class EdytorPBB implements Serializable
 	private static final long serialVersionUID = 1L;
 	private Pacjent pacjent=new Pacjent();
 	private Pacjent comparePacjent = new Pacjent();
+	private SelectDateItem birthDate = new SelectDateItem();
 	private String tytul;
 	private boolean isNew;
 	
 	
-	/*
-	private String imie;
-	private String nazwisko;
-	private int wiek;
-	private String adres1;
-	private String adres2;
-	private String adres3;
-	
-	private String email;
-	private String telefon;
-	private String alergie;
-	private String choroby;
-	private String opisPacjenta;
-	private Date terminWizyty;
-	private String historia;
-
-	public String getImie()
+	public SelectDateItem getBirthDate()
 	{
-		return imie;
+		return birthDate;
 	}
-	public void setImie(String imie)
+	public void setBirthDate(SelectDateItem birthDate)
 	{
-		this.imie = imie;
+		this.birthDate = birthDate;
 	}
-	public String getNazwisko()
-	{
-		return nazwisko;
-	}
-	public void setNazwisko(String nazwisko)
-	{
-		this.nazwisko = nazwisko;
-	}
-	public int getWiek()
-	{
-		return wiek;
-	}
-	public void setWiek(int wiek)
-	{
-		this.wiek = wiek;
-	}
-	public String getAdres1()
-	{
-		return adres1;
-	}
-	public void setAdres1(String adres1)
-	{
-		this.adres1 = adres1;
-	}
-	public String getAdres2()
-	{
-		return adres2;
-	}
-	public void setAdres2(String adres2)
-	{
-		this.adres2 = adres2;
-	}
-	public String getAdres3()
-	{
-		return adres3;
-	}
-	public void setAdres3(String adres3)
-	{
-		this.adres3 = adres3;
-	}
-	public String getEmail()
-	{
-		return email;
-	}
-	public void setEmail(String email)
-	{
-		this.email = email;
-	}
-	public String getTelefon()
-	{
-		return telefon;
-	}
-	public void setTelefon(String telefon)
-	{
-		this.telefon = telefon;
-	}
-	public String getAlergie()
-	{
-		return alergie;
-	}
-	public void setAlergie(String alergie)
-	{
-		this.alergie = alergie;
-	}
-	public String getChoroby()
-	{
-		return choroby;
-	}
-	public void setChoroby(String choroby)
-	{
-		this.choroby = choroby;
-	}
-	public String getOpisPacjenta()
-	{
-		return opisPacjenta;
-	}
-	public void setOpisPacjenta(String opisPacjenta)
-	{
-		this.opisPacjenta = opisPacjenta;
-	}
-	public Date getTerminWizyty()
-	{
-		return terminWizyty;
-	}
-	public void setTerminWizyty(Date terminWizyty)
-	{
-		this.terminWizyty = terminWizyty;
-	}
-	public String getHistoria()
-	{
-		return historia;
-	}
-	public void setHistoria(String historia)
-	{
-		this.historia = historia;
-	}
-	*/
 	public Pacjent getPacjent()
 	{
 		return pacjent;
@@ -181,22 +70,9 @@ public class EdytorPBB implements Serializable
 	}
 	public void confirm() throws IOException
 	{
-		/*
-		Pacjent pacjent = new Pacjent();
-		
-		pacjent.setNazwisko(nazwisko);
-		pacjent.setImie(imie);
-		pacjent.setWiek(wiek);
-		pacjent.setAdres1(adres1);
-		pacjent.setAdres2(adres2);
-		pacjent.setAdres3(adres3);
-		pacjent.setEmail(email);
-		pacjent.setTelefon(telefon);
-		pacjent.setAlergie(alergie);
-		pacjent.setChoroby(choroby);
-		historia="puste pole";
-		pacjent.setHistoria(historia);
-		*/
+		Calendar cal= Calendar.getInstance();
+		cal=getBirthDate().parseToCalendar();
+		pacjent.setDataUrodzenia(cal.getTime());
 		RecordService rs = new RecordService();
 		if (isNew)
 		{
@@ -236,6 +112,44 @@ public class EdytorPBB implements Serializable
 	{
 		setPacjent(pacjent);
 		setComparePacjent(pacjent);
+	}
+	
+}
+class SelectDateItem
+{
+	private int day;
+	private int month;
+	private int year;
+	public int getDay()
+	{
+		return day;
+	}
+	public void setDay(int day)
+	{
+		this.day = day;
+	}
+	public int getMonth()
+	{
+		return month;
+	}
+	public void setMonth(int month)
+	{
+		this.month = month;
+	}
+	public int getYear()
+	{
+		return year;
+	}
+	public void setYear(int year)
+	{
+		this.year = year;
+	}
+	public Calendar parseToCalendar()
+	{
+		Calendar cal = Calendar.getInstance();
+		cal.set(getYear(), getMonth(), getDay());
+		return cal;
+		
 	}
 	
 }
