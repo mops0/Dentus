@@ -46,11 +46,12 @@ public class Tablica implements Serializable
 	public void onRowSelect(SelectEvent event) 
 	{  
 	      
-		 FacesContext context = FacesContext.getCurrentInstance();
+		FacesContext context = FacesContext.getCurrentInstance();
 		PanelPBB panel= (PanelPBB) context.getApplication().evaluateExpressionGet(context, "#{panelPBB}", PanelPBB.class);
+		getSelectedPatient().generateBirthDayString();
 		panel.setSelectedPatient(getSelectedPatient());
-		 NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
-		 navigationHandler.handleNavigation(context, null, "panelp"+"?faces-redirect=true");
+		NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
+		navigationHandler.handleNavigation(context, null, "panelp"+"?faces-redirect=true");
 	}
 	public void onNowyPacjent(ActionEvent event)
 	{

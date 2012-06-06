@@ -41,14 +41,6 @@ public class PanelPBB
 		 NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
 		 navigationHandler.handleNavigation(context, null, "pacjenci"+"?faces-redirect=true");
 	}
-	/*
-	public void update()
-	{
-		FacesContext context = FacesContext.getCurrentInstance();
-		Tablica tablica = (Tablica) context.getApplication().evaluateExpressionGet(context, "#{tablica}", Tablica.class);
-		selectedPatient = tablica.getSelectedPatient();
-		
-	}
-	*/
+	
 	
 }

@@ -73,9 +73,12 @@ public class EdytorPBB implements Serializable
 		Calendar cal= Calendar.getInstance();
 		cal=getBirthDate().parseToCalendar();
 		pacjent.setDataUrodzenia(cal.getTime());
+		
 		RecordService rs = new RecordService();
 		if (isNew)
 		{
+			
+			pacjent.generateId();
 			rs.dodajRekord(pacjent);
 		}
 		else
@@ -92,64 +95,13 @@ public class EdytorPBB implements Serializable
 	{
 		FacesContext context = FacesContext.getCurrentInstance();
 		Tablica tablica = (Tablica) context.getApplication().evaluateExpressionGet(context, "#{tablica}", Tablica.class);
-		/*
-		Pacjent pacjent = tablica.getSelectedPatient();
-		setNazwisko(pacjent.getNazwisko());
-		setImie(pacjent.getImie());
-		setWiek(pacjent.getWiek());
-		setAdres1(pacjent.getAdres1());
-		setAdres2(pacjent.getAdres2());
-		setAdres3(pacjent.getAdres3());
-		setEmail(pacjent.getEmail());
-		setTelefon(pacjent.getTelefon());
-		setAlergie(pacjent.getAlergie());
-		setChoroby(pacjent.getChoroby());
-		setHistoria(pacjent.getHistoria());
-		*/
+		
 		 pacjent = tablica.getSelectedPatient();
 	}
 	public void ustawPacjenta(Pacjent pacjent)
 	{
 		setPacjent(pacjent);
 		setComparePacjent(pacjent);
-	}
-	
-}
-class SelectDateItem
-{
-	private int day;
-	private int month;
-	private int year;
-	public int getDay()
-	{
-		return day;
-	}
-	public void setDay(int day)
-	{
-		this.day = day;
-	}
-	public int getMonth()
-	{
-		return month;
-	}
-	public void setMonth(int month)
-	{
-		this.month = month;
-	}
-	public int getYear()
-	{
-		return year;
-	}
-	public void setYear(int year)
-	{
-		this.year = year;
-	}
-	public Calendar parseToCalendar()
-	{
-		Calendar cal = Calendar.getInstance();
-		cal.set(getYear(), getMonth(), getDay());
-		return cal;
-		
 	}
 	
 }
