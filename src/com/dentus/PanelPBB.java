@@ -1,6 +1,7 @@
 package com.dentus;
 
 import java.io.IOException;
+import java.util.*;
 
 import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
@@ -12,12 +13,40 @@ import javax.faces.context.FacesContext;
 public class PanelPBB
 {
 	private Pacjent selectedPatient=new Pacjent();
-	
+	private HistoriaWpis selectedWpis= new HistoriaWpis();
+	List<HistoriaWpis> wpisy = new ArrayList<HistoriaWpis>();
+	private HistoryDataModel historyModel;
+	public PanelPBB()
+	{
+		wpisy.add(new HistoriaWpis("22.01.2012","Pruchnica","Borowanie","Pacjent oszalał"));
+		wpisy.add(new HistoriaWpis("23.01.2012","Szaleństwo","Lewatywa","Pacjent polubił zabawe z mydłem"));
+		
+		
+		historyModel=new HistoryDataModel(wpisy);
+	}
+	public HistoriaWpis getSelectedWpis()
+	{
+		return selectedWpis;
+	}
+
+	public void setSelectedWpis(HistoriaWpis selectedWpis)
+	{
+		this.selectedWpis = selectedWpis;
+	}
+
+	public HistoryDataModel getHistoryModel()
+	{
+		return historyModel;
+	}
+	public void setHistoryModel(HistoryDataModel historyModel)
+	{
+		this.historyModel = historyModel;
+	}
 	public Pacjent getSelectedPatient()
 	{
 		return selectedPatient;
 	}
-
+	
 	public void setSelectedPatient(Pacjent selectedPatient)
 	{
 		this.selectedPatient = selectedPatient;
@@ -41,6 +70,9 @@ public class PanelPBB
 		 NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
 		 navigationHandler.handleNavigation(context, null, "pacjenci"+"?faces-redirect=true");
 	}
-	
+	public void onNowyWpis()
+	{
+		
+	}
 	
 }

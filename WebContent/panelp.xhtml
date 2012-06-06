@@ -46,7 +46,27 @@
 				</h:panelGrid>	
 			</p:tab>
 			<p:tab  title="Historia leczenia" titleStyleClass="tabStyle">
-				<h:outputText value="#{panelPBB.selectedPatient.historia}" />
+				<h:form id="form">
+					<div >
+		  		
+		  				<p:commandButton value="Dodaj wpis" actionListener="#{panelPBB.onNowyWpis}" style="margin-left:600px; margin-bottom:20px"/>
+		  			</div>
+		  			<p:dataTable id= "wpisy" value="#{panelPBB.historyModel}" dblClickSelect="false" selection="#{panelPBB.selectedWpis}" rowKey="#{wpis.leczenie}" selectionMode="single" var= "wpis" styleClass="wpisy">
+				  		<p:ajax event="rowSelect" listener="#{panelPBB.onRowSelect}"/>
+				  		<p:column headerText="Data">
+				  			<h:outputText value="#{wpis.data}"/>
+				  		</p:column>
+				  		<p:column headerText="Rozpoznanie">
+				  			<h:outputText value="#{wpis.rozpoznanie}"/>
+				  		</p:column>
+				  		<p:column headerText="Lecznie">
+				  			<h:outputText value="#{wpis.leczenie}"/>
+				  		</p:column>
+				  		<p:column headerText="Komentarz">
+				  			<h:outputText value="#{wpis.komentarz}"/>
+			  			</p:column>
+			  		</p:dataTable>	 
+		 		</h:form>  
 			</p:tab>
 		</p:tabView>
 	</h:form>
