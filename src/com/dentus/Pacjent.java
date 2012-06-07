@@ -30,7 +30,7 @@ public class Pacjent implements Serializable
 	private String choroby;
 	private String opisPacjenta;
 	//private Date terminWizyty;
-	private String historia;
+	private HistoriaWpis historia;
 	
 	Pacjent()
 	{
@@ -77,17 +77,14 @@ public class Pacjent implements Serializable
 	{
 		this.dataUrodzenia = dataUrodzenia;
 	}
-
-	public String getHistoria()
+	public HistoriaWpis getHistoria()
 	{
 		return historia;
 	}
-	public void setHistoria(String historia)
+	public void setHistoria(HistoriaWpis historia)
 	{
 		this.historia = historia;
 	}
-	
-	
 	public String getEmail()
 	{
 		return email;

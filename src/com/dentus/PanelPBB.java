@@ -3,10 +3,16 @@ package com.dentus;
 import java.io.IOException;
 import java.util.*;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIViewRoot;
+import javax.faces.component.html.HtmlOutputText;
 import javax.faces.context.FacesContext;
+
+import org.primefaces.component.dialog.Dialog;
+import org.primefaces.event.SelectEvent;
 
 @ManagedBean(name="panelPBB")
 @SessionScoped
@@ -70,9 +76,38 @@ public class PanelPBB
 		 NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
 		 navigationHandler.handleNavigation(context, null, "pacjenci"+"?faces-redirect=true");
 	}
-	public void onNowyWpis()
+	public void onNowyWpis(SelectEvent event)
+	{
+		showWpisWindow();
+		System.out.println("bla");
+		
+		
+		
+	}
+	public void onRowSelect(SelectEvent event)
+	{
+		showWpisWindow();
+	}
+	public void potwierdzWpis()
+	{
+		hideWpisWindow();
+	}
+	public void usunWpis()
 	{
 		
 	}
-	
+	public void showWpisWindow()
+	{
+		FacesContext context = FacesContext.getCurrentInstance();
+		UIViewRoot view= context.getViewRoot();
+		Dialog dialog = (Dialog) view.findComponent("wpisEdytor");
+		dialog.setVisible(true);
+	}
+	public void hideWpisWindow()
+	{
+		FacesContext context = FacesContext.getCurrentInstance();
+		UIViewRoot view= context.getViewRoot();
+		Dialog dialog = (Dialog) view.findComponent("wpisEdytor");
+		dialog.setVisible(false);
+	}
 }
