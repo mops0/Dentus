@@ -14,7 +14,6 @@
 	  	<h:outputText styleClass="h1" value="Profil pacjenta" />
 	  	<p:commandButton value="Edytuj" style="margin-left:450px;  width:100px" actionListener="#{panelPBB.onEdytuj}"/>
 	  	<p:commandButton value="Usuń" style="margin-left:20px;width:100px" actionListener="#{panelPBB.onUsun}"/>
-	  	
 	  	</div>
 		<p:tabView  styleClass="tablica" >
 			<p:tab  title="Dane podstawowe" titleStyleClass="tabStyle">
@@ -47,11 +46,13 @@
 				</h:panelGrid>	
 			</p:tab>
 			<p:tab  title="Historia leczenia" titleStyleClass="tabStyle">
+				
+				
+				
 				<h:form id="form">
-					
-		  				<p:commandButton id="nowyWpis" value="Dodaj wpis" update=":wpisEdytor" actionListener="#{panelPBB.onNowyWpis}" style="margin-left:600px; margin-bottom:20px" />
-		  				
-		  				
+					<p:commandButton  value="Dodaj wpis"   actionListener="#{panelPBB.onNowyWpis}" style="margin-left:600px; margin-bottom:20px"  type="submit" ajax="false" >	
+		  				<p:ajax update=":wpisEdytor"/>
+		  			</p:commandButton>
 		  			
 		  			<p:dataTable id= "wpisy" value="#{panelPBB.historyModel}" dblClickSelect="false" selection="#{panelPBB.selectedWpis}" rowKey="#{wpis.leczenie}" selectionMode="single" var= "wpis" styleClass="wpisy">
 				  		<p:ajax event="rowSelect" listener="#{panelPBB.onRowSelect}" update=":wpisEdytor"/>
@@ -72,19 +73,19 @@
 			</p:tab>
 		</p:tabView>
 	</h:form> 
-	<p:dialog id="wpisEdytor" header="EdytujWpis" >  
+	<p:dialog id="wpisEdytor" header="EdytujWpis" widgetVar="dlg">  
 	    <h:form>  
 	    	<h:panelGrid columns="2" cellpadding="5">  
 	    		<h:outputLabel for="data" value="Data: " />  
-	    		<h:inputText  id="data" value="#{panelPBB.selectedWpis.data}" />  
+	    		<h:inputText  id="data" value="#{panelPBB.editedWpis.data}" />  
 	    		<h:outputLabel for="rozpoznanie" value="Rozpoznanie: " />  
-	    		<h:inputText  id="rozpoznanie" value="#{panelPBB.selectedWpis.rozpoznanie}" />  
+	    		<h:inputText  id="rozpoznanie" value="#{panelPBB.editedWpis.rozpoznanie}" />  
 	        	<h:outputLabel for="leczenie" value="Leczenie" />  
-	            <h:inputText value="#{panelPBB.selectedWpis.leczenie}" id="lecznie" />     
+	            <h:inputText value="#{panelPBB.editedWpis.leczenie}" id="leczenie" />     
 	            <h:outputLabel for="komentarz" value="Komentarz: " />  
-	    		<h:inputText  id="komentarz" value="#{panelPBB.selectedWpis.komentarz}" /> 
+	    		<h:inputText  id="komentarz" value="#{panelPBB.editedWpis.komentarz}" /> 
 	    		<f:facet name="footer"> 
-                <p:commandButton id="Potwierdz" value="Potwierdź" style="float:right" actionListener="#{panelPBB.potwierdzWpis}" update=":wpisEdytor"/>  
+                <p:commandButton id="Potwierdz" value="Potwierdź" style="float:right" actionListener="#{panelPBB.potwierdzWpis}" update=":forma:j_idt16:form:wpisy" oncomplete="dlg.hide()" />  
                 <p:commandButton id="Usun" value="Usuń wpis" style="float:right" actionListener="#{panelPBB.usunWpis}"/>  
             </f:facet>  
 	        </h:panelGrid>       

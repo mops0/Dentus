@@ -1,15 +1,13 @@
 package com.dentus;
 
 import java.io.IOException;
-import java.util.*;
-
-import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIViewRoot;
-import javax.faces.component.html.HtmlOutputText;
+
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import org.primefaces.component.dialog.Dialog;
 import org.primefaces.event.SelectEvent;
@@ -20,15 +18,20 @@ public class PanelPBB
 {
 	private Pacjent selectedPatient=new Pacjent();
 	private HistoriaWpis selectedWpis= new HistoriaWpis();
-	List<HistoriaWpis> wpisy = new ArrayList<HistoriaWpis>();
+	private HistoriaWpis editedWpis=new HistoriaWpis();
 	private HistoryDataModel historyModel;
 	public PanelPBB()
 	{
-		wpisy.add(new HistoriaWpis("22.01.2012","Pruchnica","Borowanie","Pacjent oszalał"));
-		wpisy.add(new HistoriaWpis("23.01.2012","Szaleństwo","Lewatywa","Pacjent polubił zabawe z mydłem"));
-		
-		
-		historyModel=new HistoryDataModel(wpisy);
+	
+	}
+	public HistoriaWpis getEditedWpis()
+	{
+		return editedWpis;
+	}
+
+	public void setEditedWpis(HistoriaWpis editedWpis)
+	{
+		this.editedWpis = editedWpis;
 	}
 	public HistoriaWpis getSelectedWpis()
 	{
@@ -52,7 +55,6 @@ public class PanelPBB
 	{
 		return selectedPatient;
 	}
-	
 	public void setSelectedPatient(Pacjent selectedPatient)
 	{
 		this.selectedPatient = selectedPatient;
@@ -76,21 +78,22 @@ public class PanelPBB
 		 NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
 		 navigationHandler.handleNavigation(context, null, "pacjenci"+"?faces-redirect=true");
 	}
-	public void onNowyWpis(SelectEvent event)
+	public void onNowyWpis(ActionEvent event)
 	{
+		
 		showWpisWindow();
-		System.out.println("bla");
-		
-		
-		
+		editedWpis = new HistoriaWpis();
 	}
 	public void onRowSelect(SelectEvent event)
 	{
+		setEditedWpis(getSelectedWpis());
 		showWpisWindow();
 	}
 	public void potwierdzWpis()
 	{
-		hideWpisWindow();
+		selectedPatient.getHistoria().add(getEditedWpis());
+		historyModel.setWrappedData(selectedPatient.getHistoria());
+		//hideWpisWindow();
 	}
 	public void usunWpis()
 	{

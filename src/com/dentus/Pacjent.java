@@ -1,8 +1,10 @@
 package com.dentus;
  
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 public class Pacjent implements Serializable
@@ -30,7 +32,8 @@ public class Pacjent implements Serializable
 	private String choroby;
 	private String opisPacjenta;
 	//private Date terminWizyty;
-	private HistoriaWpis historia;
+	private List<HistoriaWpis> historia= new ArrayList<HistoriaWpis>();
+	
 	
 	Pacjent()
 	{
@@ -44,6 +47,14 @@ public class Pacjent implements Serializable
 		this.telefon=telefon;
 		this.email=email;
 		
+	}
+	public List<HistoriaWpis> getHistoria()
+	{
+		return historia;
+	}
+	public void setHistoria(List<HistoriaWpis> historia)
+	{
+		this.historia = historia;
 	}
 	public String getBirthDayString()
 	{
@@ -77,14 +88,7 @@ public class Pacjent implements Serializable
 	{
 		this.dataUrodzenia = dataUrodzenia;
 	}
-	public HistoriaWpis getHistoria()
-	{
-		return historia;
-	}
-	public void setHistoria(HistoriaWpis historia)
-	{
-		this.historia = historia;
-	}
+	
 	public String getEmail()
 	{
 		return email;

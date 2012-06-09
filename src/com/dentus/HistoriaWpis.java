@@ -10,11 +10,11 @@ public class HistoriaWpis
 	{
 		
 	}
-	HistoriaWpis(String data,String rozpoznanie,String lecznie,String komentarz)
+	HistoriaWpis(String data,String rozpoznanie,String leczenie,String komentarz)
 	{
 		this.data=data;
 		this.rozpoznanie=rozpoznanie;
-		this.leczenie=lecznie;
+		this.leczenie=leczenie;
 		this.komentarz=komentarz;
 	}
 	public String getData()
