@@ -54,7 +54,7 @@
 		  				<p:ajax update=":wpisEdytor"/>
 		  			</p:commandButton>
 		  			
-		  			<p:dataTable id= "wpisy" value="#{panelPBB.historyModel}" dblClickSelect="false" selection="#{panelPBB.selectedWpis}" rowKey="#{wpis.leczenie}" selectionMode="single" var= "wpis" styleClass="wpisy">
+		  			<p:dataTable id= "wpisy" value="#{panelPBB.historyModel}" dblClickSelect="false" selection="#{panelPBB.selectedWpis}" rowKey="#{wpis.id}" selectionMode="single" var= "wpis" styleClass="wpisy">
 				  		<p:ajax event="rowSelect" listener="#{panelPBB.onRowSelect}" update=":wpisEdytor"/>
 				  		<p:column headerText="Data">
 				  			<h:outputText  value="#{wpis.data}"/>

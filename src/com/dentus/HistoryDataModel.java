@@ -36,7 +36,7 @@ public class HistoryDataModel extends ListDataModel<HistoriaWpis> implements Sel
 		 List<HistoriaWpis> wpisy = (List<HistoriaWpis>) getWrappedData(); 
 		
 		for(HistoriaWpis wpis : wpisy) {  
-	            if(wpis.getLeczenie().equals(rowKey))  
+	            if(wpis.getId()==Long.parseLong(rowKey))  
 	                return wpis;  
 	        }  
 

@@ -18,7 +18,7 @@ public class RecordService
 	{
 		
 		 List<String> pacjenci=new ArrayList<String>();
-		 
+		 List<HistoriaWpis> wpisy =pacjent.getHistoria();
 		 BufferedReader br = new BufferedReader(new FileReader(file));
 		 String rekord=br.readLine();
 		 while (rekord!=null)
@@ -32,7 +32,16 @@ public class RecordService
 		 {
 			 out.println(pacjenci.get(licznik));
 		 }
-		 out.println(pacjent.getId()+"***"+pacjent.getNazwisko()+"***"+pacjent.getImie()+"***"+pacjent.getDataUrodzenia().getTime()+"***"+nullProtector(pacjent.getAdres1())+"***"+nullProtector(pacjent.getAdres2())+"***"+nullProtector(pacjent.getAdres3())+"***"+nullProtector(pacjent.getEmail())+"***"+nullProtector(pacjent.getTelefon())+"***"+nullProtector(pacjent.getAlergie())+"***"+nullProtector(pacjent.getChoroby())+"***"+pacjent.getHistoria());
+		 out.print(pacjent.getId()+"***"+pacjent.getNazwisko()+"***"+pacjent.getImie()+"***"+pacjent.getDataUrodzenia().getTime()+"***"+nullProtector(pacjent.getAdres1())+"***"+nullProtector(pacjent.getAdres2())+"***"+nullProtector(pacjent.getAdres3())+"***"+nullProtector(pacjent.getEmail())+"***"+nullProtector(pacjent.getTelefon())+"***"+nullProtector(pacjent.getAlergie())+"***"+nullProtector(pacjent.getChoroby()));
+		 if (!wpisy.isEmpty())
+		 {
+			 for(int licznik=0;licznik<wpisy.size();licznik++)
+			 {
+				 HistoriaWpis wpis=wpisy.get(licznik);
+				 out.print("***"+nullProtector(wpis.getData())+"***"+nullProtector(wpis.getRozpoznanie())+"***"+nullProtector(wpis.getLeczenie())+"***"+nullProtector(wpis.getKomentarz())+"***"+wpis.getId());
+			 }
+		 }
+		 out.print("\n");
 		 out.close();
 	}
 	public List<Pacjent> odczytajRekordy() throws IOException
@@ -59,7 +68,13 @@ public class RecordService
 			 pacjent.setTelefon(token.nextToken());
 			 pacjent.setAlergie(token.nextToken());
 			 pacjent.setChoroby(token.nextToken());
-			// pacjent.setHistoria(token.nextToken());
+			
+			 while (token.hasMoreTokens())
+			 {
+				 HistoriaWpis wpis = new HistoriaWpis(token.nextToken(),token.nextToken(),token.nextToken(),token.nextToken(),Long.parseLong(token.nextToken()));
+				 pacjent.getHistoria().add(wpis);
+				 
+			 }
 			 pacjent.generateWiek();
 			 listaP.add(pacjent);
 			 rekord=br.readLine();
@@ -92,29 +107,20 @@ public class RecordService
 			dodajRekord(pacjent);
 		}
 		
-				
+			
 	}
 	public void usunRekord(Pacjent pacjentDel) throws IOException
 	{
-		
 		List<Pacjent> lista= odczytajRekordy();
-		
-		//File file = new File ("/home/tomasz/git/Dentus/pacjenci.txt");
 		resetujPlik(file);
 		for (int i=0;i<lista.size();i++)
 		{
 			Pacjent pacjent =lista.get(i); 
-			if(pacjent.getNazwisko().equals(pacjentDel.getNazwisko()))
-			{
-				//dodajRekord(nowyP);
-				
-				
+			if(pacjent.getId()!=pacjentDel.getId())
+			{	
+				dodajRekord(pacjent);
 			}
-			else
-			dodajRekord(pacjent);
-		}
-		
-				
+		}		
 	}
 	public String nullProtector(String tekst)
 	{

@@ -50,8 +50,8 @@ public class Tablica implements Serializable
 		PanelPBB panel= (PanelPBB) context.getApplication().evaluateExpressionGet(context, "#{panelPBB}", PanelPBB.class);
 		getSelectedPatient().generateBirthDayString();
 
-		selectedPatient.getHistoria().add(new HistoriaWpis("22.01.2012","Pruchnica","Borowanie","Pacjent oszaloł"));
-		selectedPatient.getHistoria().add(new HistoriaWpis("23.01.2012","Szaleństwo","Lewatywa","Pacjent polubił zabawe z mydłem"));
+		//selectedPatient.getHistoria().add(new HistoriaWpis("22.01.2012","Pruchnica","Borowanie","Pacjent oszaloł"));
+		//selectedPatient.getHistoria().add(new HistoriaWpis("23.01.2012","Szaleństwo","Lewatywa","Pacjent polubił zabawe z mydłem"));
 		panel.setHistoryModel(new HistoryDataModel(selectedPatient.getHistoria()));
 		panel.setSelectedPatient(getSelectedPatient());
 		NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();

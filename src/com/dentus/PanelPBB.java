@@ -86,13 +86,17 @@ public class PanelPBB
 	}
 	public void onRowSelect(SelectEvent event)
 	{
+		//System.out.println(getSelectedWpis().data);
 		setEditedWpis(getSelectedWpis());
 		showWpisWindow();
 	}
-	public void potwierdzWpis()
+	public void potwierdzWpis() throws IOException
 	{
-		selectedPatient.getHistoria().add(getEditedWpis());
+		HistoriaWpis wpis =getEditedWpis();
+		wpis.generateId();
+		selectedPatient.getHistoria().add(wpis);
 		historyModel.setWrappedData(selectedPatient.getHistoria());
+		new RecordService().zastapRekord(selectedPatient, selectedPatient);
 		//hideWpisWindow();
 	}
 	public void usunWpis()

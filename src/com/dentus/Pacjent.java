@@ -191,5 +191,16 @@ public class Pacjent implements Serializable
 		cal.setTime(getDataUrodzenia());
 		setBirthDayString(cal.get(Calendar.DAY_OF_MONTH)+"."+cal.get(Calendar.MONTH)+"."+cal.get(Calendar.YEAR));
 	}
+	public void zastapWpis(HistoriaWpis nWpis, HistoriaWpis sWpis)
+	{
+		for(int licznik=0;licznik<historia.size();licznik++)
+		{
+			HistoriaWpis wpis=historia.get(licznik);
+			if(wpis.getId()==sWpis.getId())
+			{
+				historia.set(licznik, nWpis);
+			}
+		}
+	}
 }
 
