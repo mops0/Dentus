@@ -202,5 +202,16 @@ public class Pacjent implements Serializable
 			}
 		}
 	}
+	public void usunWpis(HistoriaWpis uWpis)
+	{
+		for(int licznik=0;licznik<historia.size();licznik++)
+		{
+			HistoriaWpis wpis=historia.get(licznik);
+			if(wpis.getId()==uWpis.getId())
+			{
+				historia.remove(licznik);
+			}
+		}
+	}
 }
 

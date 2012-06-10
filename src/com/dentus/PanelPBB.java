@@ -20,9 +20,18 @@ public class PanelPBB
 	private HistoriaWpis selectedWpis= new HistoriaWpis();
 	private HistoriaWpis editedWpis=new HistoriaWpis();
 	private HistoryDataModel historyModel;
+	private Boolean DialogforNewWpis=true; 
 	public PanelPBB()
 	{
 	
+	}
+	public Boolean isDialogforNewWpis()
+	{
+		return DialogforNewWpis;
+	}
+	public void setDialogforNewWpis(Boolean dialogforNewWpis)
+	{
+		DialogforNewWpis = dialogforNewWpis;
 	}
 	public HistoriaWpis getEditedWpis()
 	{
@@ -80,27 +89,35 @@ public class PanelPBB
 	}
 	public void onNowyWpis(ActionEvent event)
 	{
-		
+		setDialogforNewWpis(true);
 		showWpisWindow();
 		editedWpis = new HistoriaWpis();
 	}
 	public void onRowSelect(SelectEvent event)
 	{
 		//System.out.println(getSelectedWpis().data);
-		setEditedWpis(getSelectedWpis());
-		showWpisWindow();
+		setDialogforNewWpis(false);
+		setEditedWpis(getSelectedWpis()); //ustawia pola dialogu zgodnie z wartosciami wybranego wiersza
+		showWpisWindow(); //uwidacznia dialog
 	}
 	public void potwierdzWpis() throws IOException
 	{
 		HistoriaWpis wpis =getEditedWpis();
 		wpis.generateId();
-		selectedPatient.getHistoria().add(wpis);
+		if(isDialogforNewWpis())
+			selectedPatient.getHistoria().add(wpis);
+		else
+			selectedPatient.zastapWpis(wpis, selectedWpis);
 		historyModel.setWrappedData(selectedPatient.getHistoria());
 		new RecordService().zastapRekord(selectedPatient, selectedPatient);
 		//hideWpisWindow();
 	}
-	public void usunWpis()
+	public void usunWpis() throws IOException
 	{
+		
+		selectedPatient.usunWpis(selectedWpis);
+		historyModel.setWrappedData(selectedPatient.getHistoria());
+		new RecordService().zastapRekord(selectedPatient, selectedPatient);
 		
 	}
 	public void showWpisWindow()
