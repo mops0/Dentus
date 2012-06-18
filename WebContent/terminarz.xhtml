@@ -6,29 +6,31 @@
 <ui:composition template="templatkaSystemu.xhtml">
 	<ui:define name="title">Dentus terminarz</ui:define>
 	<ui:define name="content">
-	  
-	  <h:outputText value="Tu będzie terminarz"/>
-	 <p:schedule value="#{scheduleBean.model}" editable="true" >
-	  		<p:ajax event="dateSelect" oncomplete="okno.show()"/>
-	  		<p:ajax event="eventSelect" oncomplete="okno2.show()"/>
-	  	</p:schedule>
-	  	<p:dialog widgetVar="okno">
-	  		<h:panelGrid id="eventDetails" columns="2"/> 
-	  		<h:outputLabel value="Wybierz pacjenta: "></h:outputLabel>
-	  		<h:inputText/>
+		<h:form> 
+	 		<h:outputText styleClass="h1" value="Terminarz wizyt pacjentów" />
+			<p:schedule value="#{scheduleBean.model}" editable="true" widgetVar="terminarz" timeZone="#{scheduleBean.timeZone2}">
+	  			<p:ajax event="dateSelect" listener="#{scheduleBean.onDateSelect}" oncomplete="okno.show()" update="eventDetails"/>
+	  			<p:ajax event="eventSelect" listener="#{scheduleBean.onEventSelect}" oncomplete="okno.show()" update="eventDetails"/>
+	  		</p:schedule>
+	  		<p:dialog header="Wizyta pacjenta" widgetVar="okno">
+	  			<h:panelGrid id="eventDetails" columns="2"> 
+		  			<h:outputLabel for="Nazwisko" value="Imię i Nazwisko"/>
+		  			<h:inputText id="Nazwisko" value="#{scheduleBean.selectedEvent.title}"/>
+		  			<h:outputLabel for="startDate" value="Data wizyty"/>
+		  		
+		  			<p:inputMask id="startDate" value="#{scheduleBean.selectedEvent.startDate}" mask="99/99/9999">
+		  				<f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{scheduleBean.timeZone2}"/>
+		  			</p:inputMask>
+		  			
+		  			<h:outputLabel for="endDate" value="Zakończenie"/>
+		  			<p:inputMask id="endDate" value="#{scheduleBean.selectedEvent.endDate}" mask="99/99/9999">
+		  				<f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{scheduleBean.timeZone2}"/>
+		  			</p:inputMask>
+		  			<p:commandButton value="Zatwierdź" actionListener="#{scheduleBean.addEvent}" oncomplete="terminarz.update();okno.hide();"/>
+	  			</h:panelGrid>
+	  		</p:dialog>
 	  		
-	  	</p:dialog>
-	  	<p:dialog widgetVar="okno2">
-	  		<h:outputText value="To jest okno dialogowe nr 2"></h:outputText>
-	  	</p:dialog>
-	  	<p:dialog showEffect="fade" hideEffect="fade"
-	  	widgetVar="dlg">
-	  		<h:outputText value="To jest okno dialogowe bla"></h:outputText>
-		</p:dialog>
-		<p:commandButton value="Show" type="button" onclick="dlg.show()" />
-		<p:commandButton value="Hide" type="button" onclick="dlg.hide()" />
-	  	
-	   	<h:outputText value="Strona Systemu Dentus"/>
+	  	</h:form>
 	  
 	  
 	  
