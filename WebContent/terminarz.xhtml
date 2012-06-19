@@ -16,7 +16,10 @@
 	  		<p:dialog header="Wizyta pacjenta" widgetVar="okno">
 	  			<h:panelGrid id="eventDetails" columns="2"> 
 		  			<h:outputLabel for="Nazwisko" value="Imię i Nazwisko"/>
-		  			<h:inputText id="Nazwisko" value="#{scheduleBean.selectedEvent.title}"/>
+		  			
+		  			<h:selectOneMenu id="Nazwisko" value="#{scheduleBean.selectedEvent.title}" style="margin-left:20px">   
+           				<f:selectItems  value="#{selectItemsBean.nazwiskoOptions}"/>
+        			</h:selectOneMenu>  
 		  			<h:outputLabel for="startDate" value="Data wizyty"/>
 		  		
 		  			<p:inputMask id="startDate" value="#{scheduleBean.selectedEvent.startDate}" mask="99/99/9999">

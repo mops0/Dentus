@@ -8,6 +8,7 @@ import java.util.TimeZone;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.event.DateSelectEvent;
 import org.primefaces.event.ScheduleEntrySelectEvent;
@@ -23,26 +24,19 @@ public class ScheduleBean
 {
 	private ScheduleModel model;
 	private TimeZone timeZone=TimeZone.getDefault();
-	//private TimeZone timeZone2=TimeZone.getTimeZone("Europe/London");
 	private DefaultScheduleEvent selectedEvent = new DefaultScheduleEvent();
 	private List<Pacjent> lista = new ArrayList<Pacjent>();
+	FacesContext context =FacesContext.getCurrentInstance();
+	private SelectItemsBean selectItemsBean; 
+	
 	public ScheduleBean() throws IOException
 	{
 		
 		model=new DefaultScheduleModel();
 		lista=new RecordService().odczytajRekordy();
+		selectItemsBean =(SelectItemsBean)context.getApplication().evaluateExpressionGet(context, "#{selectItemsBean}", SelectItemsBean.class);
+		//System.out.println(selectItemsBean.toString());
 	}
-	/*
-	public TimeZone getTimeZone2()
-	{
-		return timeZone2;
-	}
-
-	public void setTimeZone2(TimeZone timeZone2)
-	{
-		this.timeZone2 = timeZone2;
-	}
-	*/
 	public TimeZone getTimeZone()
 	{
 		return timeZone;
@@ -72,41 +66,29 @@ public class ScheduleBean
 	{
 		this.selectedEvent = selectedEvent;
 	}
-
 	public ScheduleModel getModel()
 	{
 		return model;
 	}
-	public void onDateSelect(DateSelectEvent e)
+	public void onDateSelect(DateSelectEvent e) throws IOException
 	{
+		selectItemsBean.generateNames();
 		selectedEvent=new DefaultScheduleEvent("",e.getDate(),e.getDate());
+		
 	}
-	public void onEventSelect(ScheduleEntrySelectEvent e)
+	public void onEventSelect(ScheduleEntrySelectEvent e) throws IOException
 	{
+		selectItemsBean.generateNames();
 		selectedEvent=(DefaultScheduleEvent)e.getScheduleEvent();
 	}
 	public void addEvent()
 	{
-		
-		
-		//selectedEvent.setEndDate(new Date(selectedEvent.getStartDate().getTime()+900000));
 		if(selectedEvent.getId()==null)
 			model.addEvent(selectedEvent);
 		
 		else
 			model.updateEvent(selectedEvent);
-		/*
-		Calendar kal=Calendar.getInstance();
-		
-		kal.setTime(selectedEvent.getStartDate());
-		Calendar ekal=Calendar.getInstance();
-		ekal.setTime(selectedEvent.getEndDate());
-		System.out.println(kal.get(Calendar.DAY_OF_MONTH));
-		System.out.println(ekal.get(Calendar.DAY_OF_MONTH));
-		System.out.println(TimeZone.getDefault());
-		System.out.println(TimeZone.getTimeZone("Euroe/Warsaw"));
-		*/
-		selectedEvent=new DefaultScheduleEvent();
+			selectedEvent=new DefaultScheduleEvent();
 	}
 
 	

@@ -1,5 +1,6 @@
 package com.dentus;
 
+import java.io.IOException;
 import java.util.*;
 
 import javax.faces.bean.ManagedBean;
@@ -13,6 +14,45 @@ public class SelectItemsBean
 	private List<SelectItem> dayOptions;
 	private List<SelectItem> monthOptions;
 	private List<SelectItem> yearOptions;
+	private List<SelectItem> nazwiskoOptions;
+	
+	private List<Pacjent> lista = new ArrayList<Pacjent>();
+
+
+	public SelectItemsBean() throws IOException
+	{
+		generateDays();
+		generateMonths();
+		generateYears();
+		generateNames();
+	}
+	
+	
+
+	public List<SelectItem> getNazwiskoOptions()
+	{
+		return nazwiskoOptions;
+	}
+
+
+
+	public void setNazwiskoOptions(List<SelectItem> nazwiskoOptions)
+	{
+		this.nazwiskoOptions = nazwiskoOptions;
+	}
+
+
+
+	public List<Pacjent> getLista()
+	{
+		return lista;
+	}
+
+	public void setLista(List<Pacjent> lista)
+	{
+		this.lista = lista;
+	}
+
 	public List<SelectItem> getYearOptions()
 	{
 		return yearOptions;
@@ -35,16 +75,6 @@ public class SelectItemsBean
 	{
 		this.monthOptions = monthOptions;
 	}
-
-
-	public SelectItemsBean()
-	{
-		generateDays();
-		generateMonths();
-		generateYears();
-	}
-	
-	
 	public List<SelectItem> getDayOptions()
 	{
 		return dayOptions;
@@ -97,5 +127,18 @@ public class SelectItemsBean
 		}
 		setYearOptions(opcje);
 	}
-	
+	public void generateNames() throws IOException
+	{
+		lista=new RecordService().odczytajRekordy();
+		List<SelectItem> opcje= new ArrayList<SelectItem>();
+		SelectItem item = new SelectItem(1,"1");
+		for (int licznik=0;licznik<lista.size();licznik++)
+		{
+			item=new SelectItem(lista.get(licznik).getImie()+" "+lista.get(licznik).getNazwisko(),lista.get(licznik).getImie()+" "+lista.get(licznik).getNazwisko());
+			opcje.add(item);
+			System.out.println(lista.get(licznik).getImie()+" "+lista.get(licznik).getNazwisko());
+		}
+		setNazwiskoOptions(opcje);
+		System.out.println("W funkcji generateNames()");
+	}
 }
