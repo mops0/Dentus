@@ -2,13 +2,14 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" >
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:o="http://openfaces.org/">
 <ui:composition template="templatkaSystemu.xhtml">
 	<ui:define name="title">Dentus terminarz</ui:define>
 	<ui:define name="content">
 		<h:form> 
 	 		<h:outputText styleClass="h1" value="Terminarz wizyt pacjentów" />
-			<p:schedule value="#{scheduleBean.model}" editable="true" widgetVar="terminarz" timeZone="#{scheduleBean.timeZone2}">
+			<p:schedule value="#{scheduleBean.model}" editable="true" widgetVar="terminarz" timeZone="#{scheduleBean.timeZone}">
 	  			<p:ajax event="dateSelect" listener="#{scheduleBean.onDateSelect}" oncomplete="okno.show()" update="eventDetails"/>
 	  			<p:ajax event="eventSelect" listener="#{scheduleBean.onEventSelect}" oncomplete="okno.show()" update="eventDetails"/>
 	  		</p:schedule>
@@ -19,12 +20,12 @@
 		  			<h:outputLabel for="startDate" value="Data wizyty"/>
 		  		
 		  			<p:inputMask id="startDate" value="#{scheduleBean.selectedEvent.startDate}" mask="99/99/9999">
-		  				<f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{scheduleBean.timeZone2}"/>
+		  				<f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{scheduleBean.timeZone}"/>
 		  			</p:inputMask>
 		  			
 		  			<h:outputLabel for="endDate" value="Zakończenie"/>
 		  			<p:inputMask id="endDate" value="#{scheduleBean.selectedEvent.endDate}" mask="99/99/9999">
-		  				<f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{scheduleBean.timeZone2}"/>
+		  				<f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{scheduleBean.timeZone}"/>
 		  			</p:inputMask>
 		  			<p:commandButton value="Zatwierdź" actionListener="#{scheduleBean.addEvent}" oncomplete="terminarz.update();okno.hide();"/>
 	  			</h:panelGrid>

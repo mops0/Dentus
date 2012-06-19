@@ -2,7 +2,6 @@ package com.dentus;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -23,8 +22,8 @@ import org.primefaces.model.ScheduleModel;
 public class ScheduleBean
 {
 	private ScheduleModel model;
-	private TimeZone timeZone=TimeZone.getTimeZone("GMT");
-	private TimeZone timeZone2=TimeZone.getTimeZone("Europe/London");
+	private TimeZone timeZone=TimeZone.getDefault();
+	//private TimeZone timeZone2=TimeZone.getTimeZone("Europe/London");
 	private DefaultScheduleEvent selectedEvent = new DefaultScheduleEvent();
 	private List<Pacjent> lista = new ArrayList<Pacjent>();
 	public ScheduleBean() throws IOException
@@ -33,7 +32,7 @@ public class ScheduleBean
 		model=new DefaultScheduleModel();
 		lista=new RecordService().odczytajRekordy();
 	}
-	
+	/*
 	public TimeZone getTimeZone2()
 	{
 		return timeZone2;
@@ -43,7 +42,7 @@ public class ScheduleBean
 	{
 		this.timeZone2 = timeZone2;
 	}
-
+	*/
 	public TimeZone getTimeZone()
 	{
 		return timeZone;
@@ -96,6 +95,7 @@ public class ScheduleBean
 		
 		else
 			model.updateEvent(selectedEvent);
+		/*
 		Calendar kal=Calendar.getInstance();
 		
 		kal.setTime(selectedEvent.getStartDate());
@@ -105,6 +105,7 @@ public class ScheduleBean
 		System.out.println(ekal.get(Calendar.DAY_OF_MONTH));
 		System.out.println(TimeZone.getDefault());
 		System.out.println(TimeZone.getTimeZone("Euroe/Warsaw"));
+		*/
 		selectedEvent=new DefaultScheduleEvent();
 	}
 
