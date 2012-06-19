@@ -2,13 +2,13 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:o="http://openfaces.org/">
+	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="templatkaSystemu.xhtml">
 	<ui:define name="title">Dentus terminarz</ui:define>
 	<ui:define name="content">
 		<h:form> 
 	 		<h:outputText styleClass="h1" value="Terminarz wizyt pacjentów" />
+	 		
 			<p:schedule value="#{scheduleBean.model}" editable="true" widgetVar="terminarz" timeZone="#{scheduleBean.timeZone}">
 	  			<p:ajax event="dateSelect" listener="#{scheduleBean.onDateSelect}" oncomplete="okno.show()" update="eventDetails"/>
 	  			<p:ajax event="eventSelect" listener="#{scheduleBean.onEventSelect}" oncomplete="okno.show()" update="eventDetails"/>
