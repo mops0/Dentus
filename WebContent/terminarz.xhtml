@@ -10,7 +10,7 @@
 	 		<h:outputText styleClass="h1" value="Terminarz wizyt pacjentów" />
 	 		
 			<p:schedule value="#{scheduleBean.model}" editable="true" widgetVar="terminarz" timeZone="#{scheduleBean.timeZone}">
-	  			<p:ajax event="dateSelect" listener="#{scheduleBean.onDateSelect}" oncomplete="okno.show()" update="eventDetails"/>
+	  			<p:ajax event="dateSelect" listener="#{scheduleBean.onDateSelect}" oncomplete=" okno.show()" update="eventDetails"/>
 	  			<p:ajax event="eventSelect" listener="#{scheduleBean.onEventSelect}" oncomplete="okno.show()" update="eventDetails"/>
 	  		</p:schedule>
 	  		<p:dialog header="Wizyta pacjenta" widgetVar="okno">
@@ -22,14 +22,11 @@
         			</h:selectOneMenu>  
 		  			<h:outputLabel for="startDate" value="Data wizyty"/>
 		  		
-		  			<p:inputMask id="startDate" value="#{scheduleBean.selectedEvent.startDate}" mask="99/99/9999">
-		  				<f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{scheduleBean.timeZone}"/>
-		  			</p:inputMask>
 		  			
-		  			<h:outputLabel for="endDate" value="Zakończenie"/>
-		  			<p:inputMask id="endDate" value="#{scheduleBean.selectedEvent.endDate}" mask="99/99/9999">
-		  				<f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{scheduleBean.timeZone}"/>
-		  			</p:inputMask>
+		  			<p:calendar id="startDate" value="#{scheduleBean.selectedEvent.startDate}" pattern="dd/MM/yyyy" timeZone="#{scheduleBean.timeZone}"/>
+		  			<h:outputLabel for="startTime" value="Czas wizyty"/>
+		  			<p:calendar id="startTime" value="#{scheduleBean.startTime}" pattern="HH:mm" timeZone="#{scheduleBean.timeZoneGMT}" timeOnly="true" stepMinute="15"/>
+		  			<p:commandButton value="Usuń" actionListener="#{scheduleBean.deleteEvent}" oncomplete="terminarz.update();okno.hide();"/>
 		  			<p:commandButton value="Zatwierdź" actionListener="#{scheduleBean.addEvent}" oncomplete="terminarz.update();okno.hide();"/>
 	  			</h:panelGrid>
 	  		</p:dialog>

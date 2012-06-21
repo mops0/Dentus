@@ -2,14 +2,19 @@ package com.dentus;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.event.DateSelectEvent;
 import org.primefaces.event.ScheduleEntrySelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
@@ -18,13 +23,15 @@ import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
 @ManagedBean(name="scheduleBean")
-@ApplicationScoped
+@SessionScoped
 
 public class ScheduleBean
 {
 	private ScheduleModel model;
 	private TimeZone timeZone=TimeZone.getDefault();
+	private TimeZone timeZoneGMT=TimeZone.getTimeZone("GMT");
 	private DefaultScheduleEvent selectedEvent = new DefaultScheduleEvent();
+	private Date startTime;
 	private List<Pacjent> lista = new ArrayList<Pacjent>();
 	FacesContext context =FacesContext.getCurrentInstance();
 	private SelectItemsBean selectItemsBean; 
@@ -36,7 +43,43 @@ public class ScheduleBean
 		lista=new RecordService().odczytajRekordy();
 		selectItemsBean =(SelectItemsBean)context.getApplication().evaluateExpressionGet(context, "#{selectItemsBean}", SelectItemsBean.class);
 		//System.out.println(selectItemsBean.toString());
+		/*
+		UIViewRoot view = context.getViewRoot();
+		CommandButton button = (CommandButton) view.findComponent(":j_idt11:j_idt19");
+		button.setRendered(false);
+	*/
 	}
+	
+	
+
+	public TimeZone getTimeZoneGMT()
+	{
+		return timeZoneGMT;
+	}
+
+
+
+	public void setTimeZoneGMT(TimeZone timeZoneGMT)
+	{
+		this.timeZoneGMT = timeZoneGMT;
+	}
+
+
+
+	public Date getStartTime()
+	{
+		return startTime;
+	}
+
+
+
+	public void setStartTime(Date startTime)
+	{
+		this.startTime = startTime;
+	}
+
+
+
 	public TimeZone getTimeZone()
 	{
 		return timeZone;
@@ -72,24 +115,69 @@ public class ScheduleBean
 	}
 	public void onDateSelect(DateSelectEvent e) throws IOException
 	{
+		CommandButton button = (CommandButton) getComponentReference(":j_idt11:j_idt19");
+		button.setRendered(false);
 		selectItemsBean.generateNames();
 		selectedEvent=new DefaultScheduleEvent("",e.getDate(),e.getDate());
-		
+		startTime=extractTimeFromDate(selectedEvent.getStartDate());
 	}
 	public void onEventSelect(ScheduleEntrySelectEvent e) throws IOException
 	{
+		
+		CommandButton button = (CommandButton) getComponentReference(":j_idt11:j_idt19");
+		button.setRendered(true);
 		selectItemsBean.generateNames();
 		selectedEvent=(DefaultScheduleEvent)e.getScheduleEvent();
+		startTime=extractTimeFromDate(selectedEvent.getStartDate());
+		
 	}
 	public void addEvent()
 	{
+		
+		
+		selectedEvent.setStartDate(mergeTimeDate(selectedEvent.getStartDate(),startTime));
+		selectedEvent.setEndDate(new Date(selectedEvent.getStartDate().getTime()+30*60000));
 		if(selectedEvent.getId()==null)
 			model.addEvent(selectedEvent);
 		
 		else
 			model.updateEvent(selectedEvent);
-			selectedEvent=new DefaultScheduleEvent();
+		
+		
+		selectedEvent=new DefaultScheduleEvent();
+		
+		
 	}
-
+	public void deleteEvent()
+	{
+		model.deleteEvent(selectedEvent);
+		selectedEvent=new DefaultScheduleEvent();
+	}
+	public Date mergeTimeDate(Date data,Date czas)
+	{
+		Date newDate=new Date();
+		newDate.setTime(data.getTime()+czas.getTime());
+		return newDate;
+		
+	}
+	public Date extractTimeFromDate(Date data)
+	{
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(data);
+		int hours=cal.get(Calendar.HOUR_OF_DAY);
+		int minutes=cal.get(Calendar.MINUTE);
+		Date newDate=new Date((long)(hours*3600000+minutes*60000));
+		return newDate;
+		
+	}
+	public UIComponent getComponentReference(String id)
+	{
+		FacesContext ncontext =FacesContext.getCurrentInstance();
+		UIViewRoot view = ncontext.getViewRoot();
+		UIComponent component=view.findComponent(id);
+		
+		return component;
+		
+	}
 	
 }
