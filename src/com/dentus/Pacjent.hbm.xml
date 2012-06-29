@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-06-29 19:59:22 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.dentus.Pacjent" table="PACJENT">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="imie" type="java.lang.String">
+            <column name="IMIE" />
+        </property>
+        <property name="nazwisko" type="java.lang.String">
+            <column name="NAZWISKO" />
+        </property>
+        <property name="dataUrodzenia" type="java.util.Date">
+            <column name="DATAURODZENIA" />
+        </property>
+        <property name="birthDayString" type="java.lang.String">
+            <column name="BIRTHDAYSTRING" />
+        </property>
+        <property name="adres1" type="java.lang.String">
+            <column name="ADRES1" />
+        </property>
+        <property name="adres2" type="java.lang.String">
+            <column name="ADRES2" />
+        </property>
+        <property name="adres3" type="java.lang.String">
+            <column name="ADRES3" />
+        </property>
+        <property name="wiek" type="int">
+            <column name="WIEK" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <property name="telefon" type="java.lang.String">
+            <column name="TELEFON" />
+        </property>
+        <property name="alergie" type="java.lang.String">
+            <column name="ALERGIE" />
+        </property>
+        <property name="choroby" type="java.lang.String">
+            <column name="CHOROBY" />
+        </property>
+        <property name="opisPacjenta" type="java.lang.String">
+            <column name="OPISPACJENTA" />
+        </property>
+        <list name="historia" inverse="false" table="HISTORIAWPISY" lazy="true" cascade="save-update">
+            <key>
+                <column name="Pacjent_ID" />
+            </key>
+            <index column="DISPLAY_POSITION"/>
+            <one-to-many class="com.dentus.HistoriaWpis" />
+        </list>
+    </class>
+    <class name="com.dentus.HistoriaWpis" table="HISTORIAWPIS">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="data" type="java.lang.String">
+            <column name="DATA" />
+        </property>
+        <property name="rozpoznanie" type="java.lang.String">
+            <column name="ROZPOZNANIE" />
+        </property>
+        <property name="leczenie" type="java.lang.String">
+            <column name="LECZENIE" />
+        </property>
+        <property name="komentarz" type="java.lang.String">
+            <column name="KOMENTARZ" />
+        </property>
+    </class>
+</hibernate-mapping>

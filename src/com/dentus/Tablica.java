@@ -24,7 +24,7 @@ public class Tablica implements Serializable
 	
 	public Tablica() throws IOException
 	{
-		lista=new RecordService().odczytajRekordy();
+		lista=new RecordServiceOld().odczytajRekordy();
 		patientModel=new PatientDataModel(lista);
 	}
 	public PatientDataModel getPatientModel()
@@ -57,6 +57,11 @@ public class Tablica implements Serializable
 		NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
 		navigationHandler.handleNavigation(context, null, "panelp"+"?faces-redirect=true");
 	}
+	public void uruchomBaze()
+	{
+		Hiber h = new Hiber();
+		h.start();
+	}
 	public void onNowyPacjent(ActionEvent event)
 	{
 		 FacesContext context = FacesContext.getCurrentInstance();
@@ -71,7 +76,7 @@ public class Tablica implements Serializable
 	} 
 	public void updateList() throws IOException
 	{
-		lista=new RecordService().odczytajRekordy();
+		lista=new RecordServiceOld().odczytajRekordy();
 		patientModel=new PatientDataModel(lista);
 	}
 }

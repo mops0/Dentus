@@ -40,7 +40,7 @@ public class ScheduleBean
 	{
 		
 		model=new DefaultScheduleModel();
-		lista=new RecordService().odczytajRekordy();
+		lista=new RecordServiceOld().odczytajRekordy();
 		selectItemsBean =(SelectItemsBean)context.getApplication().evaluateExpressionGet(context, "#{selectItemsBean}", SelectItemsBean.class);
 		//System.out.println(selectItemsBean.toString());
 		/*

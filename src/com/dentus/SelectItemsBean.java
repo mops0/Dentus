@@ -129,7 +129,7 @@ public class SelectItemsBean
 	}
 	public void generateNames() throws IOException
 	{
-		lista=new RecordService().odczytajRekordy();
+		lista=new RecordServiceOld().odczytajRekordy();
 		List<SelectItem> opcje= new ArrayList<SelectItem>();
 		SelectItem item = new SelectItem(1,"1");
 		for (int licznik=0;licznik<lista.size();licznik++)
