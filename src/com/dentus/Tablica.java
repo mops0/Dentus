@@ -24,7 +24,7 @@ public class Tablica implements Serializable
 	
 	public Tablica() throws IOException
 	{
-		lista=new RecordServiceOld().odczytajRekordy();
+		lista=new RecordService().odczytajRekordy();
 		patientModel=new PatientDataModel(lista);
 	}
 	public PatientDataModel getPatientModel()
@@ -76,7 +76,7 @@ public class Tablica implements Serializable
 	} 
 	public void updateList() throws IOException
 	{
-		lista=new RecordServiceOld().odczytajRekordy();
+		lista=new RecordService().odczytajRekordy();
 		patientModel=new PatientDataModel(lista);
 	}
 }

@@ -74,7 +74,7 @@ public class EdytorPBB implements Serializable
 		cal=getBirthDate().parseToCalendar();
 		pacjent.setDataUrodzenia(cal.getTime());
 		
-		RecordServiceOld rs = new RecordServiceOld();
+		RecordService rs = new RecordService();
 		if (isNew)
 		{
 			

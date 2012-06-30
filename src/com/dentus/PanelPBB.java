@@ -81,7 +81,7 @@ public class PanelPBB
 	public void onUsun() throws IOException
 	{
 		 FacesContext context = FacesContext.getCurrentInstance();
-		 new RecordServiceOld().usunRekord(getSelectedPatient());
+		 new RecordService().usunRekord(getSelectedPatient());
 		 Tablica tablica = (Tablica) context.getApplication().evaluateExpressionGet(context, "#{tablica}", Tablica.class);
 		 tablica.updateList();
 		 NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
@@ -109,7 +109,7 @@ public class PanelPBB
 		else
 			selectedPatient.zastapWpis(wpis, selectedWpis);
 		historyModel.setWrappedData(selectedPatient.getHistoria());
-		new RecordServiceOld().zastapRekord(selectedPatient, selectedPatient);
+		new RecordService().zastapRekord(selectedPatient, selectedPatient);
 		//hideWpisWindow();
 	}
 	public void usunWpis() throws IOException
@@ -117,7 +117,7 @@ public class PanelPBB
 		
 		selectedPatient.usunWpis(selectedWpis);
 		historyModel.setWrappedData(selectedPatient.getHistoria());
-		new RecordServiceOld().zastapRekord(selectedPatient, selectedPatient);
+		new RecordService().zastapRekord(selectedPatient, selectedPatient);
 		
 	}
 	public void showWpisWindow()
