@@ -1,0 +1,8 @@
+<filter>
+  	<filter-name>HibernateSessionFilter</filter-name>
+  	<filter-class> com.dentus.HibernateSessionFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>HibernateSessionFilter</filter-name>
+  	<servlet-name>Faces Servlet</servlet-name>
+  </filter-mapping>

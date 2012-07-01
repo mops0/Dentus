@@ -14,7 +14,7 @@ import org.hibernate.SessionFactory;
 
 public class HibernateSessionFilter implements Filter
 {
-	private SessionFactory factory=null;
+	
 	@Override
 	public void destroy()
 	{
@@ -26,18 +26,12 @@ public class HibernateSessionFilter implements Filter
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException
 	{
-		Session session=factory.getCurrentSession();
 		try{
-			session.beginTransaction();
 			chain.doFilter(request, response);
-			session.getTransaction().commit();
-		}
-		catch(Throwable e)
-		{
-			if (session.getTransaction().isActive())
-			{
-				session.getTransaction().rollback();
-			}
+			HibernateUtil.commitTransaction();
+			
+		}finally {
+			HibernateUtil.closeSession();
 		}
 		
 		
@@ -48,7 +42,7 @@ public class HibernateSessionFilter implements Filter
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException
 	{
-		factory = HibernateUtil.getSessionFactory();
+		
 		
 	}
 

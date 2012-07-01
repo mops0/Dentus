@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012-06-29 19:59:22 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.dentus.Pacjent" table="PACJENT">
@@ -47,7 +47,7 @@
         <property name="opisPacjenta" type="java.lang.String">
             <column name="OPISPACJENTA" />
         </property>
-        <list name="historia" inverse="false" table="HISTORIAWPISY" lazy="true" cascade="save-update">
+        <list name="historia" inverse="false" table="HISTORIAWPISY" lazy="false" cascade="save-update">
             <key>
                 <column name="Pacjent_ID" />
             </key>
