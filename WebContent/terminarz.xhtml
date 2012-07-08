@@ -8,7 +8,6 @@
 	<ui:define name="content">
 		<h:form> 
 	 		<h:outputText styleClass="h1" value="Terminarz wizyt pacjentów" />
-	 		
 			<p:schedule value="#{scheduleBean.model}" editable="true" widgetVar="terminarz" timeZone="#{scheduleBean.timeZone}">
 	  			<p:ajax event="dateSelect" listener="#{scheduleBean.onDateSelect}" oncomplete=" okno.show()" update="eventDetails"/>
 	  			<p:ajax event="eventSelect" listener="#{scheduleBean.onEventSelect}" oncomplete="okno.show()" update="eventDetails"/>

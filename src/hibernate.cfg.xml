@@ -20,8 +20,9 @@
 		<property name="current_session_context_class">thread</property>
 		<property name="hibernate.max_fetch_depth">4</property>
         <property name="show_sql">true</property>
+        <property name="hbm2ddl.auto">update</property>
 		<mapping resource="com/dentus/Pacjent.hbm.xml"/>
-        
+        <mapping resource="com/dentus/Event.hbm.xml"/>
 
     </session-factory>
 

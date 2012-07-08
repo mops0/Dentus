@@ -14,6 +14,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 
+//import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.event.DateSelectEvent;
 import org.primefaces.event.ScheduleEntrySelectEvent;
@@ -28,6 +29,7 @@ import org.primefaces.model.ScheduleModel;
 public class ScheduleBean
 {
 	private ScheduleModel model;
+	private EventService eventService= new EventService();
 	private TimeZone timeZone=TimeZone.getDefault();
 	private TimeZone timeZoneGMT=TimeZone.getTimeZone("GMT");
 	private DefaultScheduleEvent selectedEvent = new DefaultScheduleEvent();
@@ -36,12 +38,14 @@ public class ScheduleBean
 	FacesContext context =FacesContext.getCurrentInstance();
 	private SelectItemsBean selectItemsBean; 
 	
+	
 	public ScheduleBean() throws IOException
 	{
 		
 		model=new DefaultScheduleModel();
 		lista=new RecordService().odczytajRekordy();
 		selectItemsBean =(SelectItemsBean)context.getApplication().evaluateExpressionGet(context, "#{selectItemsBean}", SelectItemsBean.class);
+		initializeScheduleModel();
 		//System.out.println(selectItemsBean.toString());
 		/*
 		UIViewRoot view = context.getViewRoot();
@@ -137,14 +141,48 @@ public class ScheduleBean
 		
 		selectedEvent.setStartDate(mergeTimeDate(selectedEvent.getStartDate(),startTime));
 		selectedEvent.setEndDate(new Date(selectedEvent.getStartDate().getTime()+30*60000));
-		if(selectedEvent.getId()==null)
-			model.addEvent(selectedEvent);
+
+		Event event = new Event();
+		event.setStartDate(selectedEvent.getStartDate());
+		event.setEndDate(selectedEvent.getEndDate());
+		event.setName(selectedEvent.getTitle());
 		
+		if(selectedEvent.getId()==null)
+		{	
+			model.addEvent(selectedEvent);
+			eventService.addEvent(event);
+		}
 		else
+		{
 			model.updateEvent(selectedEvent);
+			event.setId(Long.parseLong(selectedEvent.getId()));
+			eventService.update(event);
+		}
 		
 		
 		selectedEvent=new DefaultScheduleEvent();
+		
+		
+	}
+	public void initializeScheduleModel()
+	{
+		List<Event> lista = eventService.readEvents();
+		DefaultScheduleEvent sEvent= null;
+		for (int i=0;i<lista.size();i++)
+		{
+			sEvent=new DefaultScheduleEvent();
+			sEvent.setStartDate(lista.get(i).getStartDate());
+			
+			sEvent.setEndDate(lista.get(i).getEndDate());
+			sEvent.setTitle(lista.get(i).getName()+"\n"+lista.get(i).getTopic());
+			sEvent.setId(Long.toString(lista.get(i).getId()));
+			/*
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(sEvent.getStartDate());
+			System.out.println(cal.get(Calendar.HOUR_OF_DAY));
+			*/
+			model.addEvent(sEvent);
+		}
 		
 		
 	}

@@ -57,11 +57,7 @@ public class Tablica implements Serializable
 		NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
 		navigationHandler.handleNavigation(context, null, "panelp"+"?faces-redirect=true");
 	}
-	public void uruchomBaze()
-	{
-		Hiber h = new Hiber();
-		h.start();
-	}
+	
 	public void onNowyPacjent(ActionEvent event)
 	{
 		 FacesContext context = FacesContext.getCurrentInstance();
