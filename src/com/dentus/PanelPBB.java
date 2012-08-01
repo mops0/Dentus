@@ -125,6 +125,7 @@ public class PanelPBB
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot view= context.getViewRoot();
 		Dialog dialog = (Dialog) view.findComponent("wpisEdytor");
+		
 		dialog.setVisible(true);
 	}
 	public void hideWpisWindow()

@@ -1,3 +1,6 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -7,8 +10,48 @@
 	<ui:define name="title">Dentus terminarz</ui:define>
 	<ui:define name="content">
 	  
-	  <h:outputText value="Tu będą uslugi"/>
-	 
+	 <h:form id="form">
+			<div style="margin-top:100px; margin-left:50px;">
+		  		<h:outputText styleClass="h1" value="Lista usług" />
+		  		
+		  		<p:commandButton id="dodaj" value="Dodaj usługę" actionListener="#{tabelaUslug.onNowaUsluga}" style="margin-left:450px" update=":uslugaEdytor"/>
+		  	
+		  	</div>
+		  	<p:dataTable id= "uslugi" value="#{tabelaUslug.uslugaModel}" dblClickSelect="false" selection="#{tabelaUslug.selectedUsluga}" rowKey="#{usluga.nazwa}" selectionMode="single" var= "usluga" styleClass="tablica" emptyMessage="Brak usług w rejestrze.">
+		  		<p:ajax event="rowSelect" listener="#{tabelaUslug.onRowSelect}" update=":uslugaEdytor"/>
+		  		<p:column headerText="Nazwa">
+		  			<h:outputText value="#{usluga.nazwa}"/>
+		  		</p:column>
+		  		<p:column headerText="Czas trwania">
+		  			<h:outputText value="#{usluga.czas}"/>
+		  		</p:column>
+		  		<p:column headerText="Koszt">
+		  			<h:outputText value="#{usluga.koszt}"/>
+		  		</p:column>
+		  		<p:column headerText="Uwagi">
+		  			<h:outputText value="#{usluga.uwagi}"/>
+		  		</p:column>
+		  		
+		  	</p:dataTable>	 
+	 </h:form>  
+	 <p:dialog id="uslugaEdytor" header="EdytujWpis" widgetVar="dlg">  
+	    <h:form>  
+	    	<h:panelGrid columns="2" cellpadding="5">  
+	    		<h:outputLabel for="nazwa" value="Nazwa usługi: " />  
+	    		<h:inputText  id="nazwa" value="#{tabelaUslug.editedUsluga.nazwa}" />  
+	    		<h:outputLabel for="czas" value="Czas trwania: " />  
+	    		<h:inputText  id="czas" value="#{tabelaUslug.editedUsluga.czas}" />  
+	        	<h:outputLabel for="koszt" value="Koszt: " />  
+	            <h:inputText id="koszt" value="#{tabelaUslug.editedUsluga.koszt}" />     
+	            <h:outputLabel for="uwagi" value="Uwagi: " />  
+	    		<h:inputText  id="uwagi" value="#{tabelaUslug.editedUsluga.uwagi}" /> 
+	    		<f:facet name="footer"> 
+                <p:commandButton id="Potwierdz" value="Potwierdź" style="float:right" actionListener="#{tabelaUslug.potwierdzWpis}" update=":form:uslugi" oncomplete="dlg.hide()" />  
+                <p:commandButton id="Usun" value="Usuń wpis" style="float:right" actionListener="#{tabelaUslug.usunWpis}" update=":form:uslugi" oncomplete="dlg.hide()"/>  
+            </f:facet>  
+	        </h:panelGrid>       
+	    </h:form>  
+	</p:dialog>    	
 	  
 	  
 	  
