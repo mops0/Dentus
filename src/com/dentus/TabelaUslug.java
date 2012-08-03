@@ -95,25 +95,17 @@ public class TabelaUslug implements Serializable
 		else
 		{	
 			recordService.update(usluga);
-			System.out.println(usluga.getId());
-			System.out.println(usluga.getUwagi());
 			
 		}
 		uslugaModel.setWrappedData(listaUslug);
-			/*
-		HistoriaWpis wpis =getEditedWpis();
-		wpis.generateId();
-		if(isDialogforNewWpis())
-			selectedPatient.getHistoria().add(wpis);
-		else
-			selectedPatient.zastapWpis(wpis, selectedWpis);
-		historyModel.setWrappedData(selectedPatient.getHistoria());
-		new RecordService().zastapRekord(selectedPatient, selectedPatient);
-		*/
+			
 	}
-	public void usunWpis()
+	public void usunWpis() throws IOException
 	{
-		
+		Usluga usluga=getEditedUsluga();
+		usluga.usunZlisty(listaUslug);
+		uslugaModel.setWrappedData(listaUslug);
+		recordService.delete(usluga);
 	}
 	private void showWpisWindow()
 	{

@@ -18,7 +18,13 @@
 		  			
 		  			<h:selectOneMenu id="Nazwisko" value="#{scheduleBean.selectedEvent.title}" style="margin-left:20px">   
            				<f:selectItems  value="#{selectItemsBean.nazwiskoOptions}"/>
-        			</h:selectOneMenu>  
+        			</h:selectOneMenu> 
+        			
+        			<h:outputLabel for="Usluga" value="Nazwa usługi"/>
+		  			<h:selectOneMenu id="Usluga" value="#{scheduleBean.selectedEvent.title}" style="margin-left:20px">   
+           				<f:selectItems  value="#{selectItemsBean.uslugaOptions}"/>
+        			</h:selectOneMenu> 
+        			 
 		  			<h:outputLabel for="startDate" value="Data wizyty"/>
 		  		
 		  			

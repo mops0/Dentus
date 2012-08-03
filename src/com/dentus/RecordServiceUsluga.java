@@ -41,6 +41,14 @@ public class RecordServiceUsluga
 	{
 		Session session =HibernateUtil.getSession();
 		session.delete(usluga);
+		session.flush();
+	}
+	public Usluga findById(long id)
+	{
+		Session session =HibernateUtil.getSession();
+		Usluga usluga = (Usluga) session.get(Usluga.class, id);
+		return usluga;
+		
 	}
 	
 }

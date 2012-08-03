@@ -1,6 +1,7 @@
 package com.dentus;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class Usluga
 {
@@ -54,5 +55,16 @@ public void generateId()
 	Calendar cal=Calendar.getInstance();
 	setId(cal.getTime().getTime());
 }
- 
+public void usunZlisty(List<Usluga> uslugi)
+{
+	for(int licznik=0;licznik<uslugi.size();licznik++)
+	{
+		Usluga usluga=uslugi.get(licznik);
+		if(getId()==usluga.getId())
+		{
+			uslugi.remove(licznik);
+			
+		}
+	}
+}
 }

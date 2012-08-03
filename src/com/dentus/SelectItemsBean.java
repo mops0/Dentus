@@ -15,9 +15,9 @@ public class SelectItemsBean
 	private List<SelectItem> monthOptions;
 	private List<SelectItem> yearOptions;
 	private List<SelectItem> nazwiskoOptions;
-	
+	private List<SelectItem> uslugaOptions;
 	private List<Pacjent> lista = new ArrayList<Pacjent>();
-
+	private List<Usluga> listaUslug = new ArrayList<Usluga>();
 
 	public SelectItemsBean() throws IOException
 	{
@@ -25,9 +25,24 @@ public class SelectItemsBean
 		generateMonths();
 		generateYears();
 		generateNames();
+		generateUslugi();
 	}
 	
 	
+
+	public List<SelectItem> getUslugaOptions()
+	{
+		return uslugaOptions;
+	}
+
+
+
+	public void setUslugaOptions(List<SelectItem> uslugaOptions)
+	{
+		this.uslugaOptions = uslugaOptions;
+	}
+
+
 
 	public List<SelectItem> getNazwiskoOptions()
 	{
@@ -140,5 +155,19 @@ public class SelectItemsBean
 		}
 		setNazwiskoOptions(opcje);
 		System.out.println("W funkcji generateNames()");
+	}
+	public void generateUslugi() throws IOException
+	{
+		listaUslug=new RecordServiceUsluga().readUslugi();
+		List<SelectItem> opcje= new ArrayList<SelectItem>();
+		SelectItem item = new SelectItem(1,"1");
+		for (int licznik=0;licznik<listaUslug.size();licznik++)
+		{
+			item=new SelectItem(listaUslug.get(licznik).getNazwa(),listaUslug.get(licznik).getNazwa());
+			opcje.add(item);
+			
+		}
+		setUslugaOptions(opcje);
+		
 	}
 }
