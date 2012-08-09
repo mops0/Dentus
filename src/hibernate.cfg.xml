@@ -22,8 +22,8 @@
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
 		<mapping resource="com/dentus/Pacjent.hbm.xml"/>
-        <mapping resource="com/dentus/Event.hbm.xml"/>
 		<mapping resource="com/dentus/Usluga.hbm.xml"/>
+		<mapping resource="com/dentus/GOI.hbm.xml"/>
     </session-factory>
 
 </hibernate-configuration>

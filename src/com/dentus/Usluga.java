@@ -50,6 +50,37 @@ public void setId(long id)
 {
 	this.id = id;
 }
+
+@Override
+public int hashCode()
+{
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + (int) (id ^ (id >>> 32));
+	return result;
+}
+@Override
+public boolean equals(Object obj)
+{
+	if (this == obj)
+	{
+		return true;
+	}
+	if (obj == null)
+	{
+		return false;
+	}
+	if (!(obj instanceof Usluga))
+	{
+		return false;
+	}
+	Usluga other = (Usluga) obj;
+	if (id != other.id)
+	{
+		return false;
+	}
+	return true;
+}
 public void generateId()
 {
 	Calendar cal=Calendar.getInstance();
@@ -67,4 +98,11 @@ public void usunZlisty(List<Usluga> uslugi)
 		}
 	}
 }
+@Override
+public String toString()
+{
+	return "Usluga [nazwa=" + nazwa + ", czas=" + czas + ", koszt=" + koszt
+			+ ", uwagi=" + uwagi + ", id=" + id + "]";
+}
+
 }

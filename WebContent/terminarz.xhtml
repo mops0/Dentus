@@ -16,23 +16,26 @@
 	  			<h:panelGrid id="eventDetails" columns="2"> 
 		  			<h:outputLabel for="Nazwisko" value="Imię i Nazwisko"/>
 		  			
-		  			<h:selectOneMenu id="Nazwisko" value="#{scheduleBean.selectedEvent.title}" style="margin-left:20px">   
+		  			<h:selectOneMenu id="Nazwisko" value="#{scheduleBean.backedEvent.pacjent}" style="margin-left:20px">   
            				<f:selectItems  value="#{selectItemsBean.nazwiskoOptions}"/>
+           				<f:converter converterId="pacjentConverter" />
+        			</h:selectOneMenu> 
+        			<h:outputLabel for="Usluga" value="Usługa"/>
+        			<h:selectOneMenu id="Usluga" value="#{scheduleBean.backedEvent.usluga}" style="margin-left:20px">   
+           				<f:selectItems  value="#{selectItemsBean.uslugaOptions}"/>
+           				<f:converter converterId="uslugaConverter" />
         			</h:selectOneMenu> 
         			
-        			<h:outputLabel for="Usluga" value="Nazwa usługi"/>
-		  			<h:selectOneMenu id="Usluga" value="#{scheduleBean.selectedEvent.title}" style="margin-left:20px">   
-           				<f:selectItems  value="#{selectItemsBean.uslugaOptions}"/>
-        			</h:selectOneMenu> 
         			 
 		  			<h:outputLabel for="startDate" value="Data wizyty"/>
 		  		
 		  			
-		  			<p:calendar id="startDate" value="#{scheduleBean.selectedEvent.startDate}" pattern="dd/MM/yyyy" timeZone="#{scheduleBean.timeZone}"/>
+		  			<p:calendar id="startDate" value="#{scheduleBean.backedEvent.startDateNoTime}" pattern="dd/MM/yyyy" timeZone="#{scheduleBean.timeZone}"/>
 		  			<h:outputLabel for="startTime" value="Czas wizyty"/>
-		  			<p:calendar id="startTime" value="#{scheduleBean.startTime}" pattern="HH:mm" timeZone="#{scheduleBean.timeZoneGMT}" timeOnly="true" stepMinute="15"/>
-		  			<p:commandButton value="Usuń" actionListener="#{scheduleBean.deleteEvent}" oncomplete="terminarz.update();okno.hide();"/>
-		  			<p:commandButton value="Zatwierdź" actionListener="#{scheduleBean.addEvent}" oncomplete="terminarz.update();okno.hide();"/>
+		  			<p:calendar id="startTime" value="#{scheduleBean.backedEvent.startTime}" pattern="HH:mm" timeZone="#{scheduleBean.timeZoneGMT}" timeOnly="true" stepMinute="15"/>
+		  			<p:commandButton id="usun" value="Usuń" actionListener="#{scheduleBean.deleteEvent}" oncomplete="terminarz.update();okno.hide();"/>
+		  			<p:commandButton id="zatwierdz" value="Zatwierdź" actionListener="#{scheduleBean.addEvent}" oncomplete="terminarz.update();okno.hide();"/>
+	  				
 	  			</h:panelGrid>
 	  		</p:dialog>
 	  		

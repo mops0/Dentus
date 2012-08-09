@@ -1,7 +1,9 @@
 package com.dentus;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -27,7 +29,17 @@ public class RecordServiceUsluga
 		return (List<Usluga>)criteria.list();
 		 
 	 }
-	
+	public Map<Long, Usluga> generujMape()
+	{
+		List<Usluga> lista =readUslugi();
+		Map<Long, Usluga> mapa = new LinkedHashMap<Long, Usluga>();
+		for (int i=0;i<lista.size();i++)
+		{
+			mapa.put(new Long(lista.get(i).getId()), lista.get(i));
+		}
+		return mapa;
+		
+	}
 	public void update(Usluga usluga) 
 	{
 		Session session =HibernateUtil.getSession();

@@ -1,7 +1,10 @@
 package com.dentus;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -30,7 +33,17 @@ public class RecordService
 		return (List<Pacjent>)criteria.list();
 		 
 	 }
-	
+	public Map<Long, Pacjent> generujMape()
+	{
+		List<Pacjent> lista =odczytajRekordy();
+		Map<Long, Pacjent> mapa = new LinkedHashMap<Long, Pacjent>();
+		for (int i=0;i<lista.size();i++)
+		{
+			mapa.put(new Long(lista.get(i).getId()), lista.get(i));
+		}
+		return mapa;
+		
+	}
 	public void zastapRekord(Pacjent nowyP,Pacjent staryP) 
 	{
 		Session session =HibernateUtil.getSession();

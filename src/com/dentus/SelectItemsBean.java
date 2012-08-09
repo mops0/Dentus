@@ -149,12 +149,11 @@ public class SelectItemsBean
 		SelectItem item = new SelectItem(1,"1");
 		for (int licznik=0;licznik<lista.size();licznik++)
 		{
-			item=new SelectItem(lista.get(licznik).getImie()+" "+lista.get(licznik).getNazwisko(),lista.get(licznik).getImie()+" "+lista.get(licznik).getNazwisko());
+			item=new SelectItem(lista.get(licznik),lista.get(licznik).getImie()+" "+lista.get(licznik).getNazwisko());
 			opcje.add(item);
-			System.out.println(lista.get(licznik).getImie()+" "+lista.get(licznik).getNazwisko());
 		}
 		setNazwiskoOptions(opcje);
-		System.out.println("W funkcji generateNames()");
+		
 	}
 	public void generateUslugi() throws IOException
 	{
@@ -163,7 +162,7 @@ public class SelectItemsBean
 		SelectItem item = new SelectItem(1,"1");
 		for (int licznik=0;licznik<listaUslug.size();licznik++)
 		{
-			item=new SelectItem(listaUslug.get(licznik).getNazwa(),listaUslug.get(licznik).getNazwa());
+			item=new SelectItem(listaUslug.get(licznik),listaUslug.get(licznik).getNazwa());
 			opcje.add(item);
 			
 		}

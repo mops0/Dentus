@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2012-07-04 20:51:09 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2012-08-06 14:23:53 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.dentus.Event" table="EVENT">
+    <class name="com.dentus.GOI" table="GOI">
         <id name="id" type="long">
             <column name="ID" />
-            <generator class="identity" />
+            <generator class="native" />
         </id>
-        <property name="name" type="java.lang.String">
-            <column name="NAME" />
-        </property>
-        <property name="topic" type="java.lang.String">
-            <column name="TOPIC" />
-        </property>
+        <many-to-one name="pacjent" class="com.dentus.Pacjent" fetch="join">
+            <column name="PACJENT" />
+        </many-to-one>
+        <many-to-one name="usluga" class="com.dentus.Usluga" fetch="join">
+            <column name="USLUGA" />
+        </many-to-one>
         <property name="startDate" type="java.util.Date">
             <column name="STARTDATE" />
         </property>

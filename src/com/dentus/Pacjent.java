@@ -10,11 +10,6 @@ import java.util.List;
 public class Pacjent implements Serializable
 
 {
-	
-
-
-
-
 	private static final long serialVersionUID = 1L;
 	
 	private String imie;
@@ -213,5 +208,47 @@ public class Pacjent implements Serializable
 			}
 		}
 	}
+	@Override
+	public String toString()
+	{
+		return "Pacjent [imie=" + imie + ", nazwisko=" + nazwisko
+				+ ", dataUrodzenia=" + dataUrodzenia + ", birthDayString="
+				+ birthDayString + ", adres1=" + adres1 + ", adres2=" + adres2
+				+ ", adres3=" + adres3 + ", wiek=" + wiek + ", id=" + id
+				+ ", email=" + email + ", telefon=" + telefon + ", alergie="
+				+ alergie + ", choroby=" + choroby + ", opisPacjenta="
+				+ opisPacjenta + ", historia=" + historia + "]";
+	}
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+		{
+			return true;
+		}
+		if (obj == null)
+		{
+			return false;
+		}
+		if (!(obj instanceof Pacjent))
+		{
+			return false;
+		}
+		Pacjent other = (Pacjent) obj;
+		if (id != other.id)
+		{
+			return false;
+		}
+		return true;
+	}
+	
 }
 
