@@ -56,7 +56,9 @@
 		  			</p:commandButton>
 		  			
 		  			<p:dataTable id= "wpisy" value="#{panelPBB.historyModel}" dblClickSelect="false" selection="#{panelPBB.selectedWpis}" rowKey="#{wpis.id}" selectionMode="single" var= "wpis" styleClass="wpisy" emptyMessage="Brak wpisów">
-				  		<p:ajax event="rowSelect" listener="#{panelPBB.onRowSelect}" update=":wpisEdytor"/>
+				  		
+				  		<p:column selectionMode="single"/>
+				  		
 				  		<p:column headerText="Data">
 				  			<h:outputText  value="#{wpis.data}"/>
 				  		</p:column>
@@ -69,6 +71,9 @@
 				  		<p:column headerText="Komentarz">
 				  			<h:outputText value="#{wpis.komentarz}"/>
 			  			</p:column>
+			  			 <f:facet name="footer">  
+           					 <p:commandButton id="viewCommand" actionListener="#{panelPBB.onRowSelect}" value="doHistorii"  update=":wpisEdytor" />  
+       					 </f:facet>
 			  		</p:dataTable>	 
 		 		</h:form>  
 			</p:tab>
