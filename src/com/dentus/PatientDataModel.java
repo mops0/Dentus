@@ -39,7 +39,7 @@ public class PatientDataModel extends ListDataModel<Pacjent> implements Selectab
 			
 	}
 
-	@Override
+	
 	public Object getRowKey(Pacjent pacjent)
 	{
 		

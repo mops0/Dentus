@@ -2,8 +2,11 @@ package com.dentus;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public class GOIService
 {
@@ -43,7 +46,18 @@ public class GOIService
 		session.delete(goi);
 		session.flush();
 	}
-	
-	
+	public List<GOI> getListofSpecificGOI(Pacjent pacjent)
+	{
+		Session session =HibernateUtil.getSession();
+		List<GOI> list =(session.createCriteria(GOI.class).createCriteria("pacjent").add(Restrictions.like("id",pacjent.getId()))).list();
+		
+		return list;
+	}
+	public GOI findById(long id)
+	{
+		Session session =HibernateUtil.getSession();
+		GOI goi = (GOI) session.get(GOI.class, id);
+		return goi;
+	}
 
 }

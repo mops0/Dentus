@@ -47,12 +47,22 @@
 	    		<h:inputText  id="uwagi" value="#{tabelaUslug.editedUsluga.uwagi}" /> 
 	    		<f:facet name="footer"> 
                 <p:commandButton id="Potwierdz" value="Potwierdź" style="float:right" actionListener="#{tabelaUslug.potwierdzWpis}" update=":form:uslugi" oncomplete="dlg.hide()" />  
-                <p:commandButton id="Usun" value="Usuń wpis" style="float:right" actionListener="#{tabelaUslug.usunWpis}" update=":form:uslugi" oncomplete="dlg.hide()"/>  
+                <p:commandButton id="Usun" value="Usuń wpis" style="float:right" actionListener="#{tabelaUslug.usunWpis}" update=":form:uslugi, :confirmDialog" oncomplete="dlg.hide();"/>  
             </f:facet>  
 	        </h:panelGrid>       
 	    </h:form>  
 	</p:dialog>    	
-	  
+	 <p:confirmDialog id="confirmDialog" widgetVar="cd"  header="Alert" severity="alert">
+		
+		<f:facet name="message">
+			<h:outputLabel value="Usunięcie usługi jest niemożliwe." />  
+			<h:outputLabel  value="Usuń z terminarza wszystkie wpisy zawierające tę usługe i spróbuj jeszcze raz" /> 
+		</f:facet> 
+		<p:button style="float:right" value="OK" id="command" onclick="cd.hide()"/>
+		
+		
+	 	
+	 </p:confirmDialog> 
 	  
 	  
 	</ui:define>

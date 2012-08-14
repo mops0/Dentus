@@ -169,4 +169,15 @@ public class SelectItemsBean
 		setUslugaOptions(opcje);
 		
 	}
+	public List<String> generateListofNamesforUslugi(String query)
+	{
+		listaUslug=new RecordServiceUsluga().readUslugi();
+		ArrayList<String> listaNazw= new ArrayList<String>();
+		for(int i=0;i<listaUslug.size();i++)
+		{
+			listaNazw.add(listaUslug.get(i).getNazwa());
+		}
+		return listaNazw;
+		
+	}
 }

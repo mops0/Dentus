@@ -16,6 +16,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.primefaces.component.commandbutton.CommandButton;
+import org.primefaces.component.confirmdialog.ConfirmDialog;
 import org.primefaces.component.dialog.Dialog;
 import org.primefaces.event.SelectEvent;
 @ManagedBean(name="tabelaUslug")
@@ -71,7 +72,7 @@ public class TabelaUslug implements Serializable
 		setDialogforNewWpis(true);
 		showWpisWindow();
 		editedUsluga = new Usluga();
-		System.out.println("Info z NowaUsluga");
+		
 	}
 	public void onRowSelect()
 	{
@@ -101,11 +102,22 @@ public class TabelaUslug implements Serializable
 			
 	}
 	public void usunWpis() throws IOException
-	{
+	{	
 		Usluga usluga=getEditedUsluga();
+		
+		if (recordService.isUsedbySchedule(usluga))
+		{	
+			hideWpisWindow();
+			showAlert();
+			System.out.println("Nie można usunąć ze względu na powiązania z kalendarzem!!!");
+		}
+		else
+		{
 		usluga.usunZlisty(listaUslug);
 		uslugaModel.setWrappedData(listaUslug);
 		recordService.delete(usluga);
+		hideWpisWindow();
+		}
 	}
 	private void showWpisWindow()
 	{
@@ -115,7 +127,23 @@ public class TabelaUslug implements Serializable
 		dialog.setVisible(true);
 		
 	}
-	
+	private void hideWpisWindow()
+	{
+		FacesContext context = FacesContext.getCurrentInstance();
+		UIViewRoot view= context.getViewRoot();
+		Dialog dialog = (Dialog) view.findComponent("uslugaEdytor");
+		dialog.setVisible(false);
+		
+	}
+	private void showAlert()
+	{
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		UIViewRoot view= context.getViewRoot();
+		ConfirmDialog dialog = (ConfirmDialog) view.findComponent("confirmDialog");
+		dialog.setVisible(true);
+		
+	}
 	
 	
 	

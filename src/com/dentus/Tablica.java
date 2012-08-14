@@ -53,7 +53,9 @@ public class Tablica implements Serializable
 		//selectedPatient.getHistoria().add(new HistoriaWpis("22.01.2012","Pruchnica","Borowanie","Pacjent oszaloł"));
 		//selectedPatient.getHistoria().add(new HistoriaWpis("23.01.2012","Szaleństwo","Lewatywa","Pacjent polubił zabawe z mydłem"));
 		panel.setHistoryModel(new HistoryDataModel(selectedPatient.getHistoria()));
+		
 		panel.setSelectedPatient(getSelectedPatient());
+		panel.setGoiModel(new GOIDataModel(new GOIService().getListofSpecificGOI(getSelectedPatient()))); 
 		NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
 		navigationHandler.handleNavigation(context, null, "panelp"+"?faces-redirect=true");
 	}

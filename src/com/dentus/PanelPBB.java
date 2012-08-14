@@ -9,6 +9,7 @@ import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import org.primefaces.component.confirmdialog.ConfirmDialog;
 import org.primefaces.component.dialog.Dialog;
 import org.primefaces.event.SelectEvent;
 
@@ -17,6 +18,8 @@ import org.primefaces.event.SelectEvent;
 public class PanelPBB
 {
 	private Pacjent selectedPatient=new Pacjent();
+	private GOI selectedGOI=new GOI();
+	private GOIDataModel goiModel;
 	private HistoriaWpis selectedWpis= new HistoriaWpis();
 	private HistoriaWpis editedWpis=new HistoriaWpis();
 	private HistoryDataModel historyModel;
@@ -68,6 +71,23 @@ public class PanelPBB
 	{
 		this.selectedPatient = selectedPatient;
 	}
+	
+	public GOI getSelectedGOI()
+	{
+		return selectedGOI;
+	}
+	public void setSelectedGOI(GOI selectedGOI)
+	{
+		this.selectedGOI = selectedGOI;
+	}
+	public GOIDataModel getGoiModel()
+	{
+		return goiModel;
+	}
+	public void setGoiModel(GOIDataModel goiModel)
+	{
+		this.goiModel = goiModel;
+	}
 	public void onEdytuj()
 	{
 		 FacesContext context = FacesContext.getCurrentInstance();
@@ -80,12 +100,22 @@ public class PanelPBB
 	}
 	public void onUsun() throws IOException
 	{
-		 FacesContext context = FacesContext.getCurrentInstance();
-		 new RecordService().usunRekord(getSelectedPatient());
-		 Tablica tablica = (Tablica) context.getApplication().evaluateExpressionGet(context, "#{tablica}", Tablica.class);
-		 tablica.updateList();
-		 NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
-		 navigationHandler.handleNavigation(context, null, "pacjenci"+"?faces-redirect=true");
+		RecordService rs = new RecordService();
+		if (rs.isUsedbySchedule(getSelectedPatient()))
+		{	
+			
+			showAlert();
+			
+		}
+		else
+		{
+			FacesContext context = FacesContext.getCurrentInstance();
+			rs.usunRekord(getSelectedPatient());
+			Tablica tablica = (Tablica) context.getApplication().evaluateExpressionGet(context, "#{tablica}", Tablica.class);
+			tablica.updateList();
+			NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
+			navigationHandler.handleNavigation(context, null, "pacjenci"+"?faces-redirect=true");
+		}
 	}
 	public void onNowyWpis(ActionEvent event)
 	{
@@ -99,6 +129,15 @@ public class PanelPBB
 		setDialogforNewWpis(false);
 		setEditedWpis(getSelectedWpis()); //ustawia pola dialogu zgodnie z wartosciami wybranego wiersza
 		showWpisWindow(); //uwidacznia dialog
+	}
+	public void onToHistoryButton(SelectEvent event)
+	{
+		System.out.println("Jestem w onToHistoryButton()");
+		
+		setDialogforNewWpis(true);
+		fillDialogwithGOI();
+		showWpisWindow();
+		
 	}
 	public void potwierdzWpis() throws IOException
 	{
@@ -134,5 +173,20 @@ public class PanelPBB
 		UIViewRoot view= context.getViewRoot();
 		Dialog dialog = (Dialog) view.findComponent("wpisEdytor");
 		dialog.setVisible(false);
+	}
+	private void showAlert()
+	{
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		UIViewRoot view= context.getViewRoot();
+		ConfirmDialog dialog = (ConfirmDialog) view.findComponent("confirmPatientDialog");
+		dialog.setVisible(true);
+		
+	}
+	private void fillDialogwithGOI() //wypełnia Edytor wpisów do historii za pomocą danych z wybranego rekordu
+	{
+		System.out.println(selectedGOI.getStartDate().toString());
+		editedWpis.data=selectedGOI.getStartDate();
+		editedWpis.leczenie=selectedGOI.getUsluga().getNazwa();
 	}
 }

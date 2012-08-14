@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public class RecordServiceUsluga
 {
@@ -62,7 +63,14 @@ public class RecordServiceUsluga
 		return usluga;
 		
 	}
-	
+	public boolean isUsedbySchedule(Usluga usluga)
+	{
+		Session session =HibernateUtil.getSession();
+		List list =(session.createCriteria(GOI.class).createCriteria("usluga").add(Restrictions.like("id",usluga.getId()))).list();
+		
+		return !list.isEmpty();
+		
+	}
 }
 
 

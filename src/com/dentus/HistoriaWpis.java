@@ -1,10 +1,11 @@
 package com.dentus;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class HistoriaWpis
 {
-	String data=new String();
+	Date data=new Date();
 	String rozpoznanie=new String();
 	String leczenie=new String();
 	String komentarz=new String();
@@ -13,7 +14,7 @@ public class HistoriaWpis
 	{
 		
 	}
-	HistoriaWpis(String data,String rozpoznanie,String leczenie,String komentarz,long id)
+	HistoriaWpis(Date data,String rozpoznanie,String leczenie,String komentarz,long id)
 	{
 		this.data=data;
 		this.rozpoznanie=rozpoznanie;
@@ -30,11 +31,11 @@ public class HistoriaWpis
 	{
 		this.id = id;
 	}
-	public String getData()
+	public Date getData()
 	{
 		return data;
 	}
-	public void setData(String data)
+	public void setData(Date data)
 	{
 		this.data = data;
 	}

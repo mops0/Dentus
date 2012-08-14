@@ -13,7 +13,7 @@
 			<div style="margin-top:100px; margin-left:50px;">
 		  		<h:outputText styleClass="h1" value="Lista pacjentów" />
 		  		<p:commandButton value="Dodaj pacjenta" actionListener="#{tablica.onNowyPacjent}" style="margin-left:450px"/>
-		  		
+		  		<p:commandButton value="Test" actionListener="#{dbService.activate}" style="margin-left:450px"/>
 		  	</div>
 		  	<p:dataTable id= "pacjenci" value="#{tablica.patientModel}" dblClickSelect="false" selection="#{tablica.selectedPatient}" rowKey="#{pacjent.nazwisko}" selectionMode="single" var= "pacjent" styleClass="tablica" emptyMessage="Brak pacjentów w rejestrze.">
 		  		<p:ajax event="rowSelect" listener="#{tablica.onRowSelect}"/>

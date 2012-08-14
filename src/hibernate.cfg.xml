@@ -24,6 +24,9 @@
 		<mapping resource="com/dentus/Pacjent.hbm.xml"/>
 		<mapping resource="com/dentus/Usluga.hbm.xml"/>
 		<mapping resource="com/dentus/GOI.hbm.xml"/>
+		<mapping resource="com/dentus/Kolor.hbm.xml"/>
+		<mapping resource="com/dentus/Owner.hbm.xml"/>
+		<mapping resource="com/dentus/Pojazd.hbm.xml"/>
     </session-factory>
 
 </hibernate-configuration>

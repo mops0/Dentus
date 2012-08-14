@@ -5,7 +5,6 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets">
 
-
 	<h:head>
 		<meta charset="iso-8859-2"/>	
 		<title><ui:insert name="title">Default title</ui:insert></title>
@@ -13,6 +12,7 @@
 		<h:outputScript name="dynamikaS.js" library="javascript" target="head" />
 	</h:head>	
 	<h:body>
+		<h:outputStylesheet name="indexS.css" />
 			
 		<div id="allcontents">
 			<div id="header">
@@ -20,35 +20,35 @@
 			<div id="menu">
 				<ul> 
 				
-			        <li id="Pacjenci">  
+			        <li class="li" id="Pacjenci">  
 			            <p>
 			            <img src="resources/images/PatientMale.png" alt="Pacjenci pic"  />
 			            
 			            
-			            <a>Pacjenci</a>
+			            <a class="a">Pacjenci</a>
 			            </p>
 			           
 			             
 			        </li>  
-			        <li id="Terminarz">  
+			        <li class="li" id="Terminarz">  
 			        	
 			           <p> 
 			            <img src="resources/images/Calendar.png" alt="Pacjenci "  />
-			            <a>Terminarz</a>
+			            <a class="a" >Terminarz</a>
 			           </p> 
 			            
 			        </li>  
-			        <li id="Usługi">  
+			        <li class="li" id="Usługi">  
 			            <p>
 			            <img src="resources/images/Syringe.png" alt="Usługi "  />
-			            <a>Usługi</a>
+			            <a class="a" >Usługi</a>
 			             </p>
 			           
 			        </li>  
-			        <li id="Ustawienia">  
+			        <li class="li" id="Ustawienia">  
 			            <p>
 			            <img src="resources/images/Hospital.png" alt="Ustawienia "  />
-			            <a>Ustawienia</a>
+			            <a class="a" >Ustawienia</a>
 			            </p>
 			          
 			        </li>  

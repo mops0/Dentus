@@ -60,7 +60,7 @@
             <column name="ID" />
             <generator class="assigned" />
         </id>
-        <property name="data" type="java.lang.String">
+        <property name="data" type="java.util.Date">
             <column name="DATA" />
         </property>
         <property name="rozpoznanie" type="java.lang.String">
