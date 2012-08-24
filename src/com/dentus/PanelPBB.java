@@ -130,13 +130,15 @@ public class PanelPBB
 		setEditedWpis(getSelectedWpis()); //ustawia pola dialogu zgodnie z wartosciami wybranego wiersza
 		showWpisWindow(); //uwidacznia dialog
 	}
-	public void onToHistoryButton(SelectEvent event)
+	public void onToHistoryButton()
 	{
 		System.out.println("Jestem w onToHistoryButton()");
 		
 		setDialogforNewWpis(true);
+		editedWpis = new HistoriaWpis();
 		fillDialogwithGOI();
 		showWpisWindow();
+		
 		
 	}
 	public void potwierdzWpis() throws IOException

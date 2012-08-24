@@ -124,7 +124,7 @@ public class ScheduleBean
 	
 	public void onDateSelect(DateSelectEvent e) throws IOException
 	{
-		CommandButton button = (CommandButton) getComponentReference(":j_idt11:usun");
+		CommandButton button = (CommandButton) getComponentReference(":formaTerminarz:usun");
 		button.setRendered(false);
 		selectItemsBean.generateNames();
 		selectItemsBean.generateUslugi();
@@ -136,7 +136,7 @@ public class ScheduleBean
 	public void onEventSelect(ScheduleEntrySelectEvent e) throws IOException
 	{
 		
-		CommandButton button = (CommandButton) getComponentReference(":j_idt11:usun");
+		CommandButton button = (CommandButton) getComponentReference(":formaTerminarz:usun");
 		button.setRendered(true);
 		selectItemsBean.generateNames();
 		selectItemsBean.generateUslugi();

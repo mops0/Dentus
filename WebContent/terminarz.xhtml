@@ -6,9 +6,37 @@
 <ui:composition template="templatkaSystemu.xhtml">
 	<ui:define name="title">Dentus terminarz</ui:define>
 	<ui:define name="content">
-		<h:form> 
+		<h:form id="formaTerminarz"> 
 	 		<h:outputText styleClass="h1" value="Terminarz wizyt pacjentów" />
-			<p:schedule value="#{scheduleBean.model}" editable="true" widgetVar="terminarz" timeZone="#{scheduleBean.timeZone}">
+	 		<script>
+	 		PrimeFaces.locales['pl'] = {
+	 			    closeText: 'Zamknij',
+	 			    prevText: 'Poprzedni',
+	 			    nextText: 'Następny',
+	 			    monthNames: ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'],
+	 			    monthNamesShort: ['Sty','Lut','Mar','Kwi','Maj','Cze', 'Lip','Sie','Wrz','Paź','Lis','Gru'],
+	 			    dayNames: ['Niedziela','Poniedziałek','Wtorek','Środa','Czwartek','Piątek','Sobota'],
+	 			    dayNamesShort: ['Nie','Pon','Wt','Śr','Czw','Pt','So'],
+	 			    dayNamesMin: ['N','P','W','Ś','Cz','P','S'],
+	 			    weekHeader: 'Tydzień',
+	 			    firstDay: 1,
+	 			    isRTL: false,
+	 			    showMonthAfterYear: false,
+	 			    yearSuffix: 'r',
+	 			    timeOnlyTitle: 'Tylko czas',
+	 			    timeText: 'Czas',
+	 			    hourText: 'Godzina',
+	 			    minuteText: 'Minuta',
+	 			    secondText: 'Sekunda',
+	 			    currentText: 'Teraz',
+	 			    ampm: false,
+	 			    month: 'Miesiąc',
+	 			    week: 'Tydzień',
+	 			    day: 'Dzień',
+	 			    allDayText : 'Cały dzień'
+	 			};
+	 		</script>
+			<p:schedule value="#{scheduleBean.model}" editable="true" widgetVar="terminarz" timeZone="#{scheduleBean.timeZone}" locale="pl">
 	  			<p:ajax event="dateSelect" listener="#{scheduleBean.onDateSelect}" oncomplete=" okno.show()" update="eventDetails"/>
 	  			<p:ajax event="eventSelect" listener="#{scheduleBean.onEventSelect}" oncomplete="okno.show()" update="eventDetails"/>
 	  		</p:schedule>

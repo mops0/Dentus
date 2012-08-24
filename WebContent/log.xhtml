@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+
+    <h:body>
+     <h2>Proszę sie zalogować:</h2>
+        <h:form name="loginForm" method="POST" action="j_security_check">
+            <p><strong>Wprowadź login: </strong>
+                <input type="text" name="j_username" size="25"/></p>
+            <p><strong>Wprowadź hasło: </strong>
+                <input type="password" size="15" name="j_password"/></p>
+            <p>
+                <input type="submit" value="Potwierdź"/>
+                <input type="reset" value="Usuń"/></p>
+        </h:form>       
+    </h:body>
+    
+</html>
