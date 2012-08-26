@@ -10,8 +10,8 @@ import org.hibernate.service.ServiceRegistryBuilder;
 public class HibernateUtil
 {
 	private static final SessionFactory sessionFactory;
-	private static final ThreadLocal threadSession= new ThreadLocal();
-	private static final ThreadLocal threadTransaction= new ThreadLocal();
+	private static final ThreadLocal<Session> threadSession= new ThreadLocal<Session>();
+	private static final ThreadLocal<Transaction> threadTransaction= new ThreadLocal<Transaction>();
 	static{		
 		Configuration configuration = new Configuration();
 	    configuration.configure();

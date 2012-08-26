@@ -3,26 +3,25 @@ package com.dentus;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 
-import javax.faces.component.UIComponent;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.confirmdialog.ConfirmDialog;
 import org.primefaces.component.dialog.Dialog;
-import org.primefaces.event.SelectEvent;
 @ManagedBean(name="tabelaUslug")
 @SessionScoped
 public class TabelaUslug implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private RecordServiceUsluga recordService;
 	private List<Usluga> listaUslug;
 	private UslugaDataModel uslugaModel;

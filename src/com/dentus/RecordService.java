@@ -1,14 +1,12 @@
 package com.dentus;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
 
@@ -70,6 +68,7 @@ public class RecordService
 	public boolean isUsedbySchedule(Pacjent pacjent)
 	{
 		Session session =HibernateUtil.getSession();
+		@SuppressWarnings("rawtypes")
 		List list =(session.createCriteria(GOI.class).createCriteria("pacjent").add(Restrictions.like("id",pacjent.getId()))).list();
 		
 		return !list.isEmpty();

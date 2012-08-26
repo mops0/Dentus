@@ -66,6 +66,7 @@ public class RecordServiceUsluga
 	public boolean isUsedbySchedule(Usluga usluga)
 	{
 		Session session =HibernateUtil.getSession();
+		@SuppressWarnings("rawtypes")
 		List list =(session.createCriteria(GOI.class).createCriteria("usluga").add(Restrictions.like("id",usluga.getId()))).list();
 		
 		return !list.isEmpty();

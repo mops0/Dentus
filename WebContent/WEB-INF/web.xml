@@ -30,32 +30,7 @@
     <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
     <param-value>true</param-value>
 </context-param>
-<security-constraint>
-    <web-resource-collection>
-        <web-resource-name>Secure Application</web-resource-name>
-        <url-pattern>/faces/pacjenci.xhtml</url-pattern>
-        <http-method>GET</http-method>
-        <http-method>POST</http-method>
-    </web-resource-collection>
-	
-    <auth-constraint>
-        <role-name>employee</role-name>
-    </auth-constraint>
- 
-  </security-constraint>
 
-  <login-config>
-    <auth-method>FORM</auth-method>
-    <realm-name>jdbc/mysql</realm-name>
-   <form-login-config>  
-    	<form-login-page>/login.xhtml</form-login-page>  
-    	<form-error-page>/loginFailed.xhtml</form-error-page>  
-    </form-login-config>
-  </login-config>
-
-  <security-role>
-    <role-name>employee</role-name>
-  </security-role>
 
 </web-app>
 

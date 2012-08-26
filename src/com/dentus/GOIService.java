@@ -49,6 +49,7 @@ public class GOIService
 	public List<GOI> getListofSpecificGOI(Pacjent pacjent)
 	{
 		Session session =HibernateUtil.getSession();
+		@SuppressWarnings("unchecked")
 		List<GOI> list =(session.createCriteria(GOI.class).createCriteria("pacjent").add(Restrictions.like("id",pacjent.getId()))).list();
 		
 		return list;

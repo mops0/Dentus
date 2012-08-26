@@ -3,8 +3,6 @@ package com.dentus;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.primefaces.model.DefaultScheduleEvent;
-
 public class BackedEvent
 {
 	private Pacjent pacjent;
