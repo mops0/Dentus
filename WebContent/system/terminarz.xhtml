@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="templatkaSystemu.xhtml">
+	<ui:define name="title">Dentus terminarz</ui:define>
+	<ui:define name="content">
+		<h:form id="formaTerminarz"> 
+	 		<h:outputText styleClass="h1" value="Terminarz wizyt pacjentów" />
+	 		<script>
+	 		PrimeFaces.locales['pl'] = {
+	 			    closeText: 'Zamknij',
+	 			    prevText: 'Poprzedni',
+	 			    nextText: 'Następny',
+	 			    monthNames: ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'],
+	 			    monthNamesShort: ['Sty','Lut','Mar','Kwi','Maj','Cze', 'Lip','Sie','Wrz','Paź','Lis','Gru'],
+	 			    dayNames: ['Niedziela','Poniedziałek','Wtorek','Środa','Czwartek','Piątek','Sobota'],
+	 			    dayNamesShort: ['Nie','Pon','Wt','Śr','Czw','Pt','So'],
+	 			    dayNamesMin: ['N','P','W','Ś','Cz','P','S'],
+	 			    weekHeader: 'Tydzień',
+	 			    firstDay: 1,
+	 			    isRTL: false,
+	 			    showMonthAfterYear: false,
+	 			    yearSuffix: 'r',
+	 			    timeOnlyTitle: 'Tylko czas',
+	 			    timeText: 'Czas',
+	 			    hourText: 'Godzina',
+	 			    minuteText: 'Minuta',
+	 			    secondText: 'Sekunda',
+	 			    currentText: 'Teraz',
+	 			    ampm: false,
+	 			    month: 'Miesiąc',
+	 			    week: 'Tydzień',
+	 			    day: 'Dzień',
+	 			    allDayText : 'Cały dzień'
+	 			};
+	 		</script>
+			<p:schedule value="#{scheduleBean.model}" editable="true" widgetVar="terminarz" timeZone="#{scheduleBean.timeZone}" locale="pl">
+	  			<p:ajax event="dateSelect" listener="#{scheduleBean.onDateSelect}" oncomplete=" okno.show()" update="eventDetails"/>
+	  			<p:ajax event="eventSelect" listener="#{scheduleBean.onEventSelect}" oncomplete="okno.show()" update="eventDetails"/>
+	  		</p:schedule>
+	  		<p:dialog header="Wizyta pacjenta" widgetVar="okno">
+	  			<h:panelGrid id="eventDetails" columns="2"> 
+		  			<h:outputLabel for="Nazwisko" value="Imię i Nazwisko"/>
+		  			
+		  			<h:selectOneMenu id="Nazwisko" value="#{scheduleBean.backedEvent.pacjent}" style="margin-left:20px">   
+           				<f:selectItems  value="#{selectItemsBean.nazwiskoOptions}"/>
+           				<f:converter converterId="pacjentConverter" />
+        			</h:selectOneMenu> 
+        			<h:outputLabel for="Usluga" value="Usługa"/>
+        			<h:selectOneMenu id="Usluga" value="#{scheduleBean.backedEvent.usluga}" style="margin-left:20px">   
+           				<f:selectItems  value="#{selectItemsBean.uslugaOptions}"/>
+           				<f:converter converterId="uslugaConverter" />
+        			</h:selectOneMenu> 
+        			
+        			 
+		  			<h:outputLabel for="startDate" value="Data wizyty"/>
+		  		
+		  			
+		  			<p:calendar id="startDate" value="#{scheduleBean.backedEvent.startDateNoTime}" pattern="dd/MM/yyyy" timeZone="#{scheduleBean.timeZone}"/>
+		  			<h:outputLabel for="startTime" value="Czas wizyty"/>
+		  			<p:calendar id="startTime" value="#{scheduleBean.backedEvent.startTime}" pattern="HH:mm" timeZone="#{scheduleBean.timeZoneGMT}" timeOnly="true" stepMinute="15"/>
+		  			<p:commandButton id="usun" value="Usuń" actionListener="#{scheduleBean.deleteEvent}" oncomplete="terminarz.update();okno.hide();"/>
+		  			<p:commandButton id="zatwierdz" value="Zatwierdź" actionListener="#{scheduleBean.addEvent}" oncomplete="terminarz.update();okno.hide();"/>
+	  				
+	  			</h:panelGrid>
+	  		</p:dialog>
+	  		
+	  	</h:form>
+	  
+	  
+	  
+	</ui:define>
+</ui:composition>
+</html>

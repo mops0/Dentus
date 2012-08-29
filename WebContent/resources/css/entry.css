@@ -1,0 +1,163 @@
+body{
+	padding:0px;
+	margin:0px
+}
+#wrapper{
+	background-image:url("#{resource['images:fale2.jpg']}"); 
+}
+#header{
+	width:auto;
+	
+	background-image:url("#{resource['images:header.jpg']}"); 
+	background-repeat:repeat-x;
+}
+#header_container{
+	
+	margin-left:auto;
+	margin-right:auto;
+	width:940px;
+
+}
+#logo{
+	height:30px;
+	margin-top:5px;
+}
+
+
+ul{
+	list-style-type:none;
+}
+#nawigacja{
+	float:right;
+	margin-right:100px;
+}
+#nawigacja ul {
+	float:right;
+	border-color:blue;
+	margin-top:8px;
+}
+#nawigacja ul li{
+	float:left;
+	padding-right:20px;
+}
+
+.activeOut{ 
+	cursor:pointer;
+	color: #0e68a7;
+	height:20px;
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+}
+
+.passive{ 
+	cursor:pointer;
+	color: #0ea74b;
+	height:20px;
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+}
+.activeIn{
+	cursor:pointer;
+	color: #ff556f7c;
+	height:20px;
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+}
+
+#main_container{
+	margin-top:150px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:0px;
+	width:940px;
+}
+#form_container{
+	
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:200px;
+	width:355px;
+	border: #556ffc 1px solid;
+	padding-top:0px;
+}
+#form_container2{
+	
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:280px;
+	width:355px;
+	border: #556ffc 1px solid;
+	padding-top:0px;
+	background-color:#d9e7f3;
+}
+#form_container_header{
+	margin-top:0px;
+	
+}
+#form_container_header h1{
+	height:30px;
+	background-image:url("#{resource['images:signHeader.png']}");
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	color:white;
+	font-size:16px;
+	padding-left:10px;
+	margin-bottom:0px;
+	margin-top:0px;
+}
+#form_container_main{
+	margin-top:0px;
+	padding-left:10px;
+	height:200px;
+	background-color:#d9e7f3;
+}
+#form_container_main input{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+	color:#556f7c;
+}
+#form_container_main a{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+	color:#556f7c;
+}
+#footer{
+	width:auto;
+	padding-bottom:0px;
+	background-image:url("#{resource['images:footer.png']}"); 
+	background-repeat:repeat-x;
+}
+#footer_container{
+	margin-left:auto;
+	margin-right:auto;
+	width:940px;
+	
+
+}
+#footer_container_message{
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:10px;
+	width:400px;
+	height:50px;
+	
+}
+#footer_container_message a{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:12px;
+	color:#556f7c;
+	}
+
+#form_container_error a{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:12px;
+	
+	color:red;
+	
+}
+#form_container_error {
+	
+	margin-bottom:10px;
+	margin-left:10px;
+	
+}
+

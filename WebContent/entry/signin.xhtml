@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" >
+<ui:composition template="/entry/entryTemplatka.xhtml">
+	<ui:define name="title">Dentus</ui:define>
+	<ui:define name="content">
+	  <div id="form_container">
+	  	<div id="form_container_header">
+	  		<h1>Sign in</h1>
+	  	</div>
+	  	<h:form id="loginForm" prependId="false">
+	  		<div id="form_container_main">
+	  			<br/>
+           		<a>Username</a> <br/>
+           		<h:inputText id="j_username" required="true" size="40"/><br/><br/>
+           		<a>Password</a> <br/>
+           		<h:inputSecret id="j_password" required="true" size="40"/>
+           		<br/>
+           		<br/>
+           		
+           		<h:commandButton type="submit" id="login" action="#{authenticationBean.doLogin}" value="Submit"/>
+        	</div>
+        </h:form>   
+	  </div>
+	</ui:define>
+</ui:composition>
+</html>

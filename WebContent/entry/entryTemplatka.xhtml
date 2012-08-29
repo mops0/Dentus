@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+	<h:head>
+		<meta charset="iso-8859-2"/>	
+		<title><ui:insert name="title">Default title</ui:insert></title>
+		
+		<h:outputStylesheet library="css" name="entry.css"/>
+		<h:outputScript name="entry.js" library="javascript" target="head" />
+	</h:head>
+		
+	<body>	
+		<div id="wrapper">
+			<div id="header">	
+				<div id="header_container">
+					 <a id="logo">
+						<h:graphicImage url="/resources/images/logo.png" alt="Logo" />
+					</a> 
+					<div id="nawigacja">
+						<ul id="nav_szereg">
+							
+						</ul>
+					</div>
+					
+				</div>
+			</div>
+			
+			<div id="mainSite">
+				<div id="main_container">
+					<ui:insert name="content">
+			    	Content area.  See comments below this line in the source.
+			    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+				  	<!-- <div> -->
+			    	<!-- <ui:include src="content.xhtml"/> -->  
+			    	<!-- </div> -->
+			  		</ui:insert>
+				</div>
+			</div>
+			
+			<div id="footer">
+				<div id="footer_container">
+					<div id="footer_container_message">
+						<a>Designed and managed by Tomasz Kamil Szymczyszyn 2012</a>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+			
+	
+	
+	
+</body>
+</html>
