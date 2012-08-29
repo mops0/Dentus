@@ -11,7 +11,13 @@ function testAdresu(adresArg)
 	adres=adres.split(".");
 	adres=adres[adres.length-2];
 		
-	if(adres==adresArg)
+	var adres2=adresArg.split("/");
+	
+	
+	
+	if(adres2[1]=="pacjenci")
+	adres2[1]="signin";
+	if(adres==adres2[1])
 		return true;
 	else
 		return false;
