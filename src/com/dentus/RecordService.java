@@ -43,14 +43,12 @@ public class RecordService
 		return mapa;
 		
 	}
-	public void zastapRekord(Pacjent nowyP,Pacjent staryP) 
+	public void updateRecord(Pacjent pacjent) 
 	{
 		
 		Session session =HibernateUtil.getSession();
-		
-		long stareId=staryP.getId();
-		nowyP.setId(stareId);
-		session.update(nowyP);
+	
+		session.update(pacjent);
 		
 		
 		

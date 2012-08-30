@@ -17,7 +17,7 @@ import org.primefaces.event.SelectEvent;
 @SessionScoped
 public class PanelPBB
 {
-	private Pacjent selectedPatient=new Pacjent();
+	private Pacjent selectedPatient;
 	private GOI selectedGOI=new GOI();
 	private GOIDataModel goiModel;
 	private HistoriaWpis selectedWpis= new HistoriaWpis();
@@ -92,7 +92,7 @@ public class PanelPBB
 	{
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 EdytorPBB edytor= (EdytorPBB) context.getApplication().evaluateExpressionGet(context, "#{edytorPBB}", EdytorPBB.class);
-		 edytor.ustawPacjenta(getSelectedPatient());
+		 edytor.setPacjent(getSelectedPatient());
 		 edytor.setTytul("Edycja danych pacjenta");
 		 edytor.setNew(false);
 		 NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
@@ -157,7 +157,7 @@ public class PanelPBB
 			System.out.println("zastapienie wpisu");
 			}
 			historyModel.setWrappedData(selectedPatient.getHistoria());
-		new RecordService().zastapRekord(selectedPatient, selectedPatient);
+		new RecordService().updateRecord(selectedPatient);
 		//hideWpisWindow();
 	}
 	public void usunWpis() throws IOException
@@ -165,7 +165,7 @@ public class PanelPBB
 		
 		selectedPatient.usunWpis(selectedWpis);
 		historyModel.setWrappedData(selectedPatient.getHistoria());
-		new RecordService().zastapRekord(selectedPatient, selectedPatient);
+		new RecordService().updateRecord(selectedPatient);
 		
 	}
 	public void showWpisWindow()

@@ -22,7 +22,7 @@ public class EdytorPBB implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 	private Pacjent pacjent=new Pacjent();
-	private Pacjent comparePacjent = new Pacjent();
+	
 	private SelectDateItem birthDate = new SelectDateItem();
 	private String tytul;
 	private boolean isNew;
@@ -60,14 +60,6 @@ public class EdytorPBB implements Serializable
 	{
 		this.isNew = isNew;
 	}
-	public Pacjent getComparePacjent()
-	{
-		return comparePacjent;
-	}
-	public void setComparePacjent(Pacjent comparePacjent)
-	{
-		this.comparePacjent = comparePacjent;
-	}
 	public void confirm() throws IOException
 	{
 		Calendar cal= Calendar.getInstance();
@@ -83,7 +75,8 @@ public class EdytorPBB implements Serializable
 		}
 		else
 		{
-			rs.zastapRekord(pacjent,getComparePacjent());
+			rs.updateRecord(pacjent);
+	
 		}
 		FacesContext context = FacesContext.getCurrentInstance();
 		Tablica tablica = (Tablica) context.getApplication().evaluateExpressionGet(context, "#{tablica}", Tablica.class);
@@ -101,7 +94,7 @@ public class EdytorPBB implements Serializable
 	public void ustawPacjenta(Pacjent pacjent)
 	{
 		setPacjent(pacjent);
-		setComparePacjent(pacjent);
+		
 	}
 	
 }
