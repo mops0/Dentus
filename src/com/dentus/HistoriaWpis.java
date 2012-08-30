@@ -1,10 +1,15 @@
 package com.dentus;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-public class HistoriaWpis
+public class HistoriaWpis implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Date data=new Date();
 	String rozpoznanie=new String();
 	String leczenie=new String();

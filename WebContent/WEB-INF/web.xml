@@ -15,13 +15,26 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
+  <!-- Hibernate parameters -->
+   <filter>
+   <filter-name>HibernateSessionFilter</filter-name>
+   <filter-class> com.dentus.HibernateSessionFilter</filter-class>
+  </filter>
+  <filter-mapping>
+   <filter-name>HibernateSessionFilter</filter-name>
+   <servlet-name>Faces Servlet</servlet-name>
+  </filter-mapping>
+  <context-param>
+    <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+    <param-value>true</param-value>
+	</context-param>
   <!-- Spring Security parameters -->
-   
+   <!--  
    <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-         /WEB-INF/app-conf.xml  
-         /WEB-INF/spring-security.xml 
+        /WEB-INF/app-conf.xml  
+         /WEB-INF/spring-security.xml
         </param-value>
     </context-param>
    
@@ -40,4 +53,5 @@
      <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    -->
 </web-app>

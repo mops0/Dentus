@@ -145,11 +145,18 @@ public class PanelPBB
 	{
 		HistoriaWpis wpis =getEditedWpis();
 		wpis.generateId();
+		
 		if(isDialogforNewWpis())
+		{
 			selectedPatient.getHistoria().add(wpis);
-		else
+			System.out.println("is dialog for new wpis yes");
+		}
+			else
+			{
 			selectedPatient.zastapWpis(wpis, selectedWpis);
-		historyModel.setWrappedData(selectedPatient.getHistoria());
+			System.out.println("zastapienie wpisu");
+			}
+			historyModel.setWrappedData(selectedPatient.getHistoria());
 		new RecordService().zastapRekord(selectedPatient, selectedPatient);
 		//hideWpisWindow();
 	}

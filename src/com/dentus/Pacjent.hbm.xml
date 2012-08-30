@@ -58,7 +58,7 @@
     <class name="com.dentus.HistoriaWpis" table="HISTORIAWPIS">
         <id name="id" type="long">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="data" type="java.util.Date">
             <column name="DATA" />

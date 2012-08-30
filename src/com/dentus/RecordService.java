@@ -28,9 +28,9 @@ public class RecordService
 	 {
 		Session session =HibernateUtil.getSession();
 		Criteria criteria = session.createCriteria(Pacjent.class);
-		
+	
 		return (List<Pacjent>)criteria.list();
-		 
+		
 	 }
 	public Map<Long, Pacjent> generujMape()
 	{
@@ -45,10 +45,14 @@ public class RecordService
 	}
 	public void zastapRekord(Pacjent nowyP,Pacjent staryP) 
 	{
+		
 		Session session =HibernateUtil.getSession();
+		
 		long stareId=staryP.getId();
 		nowyP.setId(stareId);
 		session.update(nowyP);
+		
+		
 		
 		
 			
