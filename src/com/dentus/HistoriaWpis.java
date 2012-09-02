@@ -10,6 +10,7 @@ public class HistoriaWpis implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	Pacjent pacjent;
 	Date data=new Date();
 	String rozpoznanie=new String();
 	String leczenie=new String();
@@ -28,6 +29,14 @@ public class HistoriaWpis implements Serializable
 		this.id=id;
 	}
 	
+	public Pacjent getPacjent()
+	{
+		return pacjent;
+	}
+	public void setPacjent(Pacjent pacjent)
+	{
+		this.pacjent = pacjent;
+	}
 	public long getId()
 	{
 		return id;

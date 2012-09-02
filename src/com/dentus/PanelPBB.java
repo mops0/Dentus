@@ -20,8 +20,8 @@ public class PanelPBB
 	private Pacjent selectedPatient;
 	private GOI selectedGOI=new GOI();
 	private GOIDataModel goiModel;
-	private HistoriaWpis selectedWpis= new HistoriaWpis();
-	private HistoriaWpis editedWpis=new HistoriaWpis();
+	private HistoriaWpis selectedWpis;
+	private HistoriaWpis editedWpis;
 	private HistoryDataModel historyModel;
 	private Boolean DialogforNewWpis=true; 
 	public PanelPBB()
@@ -144,18 +144,18 @@ public class PanelPBB
 	public void potwierdzWpis() throws IOException
 	{
 		HistoriaWpis wpis =getEditedWpis();
-		wpis.generateId();
+		
 		
 		if(isDialogforNewWpis())
 		{
-			selectedPatient.getHistoria().add(wpis);
+			selectedPatient.dodajHistoriaWpis(wpis);
 			System.out.println("is dialog for new wpis yes");
 		}
-			else
-			{
+		else
+		{
 			selectedPatient.zastapWpis(wpis, selectedWpis);
 			System.out.println("zastapienie wpisu");
-			}
+		}
 			historyModel.setWrappedData(selectedPatient.getHistoria());
 		new RecordService().updateRecord(selectedPatient);
 		//hideWpisWindow();
