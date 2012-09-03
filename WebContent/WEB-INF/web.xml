@@ -16,12 +16,12 @@
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
  
-  <!-- Spring Security parameters 
+  <!-- Spring Security parameters -->
     
    <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-      /WEB-INF/app-conf.xml
+      <!--  /WEB-INF/app-conf.xml-->
          /WEB-INF/spring-security.xml
         </param-value>
     </context-param>
@@ -40,7 +40,7 @@
     
      <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>-->
+    </listener>
      <!-- Hibernate parameters -->
    <filter>
    <filter-name>HibernateSessionFilter</filter-name>
