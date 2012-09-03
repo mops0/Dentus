@@ -12,6 +12,9 @@ import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 @ManagedBean(name="edytorPBB")
 @SessionScoped
 public class EdytorPBB implements Serializable
@@ -65,7 +68,7 @@ public class EdytorPBB implements Serializable
 		Calendar cal= Calendar.getInstance();
 		cal=getBirthDate().parseToCalendar();
 		pacjent.setDataUrodzenia(cal.getTime());
-		
+
 		RecordService rs = new RecordService();
 		if (isNew)
 		{
@@ -96,5 +99,4 @@ public class EdytorPBB implements Serializable
 		setPacjent(pacjent);
 		
 	}
-	
 }

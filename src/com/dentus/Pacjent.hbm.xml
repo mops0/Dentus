@@ -48,6 +48,9 @@
         <property name="opisPacjenta" type="java.lang.String">
             <column name="OPISPACJENTA" />
         </property>
+        <property name="principalName" type="java.lang.String">
+        	<column name="PRINCIPALNAME"/>
+        </property>
         <list name="historia" inverse="false" table="HISTORIAWPISY"  fetch="join" cascade="all-delete-orphan">
             <key>
                 <column name="PACJENT_ID" />

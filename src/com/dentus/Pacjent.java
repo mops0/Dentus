@@ -28,7 +28,7 @@ public class Pacjent implements Serializable
 	private String opisPacjenta;
 	//private Date terminWizyty;
 	private List<HistoriaWpis> historia= new ArrayList<HistoriaWpis>();
-	
+	private String principalName;
 	
 	Pacjent()
 	{
@@ -42,6 +42,16 @@ public class Pacjent implements Serializable
 		this.telefon=telefon;
 		this.email=email;
 		
+	}
+	
+	
+	public String getPrincipalName()
+	{
+		return principalName;
+	}
+	public void setPrincipalName(String principalName)
+	{
+		this.principalName = principalName;
 	}
 	public List<HistoriaWpis> getHistoria()
 	{

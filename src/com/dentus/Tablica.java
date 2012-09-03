@@ -13,6 +13,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.primefaces.event.SelectEvent;
+
 @ManagedBean(name="tablica")
 @SessionScoped
 public class Tablica implements Serializable
@@ -22,8 +23,10 @@ public class Tablica implements Serializable
 	private PatientDataModel patientModel;
 	private Pacjent selectedPatient;
 	
+	
 	public Tablica() throws IOException
 	{
+		
 		lista=new RecordService().odczytajRekordy();
 		patientModel=new PatientDataModel(lista);
 	}
@@ -77,4 +80,5 @@ public class Tablica implements Serializable
 		lista=new RecordService().odczytajRekordy();
 		patientModel=new PatientDataModel(lista);
 	}
+	
 }
