@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC
-      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-          "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-06-29 19:59:22 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.dentus.Pacjent" table="PACJENT">
         <id name="id" type="long">
@@ -47,21 +48,21 @@
         <property name="opisPacjenta" type="java.lang.String">
             <column name="OPISPACJENTA" />
         </property>
-        <list name="historia" inverse="false"   cascade="all-delete-orphan">
+        <list name="historia" inverse="false" table="HISTORIAWPISY"  fetch="join" cascade="all-delete-orphan">
             <key>
-                <column name="PACJENT_ID" not-null="true" />
+                <column name="PACJENT_ID" />
             </key>
-            <list-index column="column_name" base="0"/>
-            <one-to-many class="com.dentus.HistoriaWpis"/>
+            <index column="DISPLAY_POSITION"/>
+            <one-to-many class="com.dentus.HistoriaWpis" />
         </list>
     </class>
-    <class name="com.dentus.HistoriaWpis" table="HISTORIAWPIS">
+    <class name="com.dentus.HistoriaWpis" table="HISTORIAWPISY">
+        
         <id name="id" type="long">
             <column name="ID" />
             <generator class="native" />
         </id>
-        <many-to-one name="pacjent" column="PACJENT_ID" class="com.dentus.Pacjent" insert="false" update="false" not-null="true"/>
-        
+        <many-to-one name="pacjent" column="PACJENT_ID" class="com.dentus.Pacjent" not-null="true" insert="false" update="false"/>
         <property name="data" type="java.util.Date">
             <column name="DATA" />
         </property>

@@ -9,13 +9,13 @@ public class HistoriaWpis implements Serializable
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	Pacjent pacjent;
+	private static final long serialVersionUID = 2L;
 	Date data=new Date();
 	String rozpoznanie=new String();
 	String leczenie=new String();
 	String komentarz=new String();
-	long id;
+	private long id;
+	private Pacjent pacjent;
 	HistoriaWpis()
 	{
 		
@@ -77,11 +77,7 @@ public class HistoriaWpis implements Serializable
 	{
 		this.komentarz = komentarz;
 	}
-	public void generateId()
-	{
-		Calendar cal=Calendar.getInstance();
-		setId(cal.getTime().getTime());
-	}
+	
 	@Override
 	public int hashCode()
 	{

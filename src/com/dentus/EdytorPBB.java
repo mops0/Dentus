@@ -70,7 +70,7 @@ public class EdytorPBB implements Serializable
 		if (isNew)
 		{
 			
-			pacjent.generateId();
+			
 			rs.dodajRekord(pacjent);
 		}
 		else

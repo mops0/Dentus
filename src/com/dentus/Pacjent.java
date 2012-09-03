@@ -175,21 +175,12 @@ public class Pacjent implements Serializable
 		 setWiek(currentYear-birthYear);
 		
 	}
-	public void generateId()
-	{
-		Calendar cal=Calendar.getInstance();
-		setId(cal.getTime().getTime());
-	}
+	
 	public void generateBirthDayString()
 	{
 		Calendar cal= Calendar.getInstance();
 		cal.setTime(getDataUrodzenia());
 		setBirthDayString(cal.get(Calendar.DAY_OF_MONTH)+"."+cal.get(Calendar.MONTH)+"."+cal.get(Calendar.YEAR));
-	}
-	public void dodajHistoriaWpis(HistoriaWpis wpis)
-	{
-		wpis.setPacjent(this);
-		historia.add(wpis);
 	}
 	public void zastapWpis(HistoriaWpis nWpis, HistoriaWpis sWpis)
 	{
@@ -212,6 +203,11 @@ public class Pacjent implements Serializable
 				historia.remove(licznik);
 			}
 		}
+	}
+	public void dodajHistoriaWpis(HistoriaWpis wpis)
+	{
+		wpis.setPacjent(this);
+		historia.add(wpis);
 	}
 	@Override
 	public String toString()

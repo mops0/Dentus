@@ -18,23 +18,14 @@ public class Testowa
 	}
 	public void init()
 	{
-		
+		//HibernateUtil.beginTransaction();
 		Session session =HibernateUtil.getSession();
-		
-		Pacjent pacjent = new Pacjent();
-		pacjent.setNazwisko("Józek");
-		pacjent.setId(1L);
-		session.saveOrUpdate(pacjent);
+		Pacjent pacjent3 = (Pacjent) session.load(Pacjent.class, 1L);
+		HistoriaWpis hwp = new HistoriaWpis();
+		hwp.setKomentarz("bla");
+		pacjent3.dodajHistoriaWpis(hwp);
+		session.saveOrUpdate(pacjent3);
 		session.flush();
-		/*
-		Pacjent pacjent = (Pacjent) session.load(Pacjent.class, 1L);
-		
-		HistoriaWpis hwp1=new HistoriaWpis();
-		hwp1.setKomentarz("PizdaNowa2");
-		pacjent.dodajHistoriaWpis(hwp1);
-		session.saveOrUpdate(pacjent);
-		session.flush();
-		*/
 	}
 	public void dodajWpis()
 	{

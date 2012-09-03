@@ -17,7 +17,7 @@
       		<port-mapping http="8080" https="8181"/>
     	  </port-mappings>
 	</http>
-	<!--  
+	  
 	<beans:bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
     <authentication-manager>
         <authentication-provider>
@@ -28,7 +28,7 @@
              </user-service>  
         </authentication-provider>
     </authentication-manager>
-    -->
+    <!--  
     <authentication-manager>
 	   <authentication-provider>
 		<jdbc-user-service data-source-ref="dataSource"
@@ -44,5 +44,5 @@
 		/>
 	   </authentication-provider>
 	</authentication-manager>
-
+-->
 </beans:beans>

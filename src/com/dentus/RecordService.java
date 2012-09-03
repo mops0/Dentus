@@ -5,12 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 
@@ -20,12 +16,13 @@ public class RecordService
 	
 	RecordService()
 	{
-		HibernateUtil.beginTransaction();
+		
 	}
 	public void dodajRekord(Pacjent pacjent) 
 	{
 		Session session =HibernateUtil.getSession();
-		session.save(pacjent);		 
+		session.save(pacjent);	
+		session.flush();
 	}
 	@SuppressWarnings("unchecked")
 	public List<Pacjent> odczytajRekordy() 
@@ -51,10 +48,9 @@ public class RecordService
 	{
 		
 		Session session =HibernateUtil.getSession();
-		
-		
-		session.update(pacjent);
-		
+	
+		session.saveOrUpdate(pacjent);
+		session.flush();
 		
 		
 		
