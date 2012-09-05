@@ -65,17 +65,17 @@ ul{
 }
 
 #main_container{
-	margin-top:150px;
+	
 	margin-left:auto;
 	margin-right:auto;
 	margin-bottom:0px;
 	width:940px;
 }
 #form_container{
-	
+	margin-top:150px;
 	margin-left:auto;
 	margin-right:auto;
-	margin-bottom:200px;
+	margin-bottom:250px;
 	width:355px;
 	border: #556ffc 1px solid;
 	padding-top:0px;
@@ -160,4 +160,93 @@ ul{
 	margin-left:10px;
 	
 }
+#text_container{
+	margin-top:40px;
+	margin-bottom:80px;
+	width:900px;
+	border-radius:6px;
+	
+	background-image:url("#{resource['images:tlosteto.png']}");
+	padding:10px;
+	padding-right:15px;
+	
+}
+#text_container_header{
+	
+}
+#text_container_header_a{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:25px;
+	color: #0e68a7;
+}
+#main_text_container{
+	border-bottom:40px;
+	width:500px;
+}
+#message0{
+	
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+	color:#556f7c;
+}
+.main_text_tab{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+	color:#556f7c;
+	
+	
+}
 
+.main_text_tab li{
+	height:120px;
+}
+.main_text_tab li p{
+	margin-top:0px;
+	float:right;
+	width:400px;
+}
+#register_button{
+	
+}
+
+
+
+#register_form_container{
+	margin-top:150px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:180px;
+	width:355px;
+	border: #556ffc 1px solid;
+	padding-top:0px;
+}
+#register_form_container_header{
+	margin-top:0px;
+	
+}
+#register_form_container_header h1{
+	height:30px;
+	background-image:url("#{resource['images:signHeader.png']}");
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	color:white;
+	font-size:16px;
+	padding-left:10px;
+	margin-bottom:0px;
+	margin-top:0px;
+}
+#register_form_container_main{
+	margin-top:0px;
+	padding-left:10px;
+	padding-bottom:30px;
+	background-color:#d9e7f3;
+}
+#register_form_container_main input{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+	color:#556f7c;
+}
+#register_form_container_main a{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+	color:#556f7c;
+}

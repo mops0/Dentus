@@ -9,7 +9,26 @@
 <ui:composition template="/entry/entryTemplatka.xhtml">
 	<ui:define name="title">Dentus</ui:define>
 	<ui:define name="content">
-	 register details
+	  <div id="register_form_container">
+	  	<div id="register_form_container_header">
+	  		<h1>Register form</h1>
+	  	</div>
+	  	<h:form id="registerForm" prependId="false">
+	  		<div id="register_form_container_main">
+	  			<br/>
+           		<a>login name</a> <br/>
+           		<h:inputText id="loginRegister" required="true" size="40"/><br/><br/>
+           		<a>Password</a> <br/>
+           		<h:inputText id="passwordRegister" required="true" size="40"/><br/><br/>
+           		<a>Confirm password</a> <br/>
+           		<h:inputText id="passwordRegisterConfirm" required="true" size="40"/>
+           		<br/>
+           		<br/>
+           		
+           		<h:commandButton type="submit" id="register" action="#{registerBB.doRegister}" value="Submit"/>
+        	</div>
+        </h:form>   
+	  </div>
 	</ui:define>
 </ui:composition>
 </html>
