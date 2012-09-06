@@ -21,12 +21,16 @@
 		<property name="hibernate.max_fetch_depth">4</property>
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
+		
 		<mapping resource="com/dentus/Pacjent.hbm.xml"/>
 		<mapping resource="com/dentus/Usluga.hbm.xml"/>
 		<mapping resource="com/dentus/GOI.hbm.xml"/>
 		<mapping resource="com/dentus/Kolor.hbm.xml"/>
 		<mapping resource="com/dentus/Owner.hbm.xml"/>
 		<mapping resource="com/dentus/Pojazd.hbm.xml"/>
+		<mapping resource="com/dentus/PillUser.hbm.xml"/>
+		<mapping resource="security/PillUser2.hbm.xml"/>
+		
     </session-factory>
 
 </hibernate-configuration>

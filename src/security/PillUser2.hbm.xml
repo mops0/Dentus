@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-09-06 15:41:19 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="security.PillUser2" table="PILLUSER2">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <list name="authorityList" inverse="false" table="PILLAUTHORITY" lazy="false" fetch="join" cascade="all-delete-orphan">
+            <key>
+                <column name="PUSERID" />
+            </key>
+            <index column="DISPLAY_POSITION"/>
+            <one-to-many class="security.Authorities"/>
+           
+        </list>
+    </class>
+    
+     <class name="security.Authorities" table="PILLAUTHORITY">
+        
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="puser" column="PUSERID" class="security.PillUser2" not-null="true" insert="false" update="false"/>
+        <property name="authority" type="java.lang.String">
+            <column name="AUTHORITY" />
+        </property>
+    </class>
+
+    
+</hibernate-mapping>
