@@ -252,3 +252,11 @@ ul{
 	font-size:14px;
 	color:#556f7c;
 }
+#register_form_container_main_message a {
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+} 
+#register_form_container_main .ui-message-error-detail{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+}

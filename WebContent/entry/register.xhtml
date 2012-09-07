@@ -16,16 +16,18 @@
 	  	<h:form id="registerForm" prependId="false">
 	  		<div id="register_form_container_main">
 	  			<br/>
+	  			<p:message id="register_form_container_main_message" for="passwordRegisterConfirm"/>
+	  			<br/>
            		<a>login name</a> <br/>
-           		<h:inputText id="loginRegister" required="true" size="40"/><br/><br/>
+           		<h:inputText id="loginRegister" value="#{registerBB.puser.username}" required="true" size="40"/><br/><br/>
            		<a>Password</a> <br/>
-           		<h:inputText id="passwordRegister" required="true" size="40"/><br/><br/>
+           		<h:inputSecret id="passwordRegister" value="#{registerBB.puser.password}" required="true" size="40"/><br/><br/>
            		<a>Confirm password</a> <br/>
-           		<h:inputText id="passwordRegisterConfirm" required="true" size="40"/>
+           		<h:inputSecret id="passwordRegisterConfirm" validator="#{registerBB.validatePasswordEquality}" value="#{registerBB.passwordCompare}"  required="false" size="40"/>
            		<br/>
            		<br/>
            		
-           		<h:commandButton type="submit" id="register" action="#{registerBB.doRegister}" value="Submit"/>
+           		<h:commandButton type="submit" id="register" action="#{registerBB.commit}" value="Submit"/>
         	</div>
         </h:form>   
 	  </div>

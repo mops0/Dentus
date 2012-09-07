@@ -3,16 +3,20 @@ package security;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
 
 public class PillUserDetailsService implements UserDetailsService
 {
 
 	@Override
-	public UserDetails loadUserByUsername(String arg0)
+	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException
 	{
-		// TODO Auto-generated method stub
-		return null;
+		PillDao pillDao = new PillDao();
+	
+		
+		return new PillUserToUserDetails(pillDao.findByLogin(username));
 	}
 
 }

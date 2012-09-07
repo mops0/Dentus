@@ -2,7 +2,9 @@ package security;
 
 import java.io.Serializable;
 
-public class Authorities implements Serializable
+import org.springframework.security.core.GrantedAuthority;
+
+public class Authorities implements Serializable, GrantedAuthority
 {
 	/**
 	 * 
@@ -42,6 +44,7 @@ public class Authorities implements Serializable
 	{
 		this.authority = authority;
 	}
+
 	@Override
 	public int hashCode()
 	{
@@ -49,9 +52,10 @@ public class Authorities implements Serializable
 		int result = 1;
 		result = prime * result
 				+ ((authority == null) ? 0 : authority.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((puser == null) ? 0 : puser.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj)
 	{
@@ -78,11 +82,18 @@ public class Authorities implements Serializable
 		{
 			return false;
 		}
-		if (id != other.id)
+		if (puser == null)
+		{
+			if (other.puser != null)
+			{
+				return false;
+			}
+		} else if (!puser.equals(other.puser))
 		{
 			return false;
 		}
 		return true;
 	}
+	
 	
 }
