@@ -1,6 +1,7 @@
 package com.dentus;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -43,12 +44,15 @@ public class RegisterBB
 	}
 	public void commit()
 	{
+		FacesContext context = FacesContext.getCurrentInstance();
 		Authorities auth= new Authorities();
 		auth.setAuthority("POOOO");
 		puser.addAuthority(auth);
 		PillDao pilldao = new PillDao();
 		pilldao.dodajPillUsera(puser);
 		puser=new PillUser2();
+		NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
+		navigationHandler.handleNavigation(context, null, "/system/pacjenci"+"?faces-redirect=true");
 	}
 	public void validatePasswordEquality(FacesContext context,UIComponent component, Object data)
 	{
@@ -56,14 +60,16 @@ public class RegisterBB
 		HtmlInputSecret password = (HtmlInputSecret) view.findComponent("registerForm:passwordRegister");
 		HtmlInputSecret passwordConfirm=(HtmlInputSecret)component;
 		String passwordVal=(String)password.getValue();
-		String passwordConfVal=(String) passwordConfirm.getValue();
-		System.out.println("Wartośc: "+passwordVal+" i warsoć passwordConf "+passwordConfVal);
-		//if(passwordVal.equals(passwordConfVal))
-		passwordConfirm.setValid(false);
-		FacesMessage message = new FacesMessage("Password should be the same like password confirmation!");
-		message.setSeverity(FacesMessage.SEVERITY_ERROR);
-		context.addMessage(component.getClientId(context), message);
-		//System.out.println("To jest"+passwordConfirm.getValue());
+		String passwordConfVal=(String)data;
+		System.out.println("Wartośc: "+passwordVal+" i wartoć passwordConf "+passwordConfVal);
+		if(!passwordVal.equals(passwordConfVal))
 		
+		{
+			passwordConfirm.setValid(false);
+			FacesMessage message = new FacesMessage("Password should be the same like password confirmation!");
+			message.setSeverity(FacesMessage.SEVERITY_ERROR);
+			context.addMessage(component.getClientId(context), message);
+		
+		}
 	}
 }

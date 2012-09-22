@@ -34,7 +34,7 @@ function akcja()
 		var txtNode = document.createTextNode(link[licznik]+"\n "); 
 		var element = document.createElement('a');
 		var elementLi=document.createElement('li');
-		element.setAttribute("address","/Dentus/"+link_address[licznik]+".xhtml");
+		element.setAttribute("address","/"+link_address[licznik]+".xhtml");
 		if (wynik==true)
 		{
 			element.setAttribute("class", "passive");
