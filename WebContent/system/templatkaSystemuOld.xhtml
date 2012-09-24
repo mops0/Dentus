@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+		<meta charset="iso-8859-2"/>	
+		<title><ui:insert name="title">Default title</ui:insert></title>
+		<h:outputStylesheet library="css" name="indexS.css"/>
+		<h:outputScript name="dynamikaS.js" library="javascript" target="head" />
+	</h:head>	
+	<h:body>
+		<h:outputStylesheet name="indexS.css" />
+			
+		<div id="allcontents">
+			<div id="header">
+			</div>
+			<div id="menu">
+				<ul> 
+				
+			        <li class="li" id="Pacjenci">  
+			            <p>
+			            <img src="resources/images/PatientMale.png" alt="Pacjenci pic"  />
+			            
+			            
+			            <a class="a">Pacjenci</a>
+			            </p>
+			           
+			             
+			        </li>  
+			        <li class="li" id="Terminarz">  
+			        	
+			           <p> 
+			            <img src="resources/images/Calendar.png" alt="Pacjenci "  />
+			            <a class="a" >Terminarz</a>
+			           </p> 
+			            
+			        </li>  
+			        <li class="li" id="Usługi">  
+			            <p>
+			            <img src="resources/images/Syringe.png" alt="Usługi "  />
+			            <a class="a" >Usługi</a>
+			             </p>
+			           
+			        </li>  
+			        <li class="li" id="Ustawienia">  
+			            <p>
+			            <img src="resources/images/Hospital.png" alt="Ustawienia "  />
+			            <a class="a" >Ustawienia</a>
+			            </p>
+			          
+			        </li>  
+    			</ul>  
+			
+			</div>
+			<div id="contenti">
+			
+	  			<ui:insert name="content">
+			    	Content area.  See comments below this line in the source.
+			    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+				  	<!-- <div> -->
+			    	<!-- <ui:include src="content.xhtml"/> -->  
+			    	<!-- </div> -->
+			  	</ui:insert>
+			</div>	
+		</div>
+
+		
+			
+	
+	
+	
+</h:body>
+</html>

@@ -1,0 +1,149 @@
+/*Templatka systemu*/
+body{
+	padding:0px;
+	margin:0px
+}
+#wrapper{
+	background-image:url("#{resource['images:fale2.jpg']}"); 
+}
+#header{
+	width:auto;
+	
+	background-image:url("#{resource['images:header.jpg']}"); 
+	background-repeat:repeat-x;
+}
+#header_container{
+	
+	margin-left:auto;
+	margin-right:auto;
+	width:940px;
+
+}
+#logo{
+	height:30px;
+	margin-top:5px;
+}
+ul{
+	list-style-type:none;
+}
+#nawigacja{
+	float:right;
+	margin-right:100px;
+}
+#nawigacja ul {
+	float:right;
+	border-color:blue;
+	margin-top:8px;
+}
+#nawigacja ul li{
+	float:left;
+	padding-right:20px;
+}
+
+.activeOut{ 
+	cursor:pointer;
+	color: #0e68a7;
+	height:20px;
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+}
+
+.passive{ 
+	cursor:pointer;
+	color: #0ea74b;
+	height:20px;
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+}
+.activeIn{
+	cursor:pointer;
+	color: #ff556f7c;
+	height:20px;
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+}
+/*--------Koniec templatki systemu-----------*/
+
+
+#text_container{
+	margin-top:40px;
+	margin-bottom:80px;
+	width:900px;
+	border-radius:6px;
+	
+	background-image:url("#{resource['images:tlosteto.png']}");
+	padding:10px;
+	padding-right:15px;
+	
+}
+
+#main_container{
+	
+	margin-top:40px;
+	margin-bottom:80px;
+	margin-left:auto;
+	margin-right:auto;
+	border-radius:6px;
+	background-image:url("#{resource['images:tlosteto.png']}");
+	padding:10px;
+	padding-right:15px;
+	width:940px;
+	height:500px;
+}
+#main_container_header{
+	margin-left:auto;
+	margin-right:auto;
+	width:940px;
+}
+#main_container_content{
+	
+}
+.main_container_content_header{
+	margin-top:20px; 
+	margin-left:20px;
+	margin-bottom:20px;
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:20px;
+	color: #0e68a7;
+}
+/*---------edytorp formularz-----------------*/
+
+
+/*---------footer----------------------------*/
+#footer{
+	width:auto;
+	padding-bottom:0px;
+	background-image:url("#{resource['images:footer.png']}"); 
+	background-repeat:repeat-x;
+}
+#footer_container{
+	margin-left:auto;
+	margin-right:auto;
+	width:940px;
+	
+
+}
+#footer_container_message{
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:10px;
+	width:400px;
+	height:50px;
+	
+}
+#footer_container_message a{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:12px;
+	color:#556f7c;
+	}
+/*--------------------------------------*/
+.ui-datatable {
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+	color:#556f7c;
+	
+}
+.ui-button {
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+}

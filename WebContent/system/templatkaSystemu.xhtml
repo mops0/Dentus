@@ -3,74 +3,62 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" >
 
 	<h:head>
 		<meta charset="iso-8859-2"/>	
 		<title><ui:insert name="title">Default title</ui:insert></title>
-		<h:outputStylesheet library="css" name="indexS.css"/>
-		<h:outputScript name="dynamikaS.js" library="javascript" target="head" />
-	</h:head>	
-	<h:body>
-		<h:outputStylesheet name="indexS.css" />
-			
-		<div id="allcontents">
-			<div id="header">
+		
+		<h:outputStylesheet library="css" name="system.css"/>
+		<h:outputScript name="system.js" library="javascript" target="head" />
+	</h:head>
+		
+	<body>	
+		<div id="wrapper">
+			<div id="header">	
+				<div id="header_container">
+					 <a id="logo">
+						<h:graphicImage url="/resources/images/logo.png" alt="Logo" />
+					</a> 
+					<div id="nawigacja">
+						<ul id="nav_szereg">
+							
+						</ul>
+					</div>
+					
+				</div>
 			</div>
-			<div id="menu">
-				<ul> 
-				
-			        <li class="li" id="Pacjenci">  
-			            <p>
-			            <img src="resources/images/PatientMale.png" alt="Pacjenci pic"  />
-			            
-			            
-			            <a class="a">Pacjenci</a>
-			            </p>
-			           
-			             
-			        </li>  
-			        <li class="li" id="Terminarz">  
-			        	
-			           <p> 
-			            <img src="resources/images/Calendar.png" alt="Pacjenci "  />
-			            <a class="a" >Terminarz</a>
-			           </p> 
-			            
-			        </li>  
-			        <li class="li" id="Usługi">  
-			            <p>
-			            <img src="resources/images/Syringe.png" alt="Usługi "  />
-			            <a class="a" >Usługi</a>
-			             </p>
-			           
-			        </li>  
-			        <li class="li" id="Ustawienia">  
-			            <p>
-			            <img src="resources/images/Hospital.png" alt="Ustawienia "  />
-			            <a class="a" >Ustawienia</a>
-			            </p>
-			          
-			        </li>  
-    			</ul>  
 			
+			<div id="mainSite">
+				<div id="main_container">
+					<div id="main_container_header">
+						
+					</div>
+					<div id="main_container_content">
+						<ui:insert name="content">
+					    	Content area.  See comments below this line in the source.
+					    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+						  	<!-- <div> -->
+					    	<!-- <ui:include src="content.xhtml"/> -->  
+			  			</ui:insert>
+			  		</div>	
+				</div>
 			</div>
-			<div id="contenti">
 			
-	  			<ui:insert name="content">
-			    	Content area.  See comments below this line in the source.
-			    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
-				  	<!-- <div> -->
-			    	<!-- <ui:include src="content.xhtml"/> -->  
-			    	<!-- </div> -->
-			  	</ui:insert>
-			</div>	
+			<div id="footer">
+				<div id="footer_container">
+					<div id="footer_container_message">
+						<a>Designed and managed by Tomasz Kamil Szymczyszyn 2012</a>
+					</div>
+				</div>
+			</div>
+			
 		</div>
-
 		
 			
 	
 	
 	
-</h:body>
+</body>
 </html>

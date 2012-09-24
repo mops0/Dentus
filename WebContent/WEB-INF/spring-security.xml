@@ -14,7 +14,7 @@
 		<intercept-url pattern="/resources/**" access="permitAll"/>
 		 <form-login login-page="/entry/signin.xhtml" authentication-failure-url="/entry/loginFailed.xhtml"/>
 		  <port-mappings>
-      		<port-mapping http="80" https="8181"/>
+      		<port-mapping http="8080" https="8181"/>
     	  </port-mappings>
 	</http>
 	 
