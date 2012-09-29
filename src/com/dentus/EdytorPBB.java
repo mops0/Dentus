@@ -8,9 +8,15 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 
+import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIViewRoot;
+import javax.faces.component.html.HtmlInputSecret;
+import javax.faces.component.html.HtmlInputText;
+import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -98,5 +104,47 @@ public class EdytorPBB implements Serializable
 	{
 		setPacjent(pacjent);
 		
+	}
+	public void validateDateofBirth(FacesContext context,UIComponent component, Object data)
+	{
+		System.out.println("System walidacji działa");
+		
+		UIViewRoot view = context.getViewRoot();
+		int birthDay =(Integer)((HtmlSelectOneMenu) view.findComponent("form:dzien")).getValue();
+		int birthMonth =(Integer)((HtmlSelectOneMenu) view.findComponent("form:miesiac")).getValue();
+		int birthYear =(Integer)((HtmlSelectOneMenu) view.findComponent("form:rok")).getValue();
+		HtmlInputText adres1 = (HtmlInputText)component;
+		
+		//int birthYear =(Integer)rokComponent.getValue();
+		System.out.println("wpisana data urodzenia:" +birthDay+" "+birthMonth+" "+birthYear);
+		Calendar birthCal= Calendar.getInstance();
+		birthCal.set(birthYear, birthMonth, birthDay);
+		Calendar currentCal= Calendar.getInstance();
+		
+		long birthDate=birthCal.getTime().getTime();
+		long currentDate=currentCal.getTime().getTime();
+		if (birthDate>currentDate)
+	
+		{
+			adres1.setValid(false);
+			FacesMessage message = new FacesMessage("Date of birth not correct!");
+			message.setSeverity(FacesMessage.SEVERITY_ERROR);
+			context.addMessage(component.getClientId(context), message);
+		 
+		}
+		
+	}
+	public void validateEmail(FacesContext context,UIComponent component, Object data)
+	{
+		String email =(String) data;
+		System.out.println("wpisany email: " +email);
+		if(email.indexOf('@')==-1)
+		{
+			((HtmlInputText)component).setValid(false);
+			FacesMessage message = new FacesMessage("Email not correct!");
+			message.setSeverity(FacesMessage.SEVERITY_ERROR);
+			context.addMessage(component.getClientId(context), message);
+			
+		}
 	}
 }

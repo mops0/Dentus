@@ -11,6 +11,8 @@ import javax.faces.event.ActionEvent;
 
 import org.primefaces.component.confirmdialog.ConfirmDialog;
 import org.primefaces.component.dialog.Dialog;
+import org.primefaces.component.tabview.TabView;
+
 import org.primefaces.event.SelectEvent;
 
 @ManagedBean(name="panelPBB")
@@ -93,12 +95,12 @@ public class PanelPBB
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 EdytorPBB edytor= (EdytorPBB) context.getApplication().evaluateExpressionGet(context, "#{edytorPBB}", EdytorPBB.class);
 		 edytor.setPacjent(getSelectedPatient());
-		 edytor.setTytul("Edycja danych pacjenta");
+		 edytor.setTytul("Patient data edition");
 		 edytor.setNew(false);
 		 NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
 		 navigationHandler.handleNavigation(context, null, "edytorp"+"?faces-redirect=true");
 	}
-	public void onUsun() throws IOException
+	public void onUsunButton() throws IOException
 	{
 		RecordService rs = new RecordService();
 		if (rs.isUsedbySchedule(getSelectedPatient()))
@@ -109,13 +111,18 @@ public class PanelPBB
 		}
 		else
 		{
-			FacesContext context = FacesContext.getCurrentInstance();
-			rs.usunRekord(getSelectedPatient());
-			Tablica tablica = (Tablica) context.getApplication().evaluateExpressionGet(context, "#{tablica}", Tablica.class);
-			tablica.updateList();
-			NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
-			navigationHandler.handleNavigation(context, null, "pacjenci"+"?faces-redirect=true");
+			showDeleteAlert();
 		}
+	}
+	public void usun() throws IOException
+	{
+		RecordService rs = new RecordService();
+		FacesContext context = FacesContext.getCurrentInstance();
+		rs.usunRekord(getSelectedPatient());
+		Tablica tablica = (Tablica) context.getApplication().evaluateExpressionGet(context, "#{tablica}", Tablica.class);
+		tablica.updateList();
+		NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
+		navigationHandler.handleNavigation(context, null, "pacjenci"+"?faces-redirect=true");
 	}
 	public void onNowyWpis(ActionEvent event)
 	{
@@ -141,6 +148,18 @@ public class PanelPBB
 		
 		
 	}
+	public void onDeleteAppointmentButton() throws IOException
+	{
+		//System.out.println("Jestem w onDeleteAppointmentButton()");
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		ScheduleBean sB = (ScheduleBean) ctx.getApplication().evaluateExpressionGet(ctx, "#{scheduleBean}", ScheduleBean.class);
+		GOIService goiService = new GOIService();
+		goiService.deleteGOI(selectedGOI);
+		sB.initializeScheduleModel();
+		
+		setGoiModel(new GOIDataModel(new GOIService().getListofSpecificGOI(getSelectedPatient())));
+	}
+		
 	public void potwierdzWpis() throws IOException
 	{
 		HistoriaWpis wpis =getEditedWpis();
@@ -158,6 +177,11 @@ public class PanelPBB
 			}
 			historyModel.setWrappedData(selectedPatient.getHistoria());
 		new RecordService().updateRecord(selectedPatient);
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		UIViewRoot view = context.getViewRoot();
+		TabView tabview= (TabView) view.findComponent(":tab");
+		tabview.setActiveIndex(2);
 		//hideWpisWindow();
 	}
 	public void usunWpis() throws IOException
@@ -189,6 +213,15 @@ public class PanelPBB
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot view= context.getViewRoot();
 		ConfirmDialog dialog = (ConfirmDialog) view.findComponent("confirmPatientDialog");
+		dialog.setVisible(true);
+		
+	}
+	private void showDeleteAlert()
+	{
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		UIViewRoot view= context.getViewRoot();
+		ConfirmDialog dialog = (ConfirmDialog) view.findComponent("deleteAlert");
 		dialog.setVisible(true);
 		
 	}

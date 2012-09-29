@@ -30,6 +30,7 @@ public class Pacjent implements Serializable
 	private List<HistoriaWpis> historia= new ArrayList<HistoriaWpis>();
 	private String principalName;
 	
+	
 	Pacjent()
 	{
 		
@@ -177,12 +178,25 @@ public class Pacjent implements Serializable
 	}
 	public void generateWiek()
 	{
+		int age=0;
+		int delta=0;
 		Calendar cal= Calendar.getInstance();
 		int currentYear=cal.get(Calendar.YEAR);
+		int currentMonth=cal.get(Calendar.MONTH);
+		int currentDay=cal.get(Calendar.DAY_OF_MONTH);
+		
 		cal.setTime(getDataUrodzenia());
 		int birthYear=cal.get(Calendar.YEAR);
+		int birthMonth=cal.get(Calendar.MONTH)-1;
+		int birthDay=cal.get(Calendar.DAY_OF_MONTH);
 		
-		 setWiek(currentYear-birthYear);
+		age=currentYear-birthYear;
+		if ((currentMonth-birthMonth<0)||((currentMonth-birthMonth==0)&&(currentDay-birthDay<0)))
+		delta=-1;
+		
+		else
+		delta=0;
+		setWiek(age+delta);
 		
 	}
 	
@@ -235,7 +249,12 @@ public class Pacjent implements Serializable
 	{
 		final int prime = 31;
 		int result = 1;
+		result = prime * result
+				+ ((dataUrodzenia == null) ? 0 : dataUrodzenia.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((imie == null) ? 0 : imie.hashCode());
+		result = prime * result
+				+ ((nazwisko == null) ? 0 : nazwisko.hashCode());
 		return result;
 	}
 	@Override
@@ -254,12 +273,44 @@ public class Pacjent implements Serializable
 			return false;
 		}
 		Pacjent other = (Pacjent) obj;
+		if (dataUrodzenia == null)
+		{
+			if (other.dataUrodzenia != null)
+			{
+				return false;
+			}
+		} else if (!dataUrodzenia.equals(other.dataUrodzenia))
+		{
+			return false;
+		}
 		if (id != other.id)
+		{
+			return false;
+		}
+		if (imie == null)
+		{
+			if (other.imie != null)
+			{
+				return false;
+			}
+		} else if (!imie.equals(other.imie))
+		{
+			return false;
+		}
+		if (nazwisko == null)
+		{
+			if (other.nazwisko != null)
+			{
+				return false;
+			}
+		} else if (!nazwisko.equals(other.nazwisko))
 		{
 			return false;
 		}
 		return true;
 	}
+	
+	
 	
 }
 

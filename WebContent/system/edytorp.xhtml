@@ -9,53 +9,58 @@
 <ui:composition template="templatkaSystemu.xhtml">
 	<ui:define name="title">Pill Manager</ui:define>
 	<ui:define name="content">
-	<h:form id="form">
+	
+	<h:form id="form" prependId="false">
 		<div class="main_container_content_header" >
 	  		<h:outputText styleClass="h1" value="#{edytorPBB.tytul}" />
 	  		<p:button style="margin-left:55px" value="Reset"/>
-	  		<p:commandButton style="margin-left:15px" value="Submit" actionListener="#{edytorPBB.confirm}"/>
+	  		<p:commandButton style="margin-left:15px" value="Submit" actionListener="#{edytorPBB.confirm}" update="message_date_error message_email_error"/>
 	  	</div>
-	  	
+	  	<div id="edytorp_main_container_content">
+	  		
 	  		<h:panelGrid columns="2" style="border: 1px solid #769bad; margin-left:50px;padding:10px 13px 10px 13px">
+	  				<h:outputText  value="" />
+	  				<p:message id="message_date_error" for="adres1"/>
+	  				<h:outputText  value="" />
+	  				<p:message id="message_email_error" for="email"/>
+	  				<h:outputText class="edytorp_font_bold" value="Essential data" />
+	  				<h:outputText  value="" />
 	  			
-	  				<h:outputText styleClass="normFont" value="Essential data" />
-	  				<h:outputText styleClass="normFont" value="" />
-	  			
-	  			<h:outputText styleClass="normFont" value="First name" />
-	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.imie}"/>
-	  			<h:outputText styleClass="normFont" value="Last name" />
-	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.nazwisko}"/> 
-        		<h:outputText styleClass="normFont" value="Date of birth" />
+	  			<h:outputText  value="First name" />
+	  			<h:inputText  value="#{edytorPBB.pacjent.imie}"/>
+	  			<h:outputText  value="Last name" />
+	  			<h:inputText  value="#{edytorPBB.pacjent.nazwisko}" /> 
+        		<h:outputText  value="Date of birth" />
         			<p:row >
-        			<h:selectOneMenu value="#{edytorPBB.birthDate.day}" style="margin-left:20px">   
+        			<p:selectOneMenu  id="dzien" value="#{edytorPBB.birthDate.day}" >   
            				<f:selectItems  value="#{selectItemsBean.dayOptions}"/>
-        			</h:selectOneMenu>  
-        			<h:selectOneMenu  value="#{edytorPBB.birthDate.month}">   
-           				<f:selectItems value="#{selectItemsBean.monthOptions}"/>
-        			</h:selectOneMenu>
-        			<h:selectOneMenu  value="#{edytorPBB.birthDate.year}">   
+        			</p:selectOneMenu>  
+        			<p:selectOneMenu  id="miesiac" value="#{edytorPBB.birthDate.month}">   
+           				<f:selectItems  value="#{selectItemsBean.monthOptions}"/>
+        			</p:selectOneMenu>
+        			<p:selectOneMenu   id="rok" value="#{edytorPBB.birthDate.year}">   
            				<f:selectItems value="#{selectItemsBean.yearOptions}"/>
-        			</h:selectOneMenu>
+        			</p:selectOneMenu>
         			</p:row>
-	  			<h:outputText styleClass="normFont" value="Address" />
-	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.adres1}" />
-	  			<h:outputText styleClass="normFont" value="" />
-	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.adres2}"/>
-	  			<h:outputText styleClass="normFont" value="" />
-	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.adres3}"/>
-	  			<h:outputText styleClass="normFont" value="Phone number" />
-	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.telefon}"/>
-	  			<h:outputText styleClass="normFont" value="Email" />
-	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.email}"/>
+	  			<h:outputText  value="Address" />
+	  			<h:inputText  id="adres1" value="#{edytorPBB.pacjent.adres1}" validator="#{edytorPBB.validateDateofBirth}" />
+	  			<h:outputText  value="" />
+	  			<h:inputText  value="#{edytorPBB.pacjent.adres2}"/>
+	  			<h:outputText  value="" />
+	  			<h:inputText  value="#{edytorPBB.pacjent.adres3}"/>
+	  			<h:outputText  value="Phone number" />
+	  			<h:inputText  value="#{edytorPBB.pacjent.telefon}"/>
+	  			<h:outputText  value="Email" />
+	  			<h:inputText id="email" value="#{edytorPBB.pacjent.email}" validator="#{edytorPBB.validateEmail}"/>
 	  			
-	  			<h:outputText styleClass="normFont" value="Medical Data" />
-	  			<h:outputText styleClass="normFont" value="" />
-	  			<h:outputText styleClass="normFont" value="Allergy" />
-	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.alergie}"/>
-	  			<h:outputText styleClass="normFont" value="Other health problems" />
-	  			<h:inputText styleClass="normFont" value="#{edytorPBB.pacjent.choroby}"/>
+	  			<h:outputText class="edytorp_font_bold" value="Medical Data" />
+	  			<h:outputText  value="" />
+	  			<h:outputText  value="Allergy" />
+	  			<h:inputText  value="#{edytorPBB.pacjent.alergie}"/>
+	  			<h:outputText  value="Other health problems" />
+	  			<h:inputText  value="#{edytorPBB.pacjent.choroby}"/>
 	  		</h:panelGrid>
-		  
+		 </div> 
 	 </h:form>  
 	</ui:define>
 </ui:composition>

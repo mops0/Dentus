@@ -31,7 +31,7 @@ public class ScheduleBean
 	private TimeZone timeZoneGMT=TimeZone.getTimeZone("GMT");
 	public ScheduleBean()
 	{
-		model=new DefaultScheduleModel();
+		
 		
 		initializeScheduleModel();
 		backedEvent=new BackedEvent();
@@ -78,8 +78,9 @@ public class ScheduleBean
 		this.timeZoneGMT = timeZoneGMT;
 	}
 
-	private void initializeScheduleModel()
+	public void initializeScheduleModel()
 	{
+		model=new DefaultScheduleModel();
 		GOIService goiService = new GOIService();
 		ArrayList<GOI> goiList=goiService.pobierzListeGOI();
 		 

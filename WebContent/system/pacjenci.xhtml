@@ -11,10 +11,12 @@
 	<ui:define name="content">
 		<h:form id="form">
 			<div class = "main_container_content_header">
-		  		<h:outputText styleClass="h1" value="Lista pacjentów" />
-		  		<p:commandButton value="Dodaj pacjenta" actionListener="#{tablica.onNowyPacjent}" style="margin-left:60px"/>
+		  		<h:outputText styleClass="h1" value="Patients list" />
+		  		
+		  		<p:commandButton value="New Patient" actionListener="#{tablica.onNowyPacjent}" style="margin-left:60px"/>
+		  		
 		  	</div>
-		  	<p:dataTable id= "pacjenci" value="#{tablica.patientModel}" dblClickSelect="false" selection="#{tablica.selectedPatient}" rowKey="#{pacjent.nazwisko}" selectionMode="single" var= "pacjent" styleClass="tablica" emptyMessage="No patients in register" paginator="true" rows="10">
+		  	<p:dataTable id= "pacjenci" value="#{tablica.patientModel}" dblClickSelect="false" selection="#{tablica.selectedPatient}" rowKey="#{pacjent.id}" selectionMode="single" var= "pacjent" styleClass="tablica" emptyMessage="No patients in register" paginator="true" rows="5">
 		  		<p:ajax event="rowSelect" listener="#{tablica.onRowSelect}"/>
 		  		<p:column headerText="First Name"  style="width:100px">
 		  			<h:outputText value="#{pacjent.imie}"/>

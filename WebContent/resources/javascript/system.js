@@ -1,7 +1,7 @@
 window.onload=akcja;
 var dane;
-var link = new Array("patients", "calendar","service","log out");
-var link_address = new Array("system/pacjenci","system/terminarz","system/uslugi","system/ustawienia");
+var link = new Array("patients", "calendar","service","logout");
+var link_address = new Array("system/pacjenci","system/terminarz","system/uslugi","system/logout");
 
 function testAdresu(adresArg)
 {
@@ -9,14 +9,8 @@ function testAdresu(adresArg)
 	adres=adres.split("/");
 	adres=adres[adres.length-1];
 	adres=adres.split(".");
-	adres=adres[adres.length-2];
-		
+	adres=adres[adres.length-2];	
 	var adres2=adresArg.split("/");
-	
-	
-	
-	if(adres2[1]=="pacjenci")
-	adres2[1]="signin";
 	if(adres==adres2[1])
 		return true;
 	else
@@ -34,7 +28,10 @@ function akcja()
 		var txtNode = document.createTextNode(link[licznik]+"\n "); 
 		var element = document.createElement('a');
 		var elementLi=document.createElement('li');
-		element.setAttribute("address","/"+link_address[licznik]+".xhtml");
+		if(licznik<3)
+			element.setAttribute("address","/"+link_address[licznik]+".xhtml");
+		else
+			element.setAttribute("address","/"+link_address[licznik]);	
 		if (wynik==true)
 		{
 			element.setAttribute("class", "passive");
@@ -51,7 +48,7 @@ function akcja()
 		element.appendChild(txtNode);
 		
 	}
-	guzik.disabled=true;
+	
 }
 aktywacja=function activate(e)
 {

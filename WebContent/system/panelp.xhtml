@@ -8,109 +8,110 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 <ui:composition template="templatkaSystemu.xhtml">
-	<ui:define name="title">Dentus</ui:define>
+	<ui:define name="title">Pill Manager</ui:define>
 	<ui:define name="content">
 	
-		<div style="margin-top:100px; margin-left:50px;">
-	  		<h:outputText styleClass="h1" value="Profil pacjenta " />
-	  	
-	  	<p:commandButton value="Edytuj" style="margin-left:450px;  width:100px" actionListener="#{panelPBB.onEdytuj}"/>
-	  	<p:commandButton value="Usuń" style="margin-left:20px;width:100px" actionListener="#{panelPBB.onUsun}" update=":confirmPatientDialog"/>
+		<div class = "main_container_content_header">
+	  		<h:outputText  value="Patient:  " />
+	  		<h:outputText  class="main_container_content_header_lower" value="#{panelPBB.selectedPatient.nazwisko} " />
+	  		<h:outputText  class="main_container_content_header_lower" value="#{panelPBB.selectedPatient.imie}" />	  		
+	  		<p:commandButton value="Edit" style="margin-left:40px; width:80px;" actionListener="#{panelPBB.onEdytuj}"/>
+	  		<p:commandButton value="Delete" style="margin-left:15px; width:80px" actionListener="#{panelPBB.onUsunButton}" update=":deleteAlert :confirmPatientDialog"/>
 	  	</div>
 		<p:tabView  id="tab" styleClass="tablica" >
-			<p:tab  title="Dane podstawowe" titleStyleClass="tabStyle">
+			<p:tab  title="Essential data" titleStyleClass="tabStyle">
 				<h:panelGrid columns="2">
-					<h:outputText value="nazwisko:" />
+					<h:outputText value="Last name:" />
 					<h:outputText value="#{panelPBB.selectedPatient.nazwisko}" />
-					<h:outputText value="imię:" />
+					<h:outputText value="First name:" />
 					<h:outputText value="#{panelPBB.selectedPatient.imie}" />
-					<h:outputText value="data urodznia:" />
+					<h:outputText value="Date of birth:" />
 					<h:outputText value="#{panelPBB.selectedPatient.birthDayString}" />
-					<h:outputText value="adres" />
+					<h:outputText value="Address" />
 					<h:outputText value="#{panelPBB.selectedPatient.adres1}" />
 					<h:outputText value="" />
 					<h:outputText value="#{panelPBB.selectedPatient.adres2}" />
 					<h:outputText value="" />
 					<h:outputText value="#{panelPBB.selectedPatient.adres3}" />
-					<h:outputText value="telefon:" />
+					<h:outputText value="Phone:" />
 					<h:outputText value="#{panelPBB.selectedPatient.telefon}" />
-					<h:outputText value="email:" />
+					<h:outputText value="Email:" />
 					<h:outputText value="#{panelPBB.selectedPatient.email}" />
 				</h:panelGrid>
 					
 			</p:tab>
-			<p:tab  title="Dane medyczne" titleStyleClass="tabStyle">
+			<p:tab  title="Medical data" titleStyleClass="tabStyle">
 				<h:panelGrid columns="2">
-				<h:outputText value="alergie:" />
+				<h:outputText value="Allergy to:" />
 					<h:outputText value="#{panelPBB.selectedPatient.alergie}" />
-					<h:outputText value="inne choroby:" />
+					<h:outputText value="Other health problems:" />
 					<h:outputText value="#{panelPBB.selectedPatient.choroby}" />
 				</h:panelGrid>	
 			</p:tab>
-			<p:tab   title="Historia leczenia" titleStyleClass="tabStyle">
+			<p:tab   title="Medical history" titleStyleClass="tabStyle">
 				
 				
 				
 				<h:form id="form">
-					<p:commandButton  value="Dodaj wpis"   actionListener="#{panelPBB.onNowyWpis}" style="margin-left:600px; margin-bottom:20px"  type="submit" ajax="false" >	
+					<p:commandButton  value="New Annotation"   actionListener="#{panelPBB.onNowyWpis}" style=" margin-bottom:20px"  type="submit" ajax="false" >	
 		  				<p:ajax update=":wpisEdytor"/>
 		  			</p:commandButton>
 		  			
-		  			<p:dataTable id= "wpisy" value="#{panelPBB.historyModel}" dblClickSelect="false" selection="#{panelPBB.selectedWpis}" rowKey="#{wpis.id}" selectionMode="single" var= "wpis" styleClass="wpisy" emptyMessage="Brak wpisów">
+		  			<p:dataTable id= "wpisy" value="#{panelPBB.historyModel}" dblClickSelect="false" selection="#{panelPBB.selectedWpis}" rowKey="#{wpis.id}" selectionMode="single" var= "wpis" styleClass="wpisy" emptyMessage="No annotations" paginator="true" rows="5">
 				  		<p:ajax event="rowSelect" listener="#{panelPBB.onRowSelect}" update=":wpisEdytor"/>
 				  		
 				  		
-				  		<p:column headerText="Data">
+				  		<p:column headerText="Date" style="width:50px">
 				  			<h:outputText  value="#{wpis.data}">
 				  			<f:convertDateTime type="date" dateStyle="short"/>
 				  			</h:outputText>
 				  		</p:column>
-				  		<p:column headerText="Rozpoznanie">
+				  		<p:column headerText="Diagnosis" style="width:100px">
 				  			<h:outputText value="#{wpis.rozpoznanie}"/>
 				  		</p:column>
-				  		<p:column headerText="Lecznie">
+				  		<p:column headerText="Treatment" style="width:100px">
 				  			<h:outputText value="#{wpis.leczenie}"/>
 				  		</p:column>
-				  		<p:column headerText="Komentarz">
+				  		<p:column headerText="Comments" style="width:100px">
 				  			<h:outputText value="#{wpis.komentarz}"/>
 			  			</p:column>
 			  			 
 			  		</p:dataTable>	 
 		 		</h:form>  
 			</p:tab>
-			<p:tab title="Wizyty" titleStyleClass="tabStyle">
-				<h:form>
-					<p:dataTable id= "tabelaWizyt" value="#{panelPBB.goiModel}" dblClickSelect="false" selection="#{panelPBB.selectedGOI}" rowKey="#{goi.id}"  var= "goi" styleClass="wpisy" emptyMessage="Brak wpisów" >
+			<p:tab title="Appointments" titleStyleClass="tabStyle">
+				
+				<div id="app" >
+					<h:form>
+					<p:dataTable id= "tabelaWizyt" value="#{panelPBB.goiModel}" dblClickSelect="false" selection="#{panelPBB.selectedGOI}" rowKey="#{goi.id}"  var= "goi" styleClass="wpisy" emptyMessage="Brak wpisów" paginator="true" row="5" >
 					  		
-					  		<p:column selectionMode="single"/>
-					  		<p:column headerText="Data">
+					  		<p:column selectionMode="single" style="width:30px"/>
+					  		<p:column headerText="Date" style="width:120px">
 					  			<h:outputText value="#{goi.startDate}">
 					  				<f:convertDateTime type="date"/>
 					  			</h:outputText>
 					  		</p:column>
-					  		<p:column headerText="Czas wizyty">
+					  		<p:column headerText="Time" style="width:120px">
 					  			<h:outputText value="#{goi.startDate}">
 					  				<f:convertDateTime dateStyle="short" type="time"/>
 					  			</h:outputText>
 					  		</p:column>
-					  		<p:column headerText="Nazwa usługi">
+					  		<p:column headerText="Service name" >
 					  			<h:outputText value="#{goi.usluga.nazwa}"/>
 					  		</p:column>
-					  		<p:column headerText="Koszt">
+					  		<p:column headerText="Cost" style="width:100px">
 					  			<h:outputText value="#{goi.usluga.koszt}"/>
 					  		</p:column>
-					  		<p:column headerText="Czas trwania">
+					  		<p:column headerText="Duration" style="width:50px">
 					  			<h:outputText value="#{goi.usluga.czas}"/>
 				  			</p:column>
 				  			 <f:facet name="footer">  
-				  				<p:commandButton id="viewComman2" actionListener="#{panelPBB.onToHistoryButton}" value="doHistorii" update=":wpisEdytor"/>	
+				  				<p:commandButton id="viewComman2" actionListener="#{panelPBB.onToHistoryButton}" style="float:right;" value="To history" update=":wpisEdytor"/>	
+				  				<p:commandButton id="deleteAppointmentButton" actionListener="#{panelPBB.onDeleteAppointmentButton}" style="float:right; margin-right:15px;" update=":tab" value="Delete"/>
 				  			</f:facet>
 				  	</p:dataTable>	
-				  	
-				  
-				</h:form>
-				
-		  			
+				  	</h:form>
+				</div>	
 			</p:tab>
 		</p:tabView>
 	
@@ -118,28 +119,36 @@
 	
 	
 	
-	<p:dialog id="wpisEdytor" header="EdytujWpis" widgetVar="dlg">  
+	<p:dialog id="wpisEdytor" header="Annotation edition" widgetVar="dlg">  
 	    <h:form>  
 	    	<h:panelGrid columns="2" cellpadding="5">  
-	    		<h:outputLabel for="data" value="Data: " />  
+	    		<h:outputLabel for="data" value="Date: " />  
 	    		<p:calendar id="data" value="#{panelPBB.editedWpis.data}" pattern="dd/MM/yyyy" timeZone="#{scheduleBean.timeZone}" showOn="focus"/>  
-	    		<h:outputLabel for="rozpoznanie" value="Rozpoznanie: " />  
+	    		<h:outputLabel for="rozpoznanie" value="Diagnosis: " />  
 	    		<p:inputTextarea  autoResize="false"  id="rozpoznanie" value="#{panelPBB.editedWpis.rozpoznanie}" />  
-	        	<h:outputLabel for="leczenie" value="Wykonana usługa" />  
+	        	<h:outputLabel for="leczenie" value="Service provided:" />  
 	            <p:autoComplete id="leczenie" value="#{panelPBB.editedWpis.leczenie}" completeMethod="#{selectItemsBean.generateListofNamesforUslugi}" dropdown="false"/>   
-	            <h:outputLabel for="komentarz" value="Komentarz: " />  
+	            <h:outputLabel for="komentarz" value="Comments: " />  
 	    		<p:inputTextarea   autoResize="false" id="komentarz" value="#{panelPBB.editedWpis.komentarz}" /> 
 	    		<f:facet name="footer"> 
-                <p:commandButton id="Potwierdz" value="Potwierdź" style="float:right" actionListener="#{panelPBB.potwierdzWpis}" update=":tab:form:wpisy" oncomplete="dlg.hide()" />  
-                <p:commandButton id="Usun" value="Usuń wpis" style="float:right" actionListener="#{panelPBB.usunWpis}" update=":tab:form:wpisy" oncomplete="dlg.hide()"/>  
+                <p:commandButton id="Usun" value="Delete" style="float:right; margin-right:15px;" actionListener="#{panelPBB.usunWpis}" update=":tab:form:wpisy" oncomplete="dlg.hide()"/>  
+                <p:commandButton id="Potwierdz" value="Submit" style="float:right; " actionListener="#{panelPBB.potwierdzWpis}" update=":tab :tab:form:wpisy" oncomplete="dlg.hide()" />  
+               
             </f:facet>  
 	        </h:panelGrid>       
 	    </h:form>  
-	</p:dialog>    	
+	</p:dialog> 
+	<p:confirmDialog id="deleteAlert" widgetVar="da" header="Alert" severity="alert">
+		<f:facet name="message">
+			<h:outputLabel value="All patient data will be deleted. Are you sure you want to remove it?" />  
+		</f:facet>
+		 <p:commandButton id="deleteAlertConfirmButton" value="Confirm" style="float:right; " actionListener="#{panelPBB.usun}"  oncomplete="dlg.hide()" />  
+         <p:commandButton id="deleteAlertCancelButton" value="Cancel" style="float:right; margin-right:15px;" onclick="da.hide()"/>   
+	</p:confirmDialog>   	
 	<p:confirmDialog id="confirmPatientDialog" widgetVar="cdp"  header="Alert" severity="alert">
 		<f:facet name="message">
-			<h:outputLabel value="Usunięcie usługi jest niemożliwe." />  
-			<h:outputLabel  value="Usuń z terminarza wszystkie wpisy tego pacjenta i spróbuj jeszcze raz" /> 
+			<h:outputLabel value="Removing the service data is not possible." />  
+			<h:outputLabel  value="Remove from calendar all appointments belonging to this patient." /> 
 		</f:facet> 
 		<p:button style="float:right" value="OK" id="commandP" onclick="cdp.hide()"/>	
 	</p:confirmDialog> 

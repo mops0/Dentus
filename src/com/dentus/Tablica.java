@@ -4,6 +4,8 @@ package com.dentus;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
@@ -22,11 +24,13 @@ public class Tablica implements Serializable
 	private static final long serialVersionUID = 1L;
 	private PatientDataModel patientModel;
 	private Pacjent selectedPatient;
-	
+
 	
 	public Tablica() throws IOException
 	{
-		
+		Calendar cal= Calendar.getInstance();
+		System.out.println(cal.get(Calendar.DAY_OF_MONTH));
+		System.out.println(cal.get(Calendar.MONTH));
 		lista=new RecordService().odczytajRekordy();
 		patientModel=new PatientDataModel(lista);
 	}
@@ -70,7 +74,7 @@ public class Tablica implements Serializable
 		 EdytorPBB edytor= (EdytorPBB) context.getApplication().evaluateExpressionGet(context, "#{edytorPBB}", EdytorPBB.class);
 		 edytor.setNew(true);
 		 edytor.setPacjent(new Pacjent());
-		 edytor.setTytul("Nowy pacjent");
+		 edytor.setTytul("New Patient");
 		 
 		 NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
 		 navigationHandler.handleNavigation(context, null, "edytorp"+"?faces-redirect=true");

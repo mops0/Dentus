@@ -54,7 +54,10 @@ public class RecordService
 		Session session =HibernateUtil.getSession();
 		@SuppressWarnings("unchecked")
 		List<Pacjent> list =(session.createCriteria(Pacjent.class).add(Restrictions.like("principalName",principalName))).list();
-		
+		for(int i=0;i<list.size();i++)
+		{
+			list.get(i).generateWiek();
+		}
 		return list;
 	}
 	public Map<Long, Pacjent> generujMape()

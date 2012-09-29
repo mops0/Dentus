@@ -117,7 +117,7 @@ public class SelectItemsBean
 	public void generateMonths()
 	{
 		List<SelectItem> opcje= new ArrayList<SelectItem>();
-		String[] months = new String[]{"Styczneń","Luty","Marzec","Kwiecień","Maj","Czerwiec","Lipiec","Sierpień","Wrzesień","Październik","Listopad","Grudzień"};
+		String[] months = new String[]{"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 		
 		SelectItem item = new SelectItem(1,"1");
 		for (int licznik=0;licznik<12;licznik++)

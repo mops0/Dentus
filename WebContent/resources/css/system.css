@@ -88,7 +88,7 @@ ul{
 	padding:10px;
 	padding-right:15px;
 	width:940px;
-	height:500px;
+	min-height:500px;
 }
 #main_container_header{
 	margin-left:auto;
@@ -106,7 +106,40 @@ ul{
 	font-size:20px;
 	color: #0e68a7;
 }
+.main_container_content_header_lower{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:20px;
+	color: #0ea74b;
+}
 /*---------edytorp formularz-----------------*/
+#edytorp_main_container_content{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+	color:#556f7c;
+}
+.edytorp_font_bold{
+	
+	font-weight:bold;
+}
+/*-------panelp------------------------------*/
+#app{
+	padding-left:80px;
+	paDDING-RIGHT:80px;
+}
+/*--------uslugi-----------------------------*/
+#uslugi_tabela{
+	padding-left:100px;
+	padding-right:100px;
+}
+.ui-dialog{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+}
+.ui-datepicker 
+{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+}
 
 
 /*---------footer----------------------------*/
@@ -146,4 +179,27 @@ ul{
 .ui-button {
 	font-family: Helvetica,arial,freesans,clean, sans-serif;
 	font-size:14px;
+}
+.ui-tabs 
+{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+	background-color:#d9e7f3;
+}
+.ui-tabs-nav 
+{
+	background-color:#d9e7f3;
+}
+.ui-tabs-panel 
+{
+	background-color:#d9e7f3;
+}
+#kalendarz{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:14px;
+}
+h2{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:18px;
+	color:#556f7c;
 }

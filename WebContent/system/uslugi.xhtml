@@ -11,43 +11,43 @@
 	<ui:define name="content">
 	  
 	 <h:form id="form">
-			<div style="margin-top:100px; margin-left:50px;">
-		  		<h:outputText styleClass="h1" value="Lista usług" />
-		  		
-		  		<p:commandButton id="dodaj" value="Dodaj usługę" actionListener="#{tabelaUslug.onNowaUsluga}" style="margin-left:450px" update=":uslugaEdytor"/>
-		  	
+			<div class = "main_container_content_header">
+		  		<h:outputText styleClass="h1" value="Service list" />
+		  		<p:commandButton id="dodaj" value="Dodaj usługę" actionListener="#{tabelaUslug.onNowaUsluga}" style="margin-left:60px" update=":uslugaEdytor"/>
 		  	</div>
-		  	<p:dataTable id= "uslugi" value="#{tabelaUslug.uslugaModel}" dblClickSelect="false" selection="#{tabelaUslug.selectedUsluga}" rowKey="#{usluga.nazwa}" selectionMode="single" var= "usluga" styleClass="tablica" emptyMessage="Brak usług w rejestrze.">
-		  		<p:ajax event="rowSelect" listener="#{tabelaUslug.onRowSelect}" update=":uslugaEdytor"/>
-		  		<p:column headerText="Nazwa">
-		  			<h:outputText value="#{usluga.nazwa}"/>
-		  		</p:column>
-		  		<p:column headerText="Czas trwania">
-		  			<h:outputText value="#{usluga.czas}"/>
-		  		</p:column>
-		  		<p:column headerText="Koszt">
-		  			<h:outputText value="#{usluga.koszt}"/>
-		  		</p:column>
-		  		<p:column headerText="Uwagi">
-		  			<h:outputText value="#{usluga.uwagi}"/>
-		  		</p:column>
-		  		
-		  	</p:dataTable>	 
+		  	<div id="uslugi_tabela">
+			  	<p:dataTable id= "uslugi" value="#{tabelaUslug.uslugaModel}" dblClickSelect="false" selection="#{tabelaUslug.selectedUsluga}" rowKey="#{usluga.nazwa}" selectionMode="single" var= "usluga" styleClass="tablica" emptyMessage="no service in register" paginator="true" rowsk="5">
+			  		<p:ajax event="rowSelect" listener="#{tabelaUslug.onRowSelect}" update=":uslugaEdytor"/>
+			  		<p:column headerText="Service name" style="width:200px">
+			  			<h:outputText value="#{usluga.nazwa}"/>
+			  		</p:column>
+			  		<p:column headerText="Duration time" style="width:60px">
+			  			<h:outputText value="#{usluga.czas}"/>
+			  		</p:column>
+			  		<p:column headerText="Cost">
+			  			<h:outputText value="#{usluga.koszt}" style="width:50px"/>
+			  		</p:column>
+			  		<p:column headerText="Comments">
+			  			<h:outputText value="#{usluga.uwagi}"/>
+			  		</p:column>
+			  		
+			  	</p:dataTable>
+			</div>	 
 	 </h:form>  
-	 <p:dialog id="uslugaEdytor" header="EdytujWpis" widgetVar="dlg">  
+	 <p:dialog id="uslugaEdytor" header="Service edition" widgetVar="dlg">  
 	    <h:form>  
 	    	<h:panelGrid columns="2" cellpadding="5">  
-	    		<h:outputLabel for="nazwa" value="Nazwa usługi: " />  
+	    		<h:outputLabel for="nazwa" value="Service name: " />  
 	    		<h:inputText  id="nazwa" value="#{tabelaUslug.editedUsluga.nazwa}" />  
-	    		<h:outputLabel for="czas" value="Czas trwania: " />  
+	    		<h:outputLabel for="czas" value="Duration time: " />  
 	    		<h:inputText  id="czas" value="#{tabelaUslug.editedUsluga.czas}" />  
-	        	<h:outputLabel for="koszt" value="Koszt: " />  
+	        	<h:outputLabel for="koszt" value="Cost: " />  
 	            <h:inputText id="koszt" value="#{tabelaUslug.editedUsluga.koszt}" />     
-	            <h:outputLabel for="uwagi" value="Uwagi: " />  
+	            <h:outputLabel for="uwagi" value="Comments: " />  
 	    		<h:inputText  id="uwagi" value="#{tabelaUslug.editedUsluga.uwagi}" /> 
 	    		<f:facet name="footer"> 
-                <p:commandButton id="Potwierdz" value="Potwierdź" style="float:right" actionListener="#{tabelaUslug.potwierdzWpis}" update=":form:uslugi" oncomplete="dlg.hide()" />  
-                <p:commandButton id="Usun" value="Usuń wpis" style="float:right" actionListener="#{tabelaUslug.usunWpis}" update=":form:uslugi, :confirmDialog" oncomplete="dlg.hide();"/>  
+                <p:commandButton id="Potwierdz" value="Submit" style="float:right" actionListener="#{tabelaUslug.potwierdzWpis}" update=":form:uslugi" oncomplete="dlg.hide()" />  
+                <p:commandButton id="Usun" value="Delete" style="float:right" actionListener="#{tabelaUslug.usunWpis}" update=":form:uslugi, :confirmDialog" oncomplete="dlg.hide();"/>  
             </f:facet>  
 	        </h:panelGrid>       
 	    </h:form>  
@@ -55,8 +55,8 @@
 	 <p:confirmDialog id="confirmDialog" widgetVar="cd"  header="Alert" severity="alert">
 		
 		<f:facet name="message">
-			<h:outputLabel value="Usunięcie usługi jest niemożliwe." />  
-			<h:outputLabel  value="Usuń z terminarza wszystkie wpisy zawierające tę usługe i spróbuj jeszcze raz" /> 
+			<h:outputLabel value="Removing the patient data is not possible." />  
+			<h:outputLabel  value="Remove from calendar all appointments belonging to this patient." /> 
 		</f:facet> 
 		<p:button style="float:right" value="OK" id="command" onclick="cd.hide()"/>
 		
