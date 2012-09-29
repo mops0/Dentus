@@ -166,7 +166,7 @@ ul{
 	margin-bottom:80px;
 	width:900px;
 	border-radius:6px;
-	
+	min-height:420px;
 	background-image:url("#{resource['images:tlosteto.png']}");
 	padding:10px;
 	padding-right:15px;
@@ -259,4 +259,10 @@ ul{
 #register_form_container_main .ui-message-error-detail{
 	font-family: Helvetica,arial,freesans,clean, sans-serif;
 	font-size:14px;
+}
+#contact_text_container_header a{
+	font-family: Helvetica,arial,freesans,clean, sans-serif;
+	font-size:16px;
+	color:#556f7c;
+	font-weight:bold;
 }

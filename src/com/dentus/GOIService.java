@@ -7,24 +7,37 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 public class GOIService
 {
+	private String principalName;
+	public String getPrincipalName()
+	{
+		return principalName;
+	}
+	public void setPrincipalName(String principalName)
+	{
+		this.principalName = principalName;
+	}
 	GOIService()
 	{
 		HibernateUtil.beginTransaction();
+		initializePrincipalName();
 	}
 	public void addGOI(GOI goi) 
 	{
 		Session session =HibernateUtil.getSession();
+		goi.setPrincipalName(principalName);
 		session.save(goi);		 
 	}
 	@SuppressWarnings("unchecked")
 	public ArrayList<GOI> pobierzListeGOI() 
 	 {
 		Session session =HibernateUtil.getSession();
-		Criteria criteria = session.createCriteria(GOI.class);
-		
+		//Criteria criteria = session.createCriteria(GOI.class);
+		Criteria criteria=(session.createCriteria(GOI.class).add(Restrictions.like("principalName",principalName)));
 		return (ArrayList<GOI>)criteria.list();
 		 
 	 }
@@ -59,6 +72,17 @@ public class GOIService
 		Session session =HibernateUtil.getSession();
 		GOI goi = (GOI) session.get(GOI.class, id);
 		return goi;
+	}
+	public void initializePrincipalName()
+	{
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (principal instanceof UserDetails) {
+		  principalName=((UserDetails)principal).getUsername();
+		} else {
+		 principalName=principal.toString();
+		}
+		
 	}
 
 }

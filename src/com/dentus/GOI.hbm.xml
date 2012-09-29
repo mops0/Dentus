@@ -20,5 +20,8 @@
         <property name="endDate" type="java.util.Date">
             <column name="ENDDATE" />
         </property>
+         <property name="principalName" type="java.lang.String">
+        	<column name="PRINCIPALNAME"/>
+        </property>
     </class>
 </hibernate-mapping>

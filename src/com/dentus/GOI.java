@@ -11,7 +11,16 @@ public class GOI
 	private Usluga usluga;
 	private Date startDate;
 	private Date endDate;
+	private String principalName;
 	
+	public String getPrincipalName()
+	{
+		return principalName;
+	}
+	public void setPrincipalName(String principalName)
+	{
+		this.principalName = principalName;
+	}
 	public long getId()
 	{
 		return id;
