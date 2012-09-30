@@ -10,6 +10,16 @@ public class Usluga
  private int koszt;
  private String uwagi;
  private long id;
+ private String principalName;
+ 
+public String getPrincipalName()
+{
+	return principalName;
+}
+public void setPrincipalName(String principalName)
+{
+	this.principalName = principalName;
+}
 public String getNazwa()
 {
 	return nazwa;

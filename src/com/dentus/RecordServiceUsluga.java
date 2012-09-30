@@ -8,25 +8,40 @@ import java.util.Map;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 public class RecordServiceUsluga
 {
+	private String principalName;
 	RecordServiceUsluga()
 	{
 		HibernateUtil.beginTransaction();
+		initializePrincipalName();
 	}
+	
+	public String getPrincipalName()
+	{
+		return principalName;
+	}
+
+	public void setPrincipalName(String principalName)
+	{
+		this.principalName = principalName;
+	}
+
 	public void addUsluga(Usluga usluga) 
 	{
 		Session session =HibernateUtil.getSession();
-		
+		usluga.setPrincipalName(principalName);
 		session.save(usluga);		 
 	}
 	@SuppressWarnings("unchecked")
 	public List<Usluga> readUslugi() 
 	 {
 		Session session =HibernateUtil.getSession();
-		Criteria criteria = session.createCriteria(Usluga.class);
-		
+		//Criteria criteria = session.createCriteria(Usluga.class);
+		Criteria criteria =(session.createCriteria(Usluga.class).add(Restrictions.like("principalName",principalName)));
 		return (List<Usluga>)criteria.list();
 		 
 	 }
@@ -70,6 +85,17 @@ public class RecordServiceUsluga
 		List list =(session.createCriteria(GOI.class).createCriteria("usluga").add(Restrictions.like("id",usluga.getId()))).list();
 		
 		return !list.isEmpty();
+		
+	}
+	public void initializePrincipalName()
+	{
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (principal instanceof UserDetails) {
+		  principalName=((UserDetails)principal).getUsername();
+		} else {
+		 principalName=principal.toString();
+		}
 		
 	}
 }
